@@ -1,12 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
         {% block stylesheets %}{% endblock %}
     </head>
+
     <body>
         {% block body %}{% endblock %}
+        <h1>Ceci est un test</h1>
+
+        {# Inclusion des fichiers JS généraux du site #}
+        <script src="{{ asset('js/jquery-3.5.1.min.js') }}"></script>
+        <script src="{{ asset('js/popper.min.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>
