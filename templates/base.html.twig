@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="h-100"><!--rajouter class="h-100" pour le footer-->
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{asset('css/style.css')}}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         {% block stylesheets %}{% endblock %}
     </head>
 
-    <body>
+    <body class="d-flex flex-column h-100"><!--class a rajoutter pour le footer-->
 
-        <div class="container-fluid bg-grade"></div>
+        <div class="container-fluid bg-grade">
             <!--Navbar principal, doc bootstrap : navbar> Toggler-->
 
             <!--Navbar-->
@@ -44,13 +45,36 @@
             </nav>
             <!--/.Navbar-->
             {% block body %}{% endblock %}
+
         </div>
+
+        <!--Footer-->
+        <footer class="nav justify-content-center mt-auto py-3 footer bg-sand"><!--mt-auto py-3 est une classe a rajouter pour avoir le footer en bas de page-->
+            <div class="col-12 mt-3 container align-items-center">
+                <div class="button"><p class="liens">Retrouvez-nous</p></div>
+                <div class="social twitter"><a href="https://twitter.com/explore" target="_blank"><i class="fa fa-twitter"></i></a></div>
+                <div class="social facebook"><a href="https://fr-fr.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a></div>
+                <div class=" social instagram"><a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram"></a></i></div>
+                <div class="social youtube"><a href="https://www.youtube.com/?hl=fr&gl=FR" target="_blank"><i class="fa fa-youtube"></i></a></div>
+            </div>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                <defs>
+                <filter id="goo">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur" /><!--La primitive de filtre SVG <feGaussianBlur> applique un effet de flou à l'image en entrée.-->
+                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+                    <feBlend in="SourceGraphic" in2="goo" />
+                </filter>
+                </defs>
+            </svg>
+        </footer>
         
 
         {# Inclusion des fichiers JS généraux du site #}
         <script src="{{ asset('js/jquery-3.5.1.slim.min.js') }}"></script>
         <script src="{{ asset('js/popper.min.js') }}"></script>
         <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('js/script.js') }}"></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>
