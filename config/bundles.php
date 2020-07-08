@@ -15,5 +15,9 @@ return [
     EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle::class => ['all' => true],
     SymfonyCasts\Bundle\VerifyEmail\SymfonyCastsVerifyEmailBundle::class => ['all' => true],
     SymfonyCasts\Bundle\ResetPassword\SymfonyCastsResetPasswordBundle::class => ['all' => true],
+<<<<<<< HEAD
     FOS\CKEditorBundle\FOSCKEditorBundle::class => ['all' => true],
+=======
+    Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle::class => ['all' => true],
+>>>>>>> efb7fe1de99a78d1b1fd482d605d0ca64f6166b5
 ];
