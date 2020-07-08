@@ -7,6 +7,14 @@
         "ext-iconv": "*",
         "antishov/doctrine-extensions-bundle": "^1.4",
         "easycorp/easyadmin-bundle": "^3.0",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        "friendsofsymfony/ckeditor-bundle": "^2.2",
+=======
+        "knplabs/knp-paginator-bundle": "^5.2",
+>>>>>>> cf5bb259c4c0df19e933cdd5980d5cfe3b31628d
+>>>>>>> cb86690ba770b82575d90c9968e95e6b78ea02a6
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/asset": "4.4.*",
         "symfony/console": "4.4.*",

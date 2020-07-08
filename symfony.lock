@@ -109,8 +109,22 @@
     "egulias/email-validator": {
         "version": "2.1.18"
     },
+<<<<<<< HEAD
+    "friendsofsymfony/ckeditor-bundle": {
+        "version": "2.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "2.0",
+            "ref": "8eb1cd0962ded6a6d6e1e5a9b6d3e888f9f94ff6"
+        },
+        "files": [
+            "./config/packages/fos_ckeditor.yaml"
+        ]
+=======
     "gedmo/doctrine-extensions": {
         "version": "v2.4.41"
+>>>>>>> efb7fe1de99a78d1b1fd482d605d0ca64f6166b5
     },
     "laminas/laminas-code": {
         "version": "3.4.1"
