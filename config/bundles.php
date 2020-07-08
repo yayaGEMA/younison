@@ -19,5 +19,9 @@ return [
     FOS\CKEditorBundle\FOSCKEditorBundle::class => ['all' => true],
 =======
     Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle::class => ['all' => true],
+<<<<<<< HEAD
 >>>>>>> efb7fe1de99a78d1b1fd482d605d0ca64f6166b5
+=======
+    Knp\Bundle\PaginatorBundle\KnpPaginatorBundle::class => ['all' => true],
+>>>>>>> cf5bb259c4c0df19e933cdd5980d5cfe3b31628d
 ];

@@ -126,6 +126,12 @@
         "version": "v2.4.41"
 >>>>>>> efb7fe1de99a78d1b1fd482d605d0ca64f6166b5
     },
+    "knplabs/knp-components": {
+        "version": "v2.3.6"
+    },
+    "knplabs/knp-paginator-bundle": {
+        "version": "v5.2.0"
+    },
     "laminas/laminas-code": {
         "version": "3.4.1"
     },
