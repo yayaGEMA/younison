@@ -14,12 +14,4 @@ class MainController extends AbstractController
     {
         return $this->render('main/index.html.twig');
     }
-<<<<<<< HEAD
-
-    public function admin()
-    {
-        return $this->render('main/admin/');
-    }
-=======
->>>>>>> master
 }
