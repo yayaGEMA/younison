@@ -276,8 +276,6 @@ class User implements UserInterface
         // Ici ça retournera une phrase type "25 - bob@exemple.com"
         return $this->id . ' - ' . $this->email;
     }
-<<<<<<< HEAD
-=======
 
     public function isVerified(): bool
     {
@@ -290,6 +288,5 @@ class User implements UserInterface
 
         return $this;
     }
->>>>>>> Auth
 }
 
