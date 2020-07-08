@@ -7,7 +7,6 @@
         "ext-iconv": "*",
         "antishov/doctrine-extensions-bundle": "^1.4",
         "easycorp/easyadmin-bundle": "^3.0",
-        "knplabs/knp-paginator-bundle": "^5.2",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/asset": "4.4.*",
         "symfony/console": "4.4.*",
