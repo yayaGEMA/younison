@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" class="h-100"><!--rajouter class="h-100" pour le footer-->
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,8 +9,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         {% block stylesheets %}{% endblock %}
     </head>
-
-    <body class="d-flex flex-column h-100"><!--class a rajoutter pour le footer-->
+    <body class="d-flex flex-column"><!--class a rajoutter pour le footer-->
 
         <div class="container-fluid bg-grade">
             <!--Navbar principal, doc bootstrap : navbar> Toggler-->
@@ -43,14 +42,12 @@
                 </div>
                 <!-- Collapsible content -->
             </nav>
-            <!--/.Navbar-->
-            {% block body %}{% endblock %}
-
-        </div>
+            
+{% block body %}{% endblock %}
 
         <!--Footer-->
-        <footer class="nav justify-content-center mt-auto py-3 footer bg-sand"><!--mt-auto py-3 est une classe a rajouter pour avoir le footer en bas de page-->
-            <div class="col-12 mt-3 container align-items-center">
+        <footer class="nav row justify-content-center  footer bg-sand">
+            <div class="col-12 mt-1 container align-items-center">
                 <div class="button"><p class="liens">Retrouvez-nous</p></div>
                 <div class="social twitter"><a href="https://twitter.com/explore" target="_blank"><i class="fa fa-twitter"></i></a></div>
                 <div class="social facebook"><a href="https://fr-fr.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a></div>
@@ -68,8 +65,8 @@
                 </defs>
             </svg>
         </footer>
-        
-
+    </div>
+    
         {# Inclusion des fichiers JS généraux du site #}
         <script src="{{ asset('js/jquery-3.5.1.slim.min.js') }}"></script>
         <script src="{{ asset('js/popper.min.js') }}"></script>
