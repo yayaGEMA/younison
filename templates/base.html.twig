@@ -17,7 +17,7 @@
             <!--Navbar-->
             <nav class=" row navbar navbar-expand-lg navbar-dark navbar-1 dark sticky-top bg-sand">
                 <!-- Navbar brand -->
-                <a class="navbar-brand" href="#">YOUnison</a>
+                <a class="navbar-brand" href="{{ path('main') }}">YOUnison</a>
                 <!-- Collapse button -->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent15"
                 aria-controls="navbarSupportedContent15" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -26,13 +26,13 @@
                 <!-- Links -->
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{ path('main') }}">Accueil <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#articles">Articles</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#inscription">Inscription</a>
+                        <a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="connexion">Connexion</a>
