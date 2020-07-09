@@ -1,0 +1,26 @@
+{# Utilisation du squelette de page base.html.twig #}
+{% extends 'base.html.twig' %}
+
+{# Titre de la page #}
+{% block title %}Gestion du profil{% endblock %}
+
+{# Contenu de la page #}
+{% block body %}
+    {# H1 #}
+    <div class="row">
+        <h1 class="col-12 text-center my-5">Gestion du profil</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-md-10 offset-1 d-flex justify-content-center align-items-center mb-4">
+            {# Infos du compte #}
+            <ul class="list-group col-12 col-md-8 p-0">
+                <li class="list-group-item bg-black">Adresse Email : <span class="text-info">{{ app.user.email }}</span></li>
+                <li class="list-group-item bg-black">Pseudo : <span class="text-info">{{ app.user.pseudo }}</span></li>
+                <li class="list-group-item bg-black">Date d'inscription : <span class="text-info">{{ app.user.registrationDate|date('d/m/Y') }}</span></li>
+                <li class="list-group-item bg-black">Compte : <span class="text-info">{{ is_granted('ROLE_ADMIN') ? 'Administrateur' : 'Membre' }}</span></li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}
