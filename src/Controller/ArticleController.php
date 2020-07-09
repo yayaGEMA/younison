@@ -18,7 +18,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 
 /**
- * @Route("/article", name="article_")
+ * @Route("", name="article_")
  */
 class ArticleController extends AbstractController
 {
@@ -82,7 +82,7 @@ class ArticleController extends AbstractController
         $em = $this->getDoctrine()->getManager();
 
         // Création d'une requête pour récupérer les articles en article
-        $query = $em->createQuery('SELECT a FROM App\Entity\article a WHERE a.type = 0 ORDER BY a.publicationDate DESC');
+        $query = $em->createQuery('SELECT a FROM App\Entity\Article a  ORDER BY a.publicationDate DESC');
 
         // On stocke dans $pageArticles les 10 articles de la page demandée dans l'URL
         $articles = $paginator->paginate(
