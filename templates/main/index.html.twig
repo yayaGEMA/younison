@@ -1,0 +1,124 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MainController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+    <!--Bannière avec titre caché en format mobile et apparant en small-->
+    <div class="row banner d-none d-sm-flex align-items-center">
+        <div class="col-8 offset-2 text-center">
+            <p class="title">YOUnison</p>
+        </div>
+    </div>
+
+
+    <!--Premiere section. Photo a la une TOP 1-->
+    <section class="row mt-3" id="news_highlights">
+        <div class="col-12 mt-2 col-md-8 offset-md-2 text-center">
+            <div class="card thumbnail">
+                <img class="card-img-top" src="images/mori2.jpg" alt="Ennio Morriconne">
+                <div class="resume card-img-overlay">
+                    <h2 class="card-title">Il Maestro  (1928-2020)</h2>
+                    <p class="card-text">Le compositeur Ennio Morricone est décédé, laissant derrière lui une oeuvre incommensurable et eternelle.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--Deuxieme section serie de deux articles sur la meme ligne en format small-->
+    <section class="row  mt-4  text-center">
+        <div class="col-sm-4 offset-sm-2 offset-0"><!--TOP 2-->
+            <div class="card-deck">
+                <div class="card">
+                    <img class="card-img-top" src="images/laroux.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Album-La Roux</h5>
+                        <p class="card-text">La jeune chanteuse Anglaise est de retour avec la sortie d'un nouvel opus apres 6 ans d'absence.</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Publié le 04/07/2020</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4"><!--TOP 3-->
+            <div class="card-deck">
+                <div class="card">
+                    <img class="card-img-top" src="images/blondie2.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">DiscoGraphie-Blondie</h5>
+                        <p class="card-text">Retour sur la fructueuse carriere du groupe New-Yorkais et sa front-girl, égerie d'une génération.</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Publié le 04/07/2020</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--Troisieme  section Serie de 4 articles en format small sur une meme ligne-->
+    <section class="row  mt-4 mb-4 text-center">
+        <div class="col-sm-4 offset-sm-2 offset-0 col-lg-2 card-style"><!--TOP 4-->
+            <div class="card-deck">
+                <div class="card">
+                    <img class="card-img-top" src="images/pink.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Interview-Pink Floyd</h5>
+                        <p class="card-text">Retour sur la carière planante du Floyd des 70's par David Gilmour.</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Publié le 04/07/2020</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 col-lg-2 card-style"><!--TOP 5-->
+            <div class="card-deck">
+                <div class="card">
+                    <img class="card-img-top" src="images/breakers.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Hip-Hop</h5>
+                        <p class="card-text">Flashback 80's avec le crew des New-York City Beakers pionnier du break dance.</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Publié le 04/07/2020</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 offset-sm-2 offset-lg-0 col-lg-2 mt-sm-3 mt-lg-0 card-style"><!--TOP 6-->
+            <div class="card-deck">
+                <div class="card">
+                    <img class="card-img-top" src="images/christian.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Chronique</h5>
+                        <p class="card-text">Revelation YouTube avec une salve de reprises des musiques de Red Dead.</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Publié le 04/07/2020</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 col-lg-2 mt-sm-3 mt-lg-0 card-style"><!--TOP 7-->
+            <div class="card-deck">
+                <div class="card">
+                    <img class="card-img-top" src="images/brody.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Album-Brody Dalle</h5>
+                        <p class="card-text">Chronique du dernier EP de l'ex des Distillers, en avant première</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Publié le 04/07/2020</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
