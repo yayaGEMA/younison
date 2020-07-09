@@ -75,9 +75,10 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="string", length=32)
      */
-    private $isVerified = false;
+    private $activationToken;
+
 
     public function getId(): ?int
     {
@@ -277,16 +278,17 @@ class User implements UserInterface
         return $this->id . ' - ' . $this->email;
     }
 
-    public function isVerified(): bool
+    public function getActivationToken(): ?string
     {
-        return $this->isVerified;
+        return $this->activationToken;
     }
 
-    public function setIsVerified(bool $isVerified): self
+    public function setActivationToken(string $activationToken): self
     {
-        $this->isVerified = $isVerified;
+        $this->activationToken = $activationToken;
 
         return $this;
     }
+
 }
 

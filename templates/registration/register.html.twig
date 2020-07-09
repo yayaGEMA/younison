@@ -6,16 +6,28 @@
     {% for flashError in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
     {% endfor %}
+    <div class="row">
+        <h1 class="col-12 text-center my-5">Créer un compte</h1>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-4 offset-md-4">
+            {{ form_start(registrationForm) }}
 
-    <h1>Créer un compte</h1>
+            <div class="row">
+                {# Affichage des erreurs générales du formulaire #}
+                {{ form_errors(registrationForm) }}
+            </div>
+            
+            {{ form_row(registrationForm.email) }}
+            {{ form_row(registrationForm.plainPassword, {
+                label: 'Password'
+            }) }}
+            {{ form_row(registrationForm.pseudo) }}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+            {# Bouton de validation #}
+            {{ form_row(registrationForm.save) }}
 
-        <button type="submit" class="btn">Créer un compte</button>
-    {{ form_end(registrationForm) }}
+            {{ form_end(registrationForm) }}
+        </div>
+    </div>
 {% endblock %}

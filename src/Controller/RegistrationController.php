@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\EmailVerifier;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use \DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -39,7 +40,15 @@ class RegistrationController extends AbstractController
                     $user,
                     $form->get('plainPassword')->getData()
                 )
-            );
+            )
+
+            // Date actuelle
+            ->setRegistrationDate(new DateTime())
+            // Compte non activé
+            ->setIsActivated(false)
+            // md5 aléatoire comme token d'activation
+            ->setActivationToken( md5( random_bytes(100) ) )
+        ;
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);

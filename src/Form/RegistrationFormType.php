@@ -8,6 +8,11 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,20 +21,7 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('pseudo', TextType::class, [
-                'label' => 'Pseudonyme',
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Merci de renseigner un pseudonyme'
-                    ]),
-                    new Length([
-                        'min' => 2,
-                        'minMessage' => 'Votre pseudonyme doit contenir au moins {{ limit }} caractères',
-                        'max' => 40,
-                        'maxMessage' => 'Votre pseudonyme doit contenir au maximum {{ limit }} caractères'
-                    ]),
-                ]
-            ])
+
             // Champ email
             ->add('email', EmailType::class, [
                 'label' => 'Adresse Email',
@@ -43,7 +35,7 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
 
-            ->add('password', RepeatedType::class, [
+            ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'Le mot de passe ne correspond pas à sa confirmation',
                 'first_options' => [
@@ -70,6 +62,22 @@ class RegistrationFormType extends AbstractType
                 ]
             ])
 
+            //Champ pseudo
+            ->add('pseudo', TextType::class, [
+                'label' => 'Pseudonyme',
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Merci de renseigner un pseudonyme'
+                    ]),
+                    new Length([
+                        'min' => 2,
+                        'minMessage' => 'Votre pseudonyme doit contenir au moins {{ limit }} caractères',
+                        'max' => 40,
+                        'maxMessage' => 'Votre pseudonyme doit contenir au maximum {{ limit }} caractères'
+                    ]),
+                ]
+            ])
+
             // Bouton de validation
             ->add('save', SubmitType::class, [
                 'label' => 'Créer mon compte',
@@ -77,12 +85,6 @@ class RegistrationFormType extends AbstractType
                     'class' => 'btn btn-outline-primary col-12'
                 ]
             ])
-            ->add('roles')
-            ->add('profilPic')
-            ->add('registrationDate')
-            ->add('isActivated')
-            
-            ->add('isVerified')
         ;
     }
 
@@ -90,6 +92,9 @@ class RegistrationFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'attr' => [
+                'novalidate' => 'novalidate'
+            ]
         ]);
     }
 }
