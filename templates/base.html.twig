@@ -3,13 +3,14 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}{% endblock %}</title>
         <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{asset('css/style.css')}}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
         {% block stylesheets %}{% endblock %}
     </head>
-    <body class="d-flex flex-column"><!--class a rajoutter pour le footer-->
+    <body class="d-flex flex-column"><!--class a rajouter pour le footer-->
 
         <div class="container-fluid bg-grade">
             <!--Navbar principal, doc bootstrap : navbar> Toggler-->
@@ -31,12 +32,28 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#articles">Articles</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="connexion">Connexion</a>
-                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto pr-2">
+                    {# Boutons si l'utilisateur est connecté #}
+                    {% if app.user %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-light" href="#" id="profil-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-user mr-1"></i>{{ app.user.pseudo }}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="profil-dropdown">
+                                <a href="#" class="dropdown-item"><i class="fas fa-users-cog mr-1"></i> Mon Profil</a>
+                                <a href="{{ path('app_logout') }}" class="dropdown-item"><i class="fas fa-sign-out-alt mr-1"></i>Déconnexion</a>
+                            </div>
+                        </li>
+                     {# Boutons si l'utilisateur n'est pas connecté #}
+                     {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="connexion">Connexion</a>
+                        </li>
+                    {% endif %}
                 </ul>
                 <!-- Links -->
                 </div>
@@ -46,7 +63,7 @@
 {% block body %}{% endblock %}
 
         <!--Footer-->
-        <footer class="nav row justify-content-center  footer bg-sand">
+        <footer class="nav row justify-content-center footer bg-sand">
             <div class="col-12 mt-1 container align-items-center">
                 <div class="button"><p class="liens">Retrouvez-nous</p></div>
                 <div class="social twitter"><a href="https://twitter.com/explore" target="_blank"><i class="fa fa-twitter"></i></a></div>
