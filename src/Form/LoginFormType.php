@@ -12,14 +12,20 @@ class LoginFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('pseudo')
-            ->add('email')
-            ->add('roles')
-            ->add('profilPic')
-            ->add('registrationDate')
-            ->add('isActivated')
+
+            ->add('email', EmailType::class, [
+                'label' => 'Adresse email',
+                'constraints' => [
+                    new Email([
+                        'message' => 'L\'adresse email {{ value }} n\'est pas une adresse valide'
+                    ]),
+                    new NotBlank([
+                        'message' => 'Merci de renseigner une adresse email'
+                    ])
+                ]
+            ])
             ->add('password')
-            ->add('isVerified')
+
         ;
     }
 

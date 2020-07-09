@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Publier un article{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <h1 class="col-12 text-center my-4">Publier un article</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-8 offset-md-2">
+                {# Affichage du form de création d'un new article #}
+                {{ form(form)}}
+            </div>
+        </div>
+
+    </div>
+
+ 
+
+{% endblock %}

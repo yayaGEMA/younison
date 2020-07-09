@@ -43,10 +43,11 @@ class ArticleController extends AbstractController
             // Récupération de l'user actuellement connecté
             $userConnected = $this->getUser();
 
-            // Hydratation de la publicationDate et de l'auteur de l'article
+            // Hydratation de la publicationDate, des likes et de l'auteur de l'article
             $article
                 ->setPublicationDate(new DateTime())
                 ->setAuthor($userConnected)
+                ->setLikes(0)
             ;
 
             // Récupération du manager général des entités
@@ -59,10 +60,10 @@ class ArticleController extends AbstractController
             $em->flush();
 
             // TODO: ajouter un message flash de succès
-            $this->addFlash('success', 'Annonce publiée avec succès !');
+            $this->addFlash('success', 'Article publié avec succès !');
 
-            // Redirige sur la page d'accueil
-            return $this->redirectToRoute('main_index');
+            // Redirige sur la page des articles
+            return $this->redirectToRoute('main');
         }
 
         // On appelle la vue en lui transmettant l'affichage du formulaire dans une variable "form"
