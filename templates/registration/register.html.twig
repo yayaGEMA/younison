@@ -13,10 +13,9 @@
         <div class="col-12 col-md-4 offset-md-4">
             {{ form_start(registrationForm) }}
 
-            <div class="row">
-                {# Affichage des erreurs générales du formulaire #}
-                {{ form_errors(registrationForm) }}
-            </div>
+            {# Affichage des erreurs générales du formulaire #}
+            {{ form_errors(registrationForm) }}
+
             
             {{ form_row(registrationForm.email) }}
             {{ form_row(registrationForm.plainPassword, {
@@ -30,4 +29,5 @@
             {{ form_end(registrationForm) }}
         </div>
     </div>
+
 {% endblock %}

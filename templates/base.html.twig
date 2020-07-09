@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html class="h-100" lang="fr">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}{% endblock %}</title>
         <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{asset('css/style.css')}}">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
         {% block stylesheets %}{% endblock %}
     </head>
-    <body class="d-flex flex-column"><!--class a rajouter pour le footer-->
+    <body class="d-flex flex-column h-100 bg-grade"><!--class a rajouter pour le footer-->
 
-        <div class="container-fluid bg-grade">
+        <div class="container-fluid">
             <!--Navbar principal, doc bootstrap : navbar> Toggler-->
 
             <!--Navbar-->
@@ -41,7 +40,7 @@
                                 <i class="fas fa-user mr-1"></i>{{ app.user.pseudo }}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="profil-dropdown">
-                                <a href="#" class="dropdown-item"><i class="fas fa-users-cog mr-1"></i> Mon Profil</a>
+                                <a href="{{ path('profil') }}" class="dropdown-item"><i class="fas fa-users-cog mr-1"></i> Mon Profil</a>
                                 <a href="{{ path('app_logout') }}" class="dropdown-item"><i class="fas fa-sign-out-alt mr-1"></i>Déconnexion</a>
                             </div>
                         </li>
@@ -62,27 +61,31 @@
             
 {% block body %}{% endblock %}
 
-        <!--Footer-->
-        <footer class="nav row justify-content-center footer bg-sand">
-            <div class="col-12 mt-1 container align-items-center">
-                <div class="button"><p class="liens">Retrouvez-nous</p></div>
-                <div class="social twitter"><a href="https://twitter.com/explore" target="_blank"><i class="fa fa-twitter"></i></a></div>
-                <div class="social facebook"><a href="https://fr-fr.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a></div>
-                <div class=" social instagram"><a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram"></a></i></div>
-                <div class="social youtube"><a href="https://www.youtube.com/?hl=fr&gl=FR" target="_blank"><i class="fa fa-youtube"></i></a></div>
-            </div>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-                <defs>
-                <filter id="goo">
-                    <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur" /><!--La primitive de filtre SVG <feGaussianBlur> applique un effet de flou à l'image en entrée.-->
-                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
-                    <feBlend in="SourceGraphic" in2="goo" />
-                </filter>
-                </defs>
-            </svg>
-        </footer>
     </div>
+            <!--Footer-->
+            <footer class="nav justify-content-center footer bg-sand mt-auto pt-4">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 mt-1 container align-items-center pb-5">
+                            <div class="button"><p class="liens">Retrouvez-nous</p></div>
+                            <div class="social twitter"><a href="https://twitter.com/explore" target="_blank"><i class="fab fa-twitter"></i></a></div>
+                            <div class="social facebook"><a href="https://fr-fr.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a></div>
+                            <div class=" social instagram"><a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a></div>
+                            <div class="social youtube"><a href="https://www.youtube.com/?hl=fr&gl=FR" target="_blank"><i class="fab fa-youtube"></i></a></div>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                            <defs>
+                            <filter id="goo">
+                                <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur" /><!--La primitive de filtre SVG <feGaussianBlur> applique un effet de flou à l'image en entrée.-->
+                                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+                                <feBlend in="SourceGraphic" in2="goo" />
+                            </filter>
+                            </defs>
+                        </svg>
+                        
+                    </div>
+                </div>
+            </footer>
     
         {# Inclusion des fichiers JS généraux du site #}
         <script src="{{ asset('js/jquery-3.5.1.slim.min.js') }}"></script>
