@@ -5,6 +5,7 @@ namespace App\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Article;
 
 class MainController extends AbstractController
 {
@@ -13,7 +14,15 @@ class MainController extends AbstractController
      */
     public function index()
     {
-        return $this->render('main/index.html.twig');
+        // Récupération du repository des articles
+        $articleRepo = $this->getDoctrine()->getRepository(Article::class);
+
+        // On demande au repository de nous donner les articles les plus récents
+        $indexArticles = $articleRepo->findSevenLatest();
+
+        return $this->render('main/index.html.twig', [
+            'index_articles' => $indexArticles
+        ]);
     }
     /**
      * @Route("/admin", name="admin")
