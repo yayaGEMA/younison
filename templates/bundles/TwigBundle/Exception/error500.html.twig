@@ -11,7 +11,17 @@
 
         <div class="row">
             <div class="col-12 text-center">
-                <img src="{{ asset('images/error500.jpg') }}" alt="Erreur 404, page introuvable" class="img-fluid m-3">
+                <img src="{{ asset('images/error500.gif') }}" alt="Erreur 500, Probleme Interne" class="img-fluid m-3">
+                <style>
+                    @font-face{
+                        font-family: 'Jedi';
+                        src: url('../fonts/Starjedi.ttf');
+                    }
+                    h1{
+                        font-family: Jedi,Arial, Helvetica, sans-serif;
+                    }
+                </style>
+                <h1 style="margin-top: -6rem; margin-right:0em; font-size:2em; text-shadow: 4px 4px 5px rgba(0, 0, 0, 1);">Erreur 500 : Probleme interne au serveur</h1>
             </div>
         </div>
 
