@@ -70,7 +70,7 @@ class Article
     private $likes;
 
     /**
-     * @ORM\Column(type="string", length=400)
+     * @ORM\Column(type="string", length=400, nullable=true)
      */
     private $spotifyUri;
 

@@ -19,22 +19,18 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
-    // /**
-    //  * @return Article[] Returns an array of Article objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+    * @return Article[] Returns an array of Article objects
+    */
+    public function findSevenLatest() : array
     {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
+        // Return pour retourner ce que la requête DQL aura trouvé en base de données
+        return $this->createQueryBuilder('a')   // a = alias de la table "article"
+        ->orderBy('a.publication_date DESC')   // Petit order by publication_date
+        ->getQuery()    // Execution de la requête
+        ->getResult()   // Récupération du résultat de la requête
         ;
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?Article
