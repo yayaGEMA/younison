@@ -4,6 +4,16 @@
 {# Titre de la page #}
 {% block title %}{{ article.title }}{% endblock %}
 
+{% block stylesheets %}
+
+<style>
+    .articleBanner{
+        background-image: url({{ asset('images/articles/' ~ article.picture)  }} );
+    }
+</style>
+
+{% endblock %}
+
 {# Contenu de la page #}
 {% block body %}
 
@@ -11,18 +21,21 @@
 
         {# Titre de l'article #}
         <div class="row">
-            <div class="banner col-12 d-flex justify-content-center align-items-center">
+            <div class="articleBanner col-12 d-flex justify-content-center align-items-center">
                 <h1>{{ article.title }}</h1>
             </div>
         </div>
 
         {# Affichage de l'article #}
-
         <div class="row">
             <div class="col-12 p-3">
                 <div>
                     {# Affichage de la date et du pseudonym #}
                     <footer>Publié le <strong class="text-dark">{{ article.publicationDate|date('d/m/Y à H\\hi') }}</strong> par <strong class="text-dark">{{ article.author.pseudo }}</strong></footer>
+
+                    {# Affichage de l'article #}
+                    <div class="mb-2">{{ article.content|purify }}</div>
+
                 </div>
             </div>
         </div>
