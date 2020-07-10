@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Article;
 use App\Form\ArticleType;
+use App\Entity\Comment;
+use App\Form\CommentType;
 use App\Form\EditArticleType;
 use App\Form\EditPhotoType;
 use App\Entity\User;
@@ -121,10 +123,54 @@ class ArticleController extends AbstractController
         // Récupération de l'user actuellement connecté
         $userConnected = $this->getUser();
 
+        // Si l'utilisateur n'est pas connecté, appel direct de la vue en lui envoyant l'article à afficher
+        // On fait ça pour éviter que le traitement du formulaire en dessous ne soit invoqué par un autre moyen même si le formulaire html est masqué
+        if(!$userConnected){
+            return $this->render('articles/articleView.html.twig', [
+                'article' => $article,
+            ]);
+        }
+
+        //Création d'un commentaire vide
+        $newComment = new Comment();
+
+        //Création d'un formulaire de création de commentaire lié à $newComment
+        $form = $this->createForm(CommentType::class, $newComment);
+
+        //liaison des données de requête (POST) avec le formulaire
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $newComment
+                ->setAuthor($userConnected)  //L'auteur est l'utilisateur connecté
+                ->setPublicationDate(new DateTime()) //Date actuelle
+                ->setArticleId($article) //Lié à l'article actuellement affiché sur la page
+                ->setLikes(0) //Initialise le compteur de likes
+            ;
+
+            // Sauvegarde du commentaire en base de données via le manager général des entités
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($newComment);
+            $em->flush();
+
+            //Message flash de type "success"
+            $this->addFlash('success', 'Votre commentaire a été publié avec succès !');
+
+            //suppression des 2 variables contenant le formulaire validé et le commentaire nouvellement crée (pour éviter que le nouveau formulaire soit rempli avec)
+            unset($newComment);
+            unset($form);
+
+            //création d'un nouveau commentaire vide et de son formulaire lié
+            $newComment = new Comment();
+            $form = $this->createForm(CommentType::class, $newComment);
+        }
+
         // Appel de la vue en lui envoyant le article
         return $this->render('articles/articleView.html.twig', [
             'article' => $article,
+            'comment' => $newComment,
             'user' => $userConnected,
+            'commentForm' => $form->createView()
         ]);
     }
 
@@ -164,5 +210,8 @@ class ArticleController extends AbstractController
         ]);
 
     }
+
+   
+
 
 }

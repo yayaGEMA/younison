@@ -39,5 +39,57 @@
                 </div>
             </div>
         </div>
+        <hr>
+        <div class="row d-block">
+            {#Partie commentaires#}
+            <div>
+
+                {# Si il n'y a pas de commentaires lié à cet article, message en conséquence #}
+                {% if article.comments is empty %}
+
+                    <p class="text-center alert alert-warning">Aucun commentaire n'a été publié pour le moment.</p>
+
+                {% else %}
+
+                    {# Affichage de tous les commentaires en les parcourant avec une boucle #}
+                    {% for comment in article.comments %}
+
+                        <div class="card my-3 bg-dark">
+                            <div class="card-body row">
+
+                                {#TODO: Image de profil#}
+
+                                {# Affichage de la date de publication du commentaire et du pseudo de son auteur #}
+                                <div class="col-12 col-sm mt-2 mt-sm-0">
+                                    <footer class="blockquote-footer mb-4">Ajouté par <strong class="text-light mr-1">{{ comment.author.pseudo }}</strong>
+                                        <br class="d-sm-none">Le <strong class="text-light">{{ comment.publicationDate|date('d/m/Y à H\\hi') }}</strong></footer>
+                                    <p>{{ comment.content|nl2br }}</p>
+                                </div>
+
+                                {# Si le'utilisateur est admin, affichage d'un menu admin avec un bouton de suppression du commentaire #}
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <div class="admin-button-article">
+
+                                        {# Le lien vers la page de suppression du commentaire doit contenir un token pour se prémunir des attaques CSRF #}
+                                        <a href="{{ path('blog_comment_delete', { id: comment.id, csrf_token: csrf_token('blog_comment_delete' ~ comment.id) }) }}" class="text-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?')"><i class="fas fa-trash-alt mr-1"></i>Supprimer</a>
+                                    </div>
+                                {% endif %}
+
+                            </div>
+                        </div>
+
+                    {% endfor %}
+
+                {% endif %}
+
+            </div>
+
+
+            {#Partie formulaire commentaires#}
+            <div class=" col-md-4 offset-md-4 text-light text-center">
+                    {{ form(commentForm) }}
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
