@@ -10,8 +10,20 @@
     <div class="container-fluid">
 
         <div class="row">
-            <div class="col-12 text-center" style="background-color: ;">
-                <img src="{{ asset('images/error404.png') }}" alt="Erreur 404, page introuvable" class="img-fluid m-3">
+            <div class="col-12 text-center">
+                <h1 style="writing-mode: vertical-rl;text-orientation: upright; position:absolute; margin-left: 11em; font-size:2.7em; text-shadow: 4px 4px 5px rgba(0, 0, 0, 1); color: #E6808D;" class="mt-2">Erreur 404</h1>
+                <img src="{{ asset('images/error404.jpg') }}" alt="Erreur 404, page introuvable" class="img-fluid m-3">
+
+                <style>
+                    @font-face{
+                        font-family: 'Copy';
+                        src: url('../fonts/copyfonts.com_house-a-rama-kingpin.ttf');
+                    }
+                    h1{
+                        font-family: Copy,Arial, Helvetica, sans-serif;
+                    }
+                </style>
+                <h1 style="margin-top: -6rem; margin-right:7em; font-size:3em; text-shadow: 4px 4px 5px rgba(0, 0, 0, 1); color:#01894B;">Page Introuvable</h1>
             </div>
         </div>
 
