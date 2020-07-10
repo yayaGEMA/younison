@@ -40,6 +40,20 @@ class ArticleController extends AbstractController
         // Si le formulaire a été envoyé
         if($form->isSubmitted() && $form->isValid()){
 
+            // Extraction de l'objet de la photo envoyée dans le formulaire
+            $picture = $form->get('picture')->getData();
+
+            // Création d'un nouveau nom aléatoire pour la photo avec son extension (récupérée via la méthode guessExtension() )
+            $newFileName = md5(time() . rand() . uniqid() ) . '.' . $picture->guessExtension();
+
+            // Déplacement de la photo dans le dossier que l'on avait paramétré dans le fichier services.yaml, avec le nouveau nom qu'on lui a généré
+            $picture->move(
+                $this->getParameter('app.user.photo.directory'),     // Emplacement de sauvegarde du fichier
+                $newFileName    // Nouveau nom du fichier
+            );
+
+            $article->setPicture($newFileName);
+
             // Récupération de l'user actuellement connecté
             $userConnected = $this->getUser();
 
