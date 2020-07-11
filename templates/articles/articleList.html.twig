@@ -19,15 +19,25 @@
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 					<div class="dropdown-item">
 						{% if getDirection is same as('asc') %}
-							{{ knp_pagination_sortable(articles, 'Date (+ récent au + ancien)', 'a.publicationDate') }}
+							{{ knp_pagination_sortable(pageArticles, 'Date (+ récent au + ancien)', 'a.publicationDate') }}
 						{% else %}
-							{{ knp_pagination_sortable(articles, 'Date (+ ancien au + récent)', 'a.publicationDate') }}
+							{{ knp_pagination_sortable(pageArticles, 'Date (+ ancien au + récent)', 'a.publicationDate') }}
 						{% endif %}
 					</div>
 					<div class="dropdown-item">
-						{{ knp_pagination_sortable(articles, 'Nombre de likes', 'a.likes') }}
+						{% if getDirection is same as('asc') or getDirection is same as (null) %}
+							{{ knp_pagination_sortable(pageArticles, 'Nombre de likes (ordre décroissant)', 'a.likes', {}, {'direction': 'desc'}) }}
+						{% else %}
+							{{ knp_pagination_sortable(pageArticles, 'Nombre de likes(ordre croissant)', 'a.likes', {}, {'direction': 'asc'}) }}
+						{% endif %}
 					</div>
-					<a class="dropdown-item" href="#">Nombre de commentaires</a>
+					<div class="dropdown-item">
+						{% if getDirection is same as('asc') or getDirection is same as (null) %}
+							{{ knp_pagination_sortable(pageArticles, 'Nombre de commentaires (ordre décroissant)', 'a.comments', {}, {'direction': 'desc'}) }}
+						{% else %}
+							{{ knp_pagination_sortable(pageArticles, 'Nombre de commentaires(ordre croissant)', 'a.comments', {}, {'direction': 'asc'}) }}
+						{% endif %}
+					</div>
 				</div>
 			</div>
 		</div>
@@ -37,7 +47,7 @@
 		<div class="col-8 offset-2">
 
 				{# Affichage des articles #}
-				{% for article in articles %}
+				{% for article in pageArticles %}
 					<a href="{{ path('article_article', {slug: article.slug}) }}" class="w-100">
 						<div class="card">
 							<div class="row no-gutters">
@@ -59,7 +69,7 @@
 			<div class="my-3 text-center">
 				<div class="d-inline-block">
 					{# Affichage du menu permettant de naviguer entre les différentes pages #}
-					{{ knp_pagination_render(articles) }}
+					{{ knp_pagination_render(pageArticles) }}
 				</div>
 			</div>
 	

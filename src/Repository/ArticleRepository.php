@@ -32,4 +32,5 @@ class ArticleRepository extends ServiceEntityRepository
         ->getResult()   // Récupération du résultat de la requête
         ;
     }
+
 }
