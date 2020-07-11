@@ -17,7 +17,7 @@
 .bg-grade{
   background: #515561
 }
-h1,a{
+h1 a{
   color: whitesmoke;
 }
 h2{
@@ -40,6 +40,8 @@ p card-text{
   text-shadow: 0 3px 0 rgba(0,0,0,0.6);
 
 }
+
+
 
 
 
@@ -242,17 +244,44 @@ background: linear-gradient(34deg, rgba(73,73,77,1) 3%, rgba(39,39,43,1) 41%, rg
 #inputEmail{
   margin-bottom: 17px;
 }
-
+  /*Taille des photos dans les cards pour avoir une taille commune quelle que soit la dimension d'origine*/
+  .card-img-top {
+    width: 100%;
+    height: 55vw;
+    object-fit: cover;
+}
+/*Taille de la photo en une du site*/
+.card-img-top-top{
+  width: 100%;
+  height: 65vw;
+  object-fit: cover;
+}
 
 
 
 /*Media Queries*/
 
-@media only screen  and (min-width: 640px){
-.banner{
-  display: none;
+@media  screen  and (min-width: 640px){
+  .banner{
+    display: none;
+    }
+  } 
+
+@media screen and (min-width: 575px){
+  /*Taille des photos dans les cards pour avoir une taille commune quelle que soit la dimension d'origine*/
+  .card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+  }
+/*Taille de la photo en une du site*/
+.card-img-top-top{
+  width: 100%;
+  height: 25vw;
+  object-fit: cover;
   }
 }
+
 @media screen and (min-width:768px){
 .card-style .card-body{
     height:200px;
