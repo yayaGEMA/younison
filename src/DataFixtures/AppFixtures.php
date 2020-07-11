@@ -66,7 +66,7 @@ class AppFixtures extends Fixture
                 ->setContent($faker->paragraph(10))
                 ->setPublicationDate($faker->dateTimeBetween('-5years', 'now'))
                 ->setAuthor($faker->randomElement($users))
-                ->setPicture($faker->image('public/images'))
+                ->setPicture($faker->image('public/images/articles', false))
                 ->setLikes($faker->numberBetween($min = 0, $max = 20000))
             ;
 

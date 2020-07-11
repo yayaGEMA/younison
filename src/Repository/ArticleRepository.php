@@ -26,7 +26,8 @@ class ArticleRepository extends ServiceEntityRepository
     {
         // Return pour retourner ce que la requête DQL aura trouvé en base de données
         return $this->createQueryBuilder('a')   // a = alias de la table "article"
-        ->orderBy('a.publication_date DESC')   // Petit order by publication_date
+        ->orderBy('a.publicationDate', 'DESC')   // order by publication_date
+        ->setMaxResults(7)
         ->getQuery()    // Execution de la requête
         ->getResult()   // Récupération du résultat de la requête
         ;
