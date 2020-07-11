@@ -50,6 +50,9 @@ p card-text{
 .navbar-dark .navbar-nav .nav-link:hover{
   color: #D8B199;
 }
+.navbar-dark  .nav-right .nav-link:hover{
+  color: rgb(81,85,97);
+}
 
 /*Bannière*/
 .banner{
@@ -201,6 +204,45 @@ cursor: pointer;
 display: flex;
 flex: 1 1 auto;
 }
+
+/*effet sur image Bruce*/
+.bruce{
+  filter: sepia(0.6) contrast(1.20) drop-shadow(0 0 0.75rem rgba(204, 200, 201, 0.849));
+  -webkit-filter: sepia(0.6) contrast(1.20) drop-shadow(0 0 0.75rem rgba(204, 200, 201, 0.849));
+ 
+}
+
+/*Effet sur le formulaire*/
+.border-form{
+  border-radius: 30px 30px 30px 30px;
+-moz-border-radius: 30px 30px 30px 30px;
+-webkit-border-radius: 30px 30px 30px 30px;
+border: 5px solid #FFFFE2;
+padding: 5%;
+color: #FFFFE2;
+-webkit-box-shadow: 0px 0px 21px -3px rgba(209,209,209,1);
+-moz-box-shadow: 0px 0px 21px -3px rgba(209,209,209,1);
+box-shadow: 0px 0px 21px -3px rgba(209,209,209,1);
+background: rgb(39,39,43);
+background: rgb(73,73,77);
+background: linear-gradient(34deg, rgba(73,73,77,1) 3%, rgba(39,39,43,1) 41%, rgba(54,54,69,1) 47%, rgba(39,39,43,1) 51%);  
+}
+#registration_form_save{
+  color: #FFFFE2;
+  background-color: #B28474;
+  border-color: white;
+  margin-top: 20px;
+}
+.btn.btn-lg{
+  color: #FFFFE2;
+  background-color: #B28474;
+  border-color: white;
+  margin-top: 30px;
+}
+#inputEmail{
+  margin-bottom: 17px;
+}
+
 
 
 
