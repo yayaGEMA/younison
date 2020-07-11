@@ -16,11 +16,11 @@
 
 				{# Affichage des articles #}
 				{% for article in articles %}
-					<a href="{{ path('article_article', {slug: article.slug}) }}">
-						<div class="card offset-2" style="max-width: 65%;">
+					<a href="{{ path('article_article', {slug: article.slug}) }}" class="w-100">
+						<div class="card">
 							<div class="row no-gutters">
 								<div class="col-md-4 vh-10">
-									<img src="{{ asset('images/articles/' ~ article.picture) }}" alt="..." class="h-100 w-100">
+									<img src="{{ asset('images/articles/' ~ article.picture) }}" alt="..." class="card-img-top">
 								</div>
 								<div class="col-md-8">
 									<div class="card-body">
