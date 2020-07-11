@@ -94,21 +94,28 @@ class ArticleController extends AbstractController
      */
     public function articleList(Request $request, PaginatorInterface $paginator)
     {
+        // On récupère dans l'url la données GET page (si elle n'existe pas, la valeur retournée par défaut sera la page 1)
+        $requestedPage = $request->query->getInt('page', 1);
+
+        if($requestedPage < 1){
+            throw new NotFoundHttpException();
+        }
 
         // Récupération du manager des entités
-        $em = $this->getDoctrine()->getManager();
+        $entityManager = $this->getDoctrine()->getManager();
 
         // Création d'une requête pour récupérer les articles en article
-        $query = $em->createQuery('SELECT a FROM App\Entity\Article a  ORDER BY a.publicationDate DESC');
+        $query = $entityManager->createQuery('SELECT a FROM App\Entity\Article a  ORDER BY a.publicationDate DESC');
 
-        // On stocke dans $pageArticles les 10 articles de la page demandée dans l'URL
-        $articles = $paginator->paginate(
+        $pageArticles = $paginator->paginate(
             $query,     // Requête de selection des articles en BDD
+            $requestedPage,     // Numéro de la page dont on veux les articles
+            10      // Nombre d'articles par page
         );
 
         // On envoi les articles récupérés à la vue
         return $this->render('articles/articleList.html.twig', [
-            'articles' => $articles
+            'articles' => $pageArticles
         ]);
 
     }

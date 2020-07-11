@@ -8,82 +8,42 @@
 
 <main>
     <div class="row">
-      <h1 class="col text-center my-5">Tous les articles</h1>
-    </div>
+    	<h1 class="col text-center my-5">Tous nos articles</h1>
+	</div>
+	
+	<div class="row">
+		<div class="col-8 offset-2">
 
-    <section class="">
-      <div class="card offset-2" style="max-width: 65%;">
-        <div class="row no-gutters">
-          <div class="col-xl-4 bg-dark d-flex align-items-center">
-            <img src="../images/nujabes.jpeg" class="card-img img-fluid d-inline-block" alt="...">
-          </div>
-          <div class="col-xl-8">
-            <div class="card-body">
-              <h3 class="card-title">L'incroyable parcours de Nujabes</h3>
-              <p class="card-text"> Jun Seba (瀬葉淳, Seba Jun?), né le 7 février 1974 à Tokyo où il est mort le 26 février 2010, est un producteur de hip-hop, de trip hop et un DJ japonais enregistrant ses titres sous le pseudonyme Nujabes. Nujabes est un anacyclique de ses nom (Seba) et prénom (Jun) accolés. Il s'est révélé grâce à la bande originale de Samurai champloo, auteur de Shiki no Uta et de Battle Cry. Il est mort d'un accident de voiture survenu sur l'autoroute Shuto traversant le centre de Tokyo.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-   
-    <div class="card offset-2" style="max-width: 65%;">
-      <div class="row no-gutters">
-        <div class="col-xl-4 bg-dark d-flex align-items-center">
-          <img src="../images/joji.jpg" class="card-img img-fluid d-inline-block" alt="...">
-        </div>
-        <div class="col-xl-8">
-          <div class="card-body">
-            <h3 class="card-title">Run, dernier single de Joji</h3>
-            <p class="card-text"> “Run” is the second single released by Joji after his debut album BALLADS 1, and is expected to be the second single off of his upcoming sophomore studio album. This track was first teased on January 27, 2020, with a tweet from Joji featuring a short video of lava flowing — Joji later revealed the release date and cover artwork and confirmed track’s title with another tweet.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="card offset-2" style="max-width: 65%;">
-      <div class="row no-gutters">
-        <div class="col-xl-4 bg-dark d-flex align-items-center">
-          <img src="../images/hippo.jpg" class="card-img img-fluid d-inline-block" alt="...">
-        </div>
-        <div class="col-xl-8">
-          <div class="card-body">
-            <h3 class="card-title">Hippocampe Fou est son dernier titre, Swipe Right</h3>
-            <p class="card-text"> Après avoir exploré les fonds marins dans Aquatrip, fendu les cieux dans Céleste et être revenu à la terre dans Terminus, Hippocampe Fou est finalement sorti de son terrier avec une belle nouveauté. Un nouveau morceau clippé intitulé « Swipe Right« .
+				{# Affichage des articles #}
+				{% for article in articles %}
+					<a href="{{ path('article_article', {slug: article.slug}) }}">
+						<div class="card offset-2" style="max-width: 65%;">
+							<div class="row no-gutters">
+								<div class="col-md-4 vh-10">
+									<img src="{{ asset('images/articles/' ~ article.picture) }}" alt="..." class="h-100 w-100">
+								</div>
+								<div class="col-md-8">
+									<div class="card-body">
+										<h2 class="card-title">{{ article.title }}</h2>
+										<p class="card-text">{{ article.content|striptags|slice(0,100) ~ '...' }}</p>
+									</div>
+								</div>
+							</div>
+						  </div>
+					</a>
+				{% endfor %}
 
-              Pour les coutumiers de sa discographie, Hippocampe fou parle régulièrement de sexe ou y fait révérence dans ses morceaux. Et puisqu’il faut vivre avec son temps, le rappeur a décidé de se pencher sur les relations, l’amour et le sexe en version 2.0, via les applis de rencontre. Afficionados de Tinder, ce son est fait pour vous.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="card offset-2" style="max-width: 65%;">
-      <div class="row no-gutters">
-        <div class="col-xl-4 bg-dark d-flex align-items-center">
-          <img src="../images/stupe.jpg" class="card-img img-fluid d-inline-block" alt="...">
-        </div>
-        <div class="col-xl-8">
-          <div class="card-body">
-            <h3 class="card-title">Stupeflip: Comment un groupe né comme une blague a battu des records de crowdfunding</h3>
-            <p class="card-text">Au commencement, en 2000, il y a eu le CROU. Cette entité protéiforme, malaxait la musique comme d’autres la pâte à modeler, et comprimait le tout pour le lancer à la figure du public. Ce groupe d'un nouveau genre s’appellait Stupeflip. La notion même de "CROU", blague autour du "crew" des rappeurs reste vague. Elle englobe les membres du groupe, leur entourage et même leurs fans. Stupeflip au début du siècle, c'étaient des rappeurs rock’n roll qui auraient lu des comics de super-héros en écoutant de la pop mielleuse des années 1980. T’as pas compris?</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="card offset-2" style="max-width: 65%;">
-      <div class="row no-gutters">
-        <div class="col-xl-4 bg-dark d-flex align-items-center">
-          <img src="../images/pinky.gif" class="card-img img-fluid d-inline-block" alt="...">
-        </div>
-        <div class="col-xl-8">
-          <div class="card-body">
-            <h3 class="card-title">Pink Guy, troll ou génie ?</h3>
-            <p class="card-text">Pink Guy (real name; Freygarður Geirtryggur Þjóðleifur Lúthersdóttir[1]) is a Lycra entity living in Filthy Frank's universe. He is one of the three first-created Lycra, (the others being Red Dick and Chin-Chin). He serves as the deuteragonist of the show. He also appears in the book Francis of the Filth. Pink Guy is an amazing musician touching on many genres. From the hip-hop beats of songs like “Pink Guy Cooks Ramen And Raps” and “Rice Balls,” to country tunes such as “White is Right,” to happy ukelele songs like “Anal Beads” and “Help.”</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  </main>
+	
+			<div class="my-3 text-center">
+				<div class="d-inline-block">
+					{# Affichage du menu permettant de naviguer entre les différentes pages #}
+					{{ knp_pagination_render(articles) }}
+				</div>
+			</div>
+	
+		</div>
+	</div>
+
+</main>
 
 {% endblock %}
