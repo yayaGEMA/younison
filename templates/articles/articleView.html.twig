@@ -6,12 +6,6 @@
 
 {% block stylesheets %}
 
-<style>
-    .articleBanner{
-        background-image: url({{ asset('images/articles/' ~ article.picture)  }} );
-    }
-</style>
-
 {% endblock %}
 
 {# Contenu de la page #}
@@ -21,9 +15,9 @@
 
         {# Titre de l'article #}
         <div class="row">
-            <div class="articleBanner col-12 d-flex justify-content-center align-items-center">
+            <img src="{{ asset('images/articles/' ~ article.picture ) }}" class="articleBanner col-12 d-flex justify-content-center align-items-center">
                 <h1>{{ article.title }}</h1>
-            </div>
+            </img>
         </div>
 
         {# Affichage de l'article #}
@@ -85,10 +79,13 @@
             </div>
 
 
-            {#Partie formulaire commentaires#}
-            <div class=" col-md-4 offset-md-4 text-light text-center">
-                    {{ form(commentForm) }}
-            </div>
+            {# Si l'utilisateur est connecté, affichage du formulaire de création d'un nouveau commentaire #}
+            {% if app.user %}
+                <h2 class="text-center my-5">Écrire un commentaire</h2>
+                <div>{{ form(commentForm) }}</div>
+            {% else %}
+                <p class="text-center text-info mt-4">Vous devez <a href="{{ path('app_login') }}">vous connecter</a> pour laisser un commentaire.</p>
+            {% endif %}
         </div>
     </div>
 

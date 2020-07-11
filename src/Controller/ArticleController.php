@@ -135,12 +135,12 @@ class ArticleController extends AbstractController
         $newComment = new Comment();
 
         //Création d'un formulaire de création de commentaire lié à $newComment
-        $form = $this->createForm(CommentType::class, $newComment);
+        $commentForm = $this->createForm(CommentType::class, $newComment);
 
         //liaison des données de requête (POST) avec le formulaire
-        $form->handleRequest($request);
+        $commentForm->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()){
+        if($commentForm->isSubmitted() && $commentForm->isValid()){
             $newComment
                 ->setAuthor($userConnected)  //L'auteur est l'utilisateur connecté
                 ->setPublicationDate(new DateTime()) //Date actuelle
@@ -158,11 +158,11 @@ class ArticleController extends AbstractController
 
             //suppression des 2 variables contenant le formulaire validé et le commentaire nouvellement crée (pour éviter que le nouveau formulaire soit rempli avec)
             unset($newComment);
-            unset($form);
+            unset($commentForm);
 
             //création d'un nouveau commentaire vide et de son formulaire lié
             $newComment = new Comment();
-            $form = $this->createForm(CommentType::class, $newComment);
+            $commentForm = $this->createForm(CommentType::class, $newComment);
         }
 
         // Appel de la vue en lui envoyant le article
@@ -170,7 +170,7 @@ class ArticleController extends AbstractController
             'article' => $article,
             'comment' => $newComment,
             'user' => $userConnected,
-            'commentForm' => $form->createView()
+            'commentForm' => $commentForm->createView()
         ]);
     }
 

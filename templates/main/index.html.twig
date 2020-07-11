@@ -19,12 +19,14 @@
     <!--Premiere section. Photo a la une TOP 1-->
     <section class="row mt-3" id="news_highlights">
         <div class="col-12 mt-2 col-md-8 offset-md-2 text-center">
-            <div class="card thumbnail">
+            <a class="card thumbnail">
                 <img class="card-img-top" src="{{ asset('images/articles/' ~ index_articles[0].picture ) }}" alt="...">
-                <div class="resume card-img-overlay">
-                    <h2 class="card-title">{{ index_articles[0].title }}</h2>
-                    <p class="card-text">{{index_articles[0].content|striptags|slice(0, 50)}}</p>
-                </div>
+                <a href="{{ path('article_article', { slug: index_articles[0].slug }) }}" alt="">
+                    <div class="resume card-img-overlay">
+                        <h2 class="card-title">{{ index_articles[0].title }}</h2>
+                        <p class="card-text">{{index_articles[0].content|striptags|slice(0, 50)}}</p>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
@@ -33,30 +35,34 @@
     <section class="row  mt-4  text-center">
         <div class="col-sm-4 offset-sm-2 offset-0"><!--TOP 2-->
             <div class="card-deck">
-                <div class="card">
-                    <img class="card-img-top" src="{{ asset('images/articles/' ~ index_articles[1].picture ) }}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ index_articles[1].title }}</h5>
-                        <p class="card-text">{{index_articles[1].content|striptags|slice(0, 50) ~ '...'}}</p>
+                <a href="{{ path('article_article', { slug: index_articles[1].slug }) }}" alt="">
+                    <div class="card">
+                        <img class="card-img-top" src="{{ asset('images/articles/' ~ index_articles[1].picture ) }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ index_articles[1].title }}</h5>
+                            <p class="card-text">{{index_articles[1].content|striptags|slice(0, 50) ~ '...'}}</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Publié le {{ index_articles[1].publicationDate|date('d/m/Y') }}</small>
+                        </div>
                     </div>
-                    <div class="card-footer">
-                        <small class="text-muted">Publié le {{ index_articles[1].publicationDate|date('d/m/Y') }}</small>
-                    </div>
-                </div>
+                </a>
             </div>
         </div>
         <div class="col-sm-4"><!--TOP 3-->
             <div class="card-deck">
-                <div class="card">
-                    <img class="card-img-top" src="{{ asset('images/articles/' ~ index_articles[2].picture ) }}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ index_articles[2].title }}</h5>
-                        <p class="card-text">{{index_articles[2].content|striptags|slice(0, 50) ~ '...'}}</p>
+                <a href="{{ path('article_article', { slug: index_articles[2].slug }) }}" alt="">
+                    <div class="card">
+                        <img class="card-img-top" src="{{ asset('images/articles/' ~ index_articles[2].picture ) }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ index_articles[2].title }}</h5>
+                            <p class="card-text">{{index_articles[2].content|striptags|slice(0, 50) ~ '...'}}</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Publié le {{ index_articles[2].publicationDate|date('d/m/Y') }}</small>
+                        </div>
                     </div>
-                    <div class="card-footer">
-                        <small class="text-muted">Publié le {{ index_articles[2].publicationDate|date('d/m/Y') }}</small>
-                    </div>
-                </div>
+                </a>
             </div>
         </div>
     </section>
@@ -65,58 +71,66 @@
     <section class="row  mt-4 mb-4 text-center">
         <div class="col-sm-4 offset-sm-2 offset-0 col-lg-2 card-style"><!--TOP 4-->
             <div class="card-deck">
-                <div class="card">
-                    <img class="card-img-top" src="{{ asset('images/articles/' ~ index_articles[3].picture ) }}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ index_articles[3].title|striptags|slice(0,25) ~ '...' }}</h5>
-                        <p class="card-text">{{index_articles[3].content|striptags|slice(0, 50) ~ '...'}}</p>
+                <a href="{{ path('article_article', { slug: index_articles[3].slug }) }}" alt="">
+                    <div class="card">
+                        <img class="card-img-top" src="{{ asset('images/articles/' ~ index_articles[3].picture ) }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ index_articles[3].title|striptags|slice(0,25) ~ '...' }}</h5>
+                            <p class="card-text">{{index_articles[3].content|striptags|slice(0, 50) ~ '...'}}</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Publié le {{ index_articles[3].publicationDate|date('d/m/Y') }}</small>
+                        </div>
                     </div>
-                    <div class="card-footer">
-                        <small class="text-muted">Publié le {{ index_articles[3].publicationDate|date('d/m/Y') }}</small>
-                    </div>
-                </div>
+                </a>
             </div>
         </div>
         <div class="col-sm-4 col-lg-2 card-style"><!--TOP 5-->
             <div class="card-deck">
-                <div class="card">
-                    <img class="card-img-top" src="{{ asset('images/articles/' ~ index_articles[4].picture ) }}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ index_articles[4].title|striptags|slice(0,25) ~ '...' }}</h5>
-                        <p class="card-text">{{index_articles[4].content|striptags|slice(0, 50) ~ '...'}}</p>
+                <a href="{{ path('article_article', { slug: index_articles[4].slug }) }}" alt="">
+                    <div class="card">
+                        <img class="card-img-top" src="{{ asset('images/articles/' ~ index_articles[4].picture ) }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ index_articles[4].title|striptags|slice(0,25) ~ '...' }}</h5>
+                            <p class="card-text">{{index_articles[4].content|striptags|slice(0, 50) ~ '...'}}</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Publié le {{ index_articles[4].publicationDate|date('d/m/Y') }}</small>
+                        </div>
                     </div>
-                    <div class="card-footer">
-                        <small class="text-muted">Publié le {{ index_articles[4].publicationDate|date('d/m/Y') }}</small>
-                    </div>
-                </div>
+                </a>
             </div>
         </div>
         <div class="col-sm-4 offset-sm-2 offset-lg-0 col-lg-2 mt-sm-3 mt-lg-0 card-style"><!--TOP 6-->
             <div class="card-deck">
-                <div class="card">
-                    <img class="card-img-top" src="{{ asset('images/articles/' ~ index_articles[5].picture ) }}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ index_articles[5].title|striptags|slice(0,25) ~ '...' }}</h5>
-                        <p class="card-text">{{index_articles[5].content|striptags|slice(0, 50) ~ '...'}}</p>
+                <a href="{{ path('article_article', { slug: index_articles[5].slug }) }}" alt="">
+                    <div class="card">
+                        <img class="card-img-top" src="{{ asset('images/articles/' ~ index_articles[5].picture ) }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ index_articles[5].title|striptags|slice(0,25) ~ '...' }}</h5>
+                            <p class="card-text">{{index_articles[5].content|striptags|slice(0, 50) ~ '...'}}</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Publié le {{ index_articles[5].publicationDate|date('d/m/Y') }}</small>
+                        </div>
                     </div>
-                    <div class="card-footer">
-                        <small class="text-muted">Publié le {{ index_articles[5].publicationDate|date('d/m/Y') }}</small>
-                    </div>
-                </div>
+                </a>
             </div>
         </div>
         <div class="col-sm-4 col-lg-2 mt-sm-3 mt-lg-0 card-style"><!--TOP 7-->
             <div class="card-deck">
-                <div class="card">
-                    <img class="card-img-top" src="{{ asset('images/articles/' ~ index_articles[6].picture ) }}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ index_articles[6].title|striptags|slice(0,25) ~ '...' }}</h5>
-                        <p class="card-text">{{index_articles[6].content|striptags|slice(0, 50) ~ '...'}}</p>
+                <a href="{{ path('article_article', { slug: index_articles[6].slug }) }}" alt="">
+                    <div class="card">
+                        <img class="card-img-top" src="{{ asset('images/articles/' ~ index_articles[6].picture ) }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ index_articles[6].title|striptags|slice(0,25) ~ '...' }}</h5>
+                            <p class="card-text">{{index_articles[6].content|striptags|slice(0, 50) ~ '...'}}</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Publié le {{ index_articles[6].publicationDate|date('d/m/Y') }}</small>
+                        </div>
                     </div>
-                    <div class="card-footer">
-                        <small class="text-muted">Publié le {{ index_articles[6].publicationDate|date('d/m/Y') }}</small>
-                    </div>
-                </div>
+                </a>
             </div>
         </div>
     </section>
