@@ -11,74 +11,72 @@
 {# Contenu de la page #}
 {% block body %}
 
-    <div class="container-fluid">
+    {# Titre de l'article #}
+    <div class="row">
+        <img src="{{ asset('images/articles/' ~ article.picture ) }}" class="articleBanner col-12 col-md-6 offset-md-3 d-flex justify-content-center align-items-center">
+            <h1>{{ article.title }}</h1>
+        </img>
+    </div>
 
-        {# Titre de l'article #}
-        <div class="row">
-            <img src="{{ asset('images/articles/' ~ article.picture ) }}" class="articleBanner col-12 d-flex justify-content-center align-items-center">
-                <h1>{{ article.title }}</h1>
-            </img>
-        </div>
-
-        {# Affichage de l'article #}
-        <div class="row">
-            <div class="col-12 p-3">
-                <div>
-                    {# Affichage de la date et du pseudonym #}
-                    <footer>Publié le <strong class="text-dark">{{ article.publicationDate|date('d/m/Y à H\\hi') }}</strong> par <strong class="text-dark">{{ article.author.pseudo }}</strong></footer>
-
-                    {# Affichage de l'article #}
-                    <div class="mb-2">{{ article.content|purify }}</div>
-
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div class="row d-block">
-            {#Partie commentaires#}
+    {# Affichage de l'article #}
+    <div class="row">
+        <div class="col-12 col-md-6 offset-md-3 p-3">
             <div>
+                {# Affichage de la date et du pseudonym #}
+                <footer>Publié le <strong class="text-dark">{{ article.publicationDate|date('d/m/Y à H\\hi') }}</strong> par <strong class="text-dark">{{ article.author.pseudo }}</strong></footer>
 
-                {# Si il n'y a pas de commentaires lié à cet article, message en conséquence #}
-                {% if article.comments is empty %}
-
-                    <p class="text-center alert alert-warning">Aucun commentaire n'a été publié pour le moment.</p>
-
-                {% else %}
-
-                    {# Affichage de tous les commentaires en les parcourant avec une boucle #}
-                    {% for comment in article.comments %}
-
-                        <div class="card my-3 bg-dark">
-                            <div class="card-body row">
-
-                                {#TODO: Image de profil#}
-
-                                {# Affichage de la date de publication du commentaire et du pseudo de son auteur #}
-                                <div class="col-12 col-sm mt-2 mt-sm-0">
-                                    <footer class="blockquote-footer mb-4">Ajouté par <strong class="text-light mr-1">{{ comment.author.pseudo }}</strong>
-                                        <br class="d-sm-none">Le <strong class="text-light">{{ comment.publicationDate|date('d/m/Y à H\\hi') }}</strong></footer>
-                                    <p>{{ comment.content|nl2br }}</p>
-                                </div>
-
-                                {# Si le'utilisateur est admin, affichage d'un menu admin avec un bouton de suppression du commentaire #}
-                                {% if is_granted('ROLE_ADMIN') %}
-                                    <div class="admin-button-article">
-
-                                        {# Le lien vers la page de suppression du commentaire doit contenir un token pour se prémunir des attaques CSRF #}
-                                        <a href="{{ path('blog_comment_delete', { id: comment.id, csrf_token: csrf_token('blog_comment_delete' ~ comment.id) }) }}" class="text-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?')"><i class="fas fa-trash-alt mr-1"></i>Supprimer</a>
-                                    </div>
-                                {% endif %}
-
-                            </div>
-                        </div>
-
-                    {% endfor %}
-
-                {% endif %}
+                {# Affichage de l'article #}
+                <div class="mb-2">{{ article.content|purify }}</div>
 
             </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row d-block">
+        {#Partie commentaires#}
+        <div class="col-12 col-md-6 offset-md-3 p-3">
 
+            {# Si il n'y a pas de commentaires lié à cet article, message en conséquence #}
+            {% if article.comments is empty %}
 
+                <p class="text-center alert alert-warning">Aucun commentaire n'a été publié pour le moment.</p>
+
+            {% else %}
+
+                {# Affichage de tous les commentaires en les parcourant avec une boucle #}
+                {% for comment in article.comments %}
+
+                    <div class="card my-3 bg-dark">
+                        <div class="card-body row">
+
+                            {#TODO: Image de profil#}
+
+                            {# Affichage de la date de publication du commentaire et du pseudo de son auteur #}
+                            <div class="col-12 col-sm mt-2 mt-sm-0">
+                                <footer class="blockquote-footer mb-4">Ajouté par <strong class="text-light mr-1">{{ comment.author.pseudo }}</strong>
+                                    <br class="d-sm-none">Le <strong class="text-light">{{ comment.publicationDate|date('d/m/Y à H\\hi') }}</strong></footer>
+                                <p>{{ comment.content|nl2br }}</p>
+                            </div>
+
+                            {# Si le'utilisateur est admin, affichage d'un menu admin avec un bouton de suppression du commentaire #}
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <div class="admin-button-article">
+
+                                    {# Le lien vers la page de suppression du commentaire doit contenir un token pour se prémunir des attaques CSRF #}
+                                    <a href="{{ path('blog_comment_delete', { id: comment.id, csrf_token: csrf_token('blog_comment_delete' ~ comment.id) }) }}" class="text-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?')"><i class="fas fa-trash-alt mr-1"></i>Supprimer</a>
+                                </div>
+                            {% endif %}
+
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+        </div>
+
+        <div class="col-12 col-md-6 offset-md-3 p-3">
             {# Si l'utilisateur est connecté, affichage du formulaire de création d'un nouveau commentaire #}
             {% if app.user %}
                 <h2 class="text-center my-5">Écrire un commentaire</h2>

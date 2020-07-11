@@ -49,7 +49,7 @@ class AppFixtures extends Fixture
             // Enregistrement du nouvel user auprès de Doctrine
             $manager->persist($newUser);
 
-            // Stockage du compte de côté pour créer des articles plus bas
+            // Stockage des comptes de côté pour créer des articles plus bas
             $users[] = $newUser;
 
         }

@@ -10,6 +10,28 @@
     <div class="row">
     	<h1 class="col text-center my-5">Tous nos articles</h1>
 	</div>
+
+	{# Gestion de l'affichage par critères #}
+	<div class="row">
+		<div class="input-group col-8 offset-2 col-md-2 offset-md-8 mb-3 d-flex flex-row-reverse">
+			<div class="dropdown">
+				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Trier par</button>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					<div class="dropdown-item">
+						{% if getDirection is same as('asc') %}
+							{{ knp_pagination_sortable(articles, 'Date (+ récent au + ancien)', 'a.publicationDate') }}
+						{% else %}
+							{{ knp_pagination_sortable(articles, 'Date (+ ancien au + récent)', 'a.publicationDate') }}
+						{% endif %}
+					</div>
+					<div class="dropdown-item">
+						{{ knp_pagination_sortable(articles, 'Nombre de likes', 'a.likes') }}
+					</div>
+					<a class="dropdown-item" href="#">Nombre de commentaires</a>
+				</div>
+			</div>
+		</div>
+	</div>
 	
 	<div class="row">
 		<div class="col-8 offset-2">
@@ -25,7 +47,7 @@
 								<div class="col-md-8">
 									<div class="card-body">
 										<h2 class="card-title">{{ article.title }}</h2>
-										<p class="card-text">{{ article.content|striptags|slice(0,100) ~ '...' }}</p>
+										<p class="card-text">{{ article.content|striptags|slice(0,500) ~ '...' }}</p>
 									</div>
 								</div>
 							</div>
