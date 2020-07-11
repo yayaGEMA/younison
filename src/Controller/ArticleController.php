@@ -125,7 +125,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * Page d'affichage d'une annonce en détail
+     * Page d'affichage d'un article en détail
      *
      * @Route("/article/{slug}/", name="article")
      */
@@ -155,7 +155,7 @@ class ArticleController extends AbstractController
             $newComment
                 ->setAuthor($userConnected)  //L'auteur est l'utilisateur connecté
                 ->setPublicationDate(new DateTime()) //Date actuelle
-                ->setArticleId($article) //Lié à l'article actuellement affiché sur la page
+                ->setArticle($article) //Lié à l'article actuellement affiché sur la page
                 ->setLikes(0) //Initialise le compteur de likes
             ;
 
@@ -176,7 +176,7 @@ class ArticleController extends AbstractController
             $commentForm = $this->createForm(CommentType::class, $newComment);
         }
 
-        // Appel de la vue en lui envoyant le article
+        // Appel de la vue en lui envoyant l'article
         return $this->render('articles/articleView.html.twig', [
             'article' => $article,
             'comment' => $newComment,
