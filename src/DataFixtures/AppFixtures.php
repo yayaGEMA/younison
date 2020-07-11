@@ -6,6 +6,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use App\Entity\Article;
 use App\Entity\User;
+use App\Entity\Comment;
 use DateTime;
 use Faker;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -55,23 +56,51 @@ class AppFixtures extends Fixture
         }
 
         // Boucle de 10 itérations
-        for($i = 1; $i <= 10; $i++){
+        for($i = 1; $i <= 15; $i++){
 
             // Création d'un nouvel article
             $newArticle = new Article();
 
             // Hydratation du nouvel article
             $newArticle
-                ->setTitle($faker->sentence(10))
-                ->setContent($faker->paragraph(10))
+                ->setTitle($faker->sentence(5))
+                ->setContent($faker->paragraph(50))
                 ->setPublicationDate($faker->dateTimeBetween('-5years', 'now'))
                 ->setAuthor($faker->randomElement($users))
-                ->setPicture($faker->image('public/images/articles', false))
+                ->setPicture($faker->file('public/images', 'public/images/articles', false))
                 ->setLikes($faker->numberBetween($min = 0, $max = 20000))
             ;
 
             // Enregistrement du nouvel user auprès de Doctrine
             $manager->persist($newArticle);
+
+             // Stockage des articles de côté pour créer des commentaires plus bas
+             $articles[] = $newArticle;
+
+            // Création entre 0 et 50 commentaires aléatoires par article
+            $rand = rand(0, 50);
+
+            for($j = 0; $j < $rand; $j++){
+
+                // Création nouveau commentaire
+                $newComment = new Comment();
+
+                // Hydratation du commentaire
+                $newComment
+                    ->setArticle($faker->randomElement($articles))
+                    // Date aléatoire entre la publication du dernier commentaire et maintenant
+                    ->setPublicationDate($faker->dateTimeBetween( '-1 year' , 'now'))
+                    // Auteur aléatoire parmis les comptes créés plus haut
+                    ->setAuthor($faker->randomElement($users))
+                    ->setContent($faker->paragraph(5))
+                    ->setLikes($faker->numberBetween($min = 0, $max = 200))
+                ;
+
+
+                // Persistance du commentaire
+                $manager->persist($newComment);
+
+            }
 
         }
 

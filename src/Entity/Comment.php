@@ -32,7 +32,7 @@ class Comment
      * @ORM\ManyToOne(targetEntity=Article::class, inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $articleId;
+    private $article;
 
     /**
      * @ORM\Column(type="datetime")
@@ -73,14 +73,14 @@ class Comment
         return $this;
     }
 
-    public function getArticleId(): ?Article
+    public function getArticle(): ?Article
     {
-        return $this->articleId;
+        return $this->article;
     }
 
-    public function setArticleId(?Article $articleId): self
+    public function setArticle(?Article $article): self
     {
-        $this->articleId = $articleId;
+        $this->article = $article;
 
         return $this;
     }
