@@ -15,6 +15,10 @@
         </div>
     </div>
 
+    {# Affichage des messages flashs de type "success" si il y en a #}
+	{% include 'partials/flashes/success.html.twig' %}
+	{# Affichage des messages flashs de type "error" si il y en a #}
+	{% include 'partials/flashes/error.html.twig' %}
 
     <!--Premiere section. Photo a la une TOP 1-->
     <section class="row mt-4" id="news_highlights">
