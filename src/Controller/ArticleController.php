@@ -68,13 +68,13 @@ class ArticleController extends AbstractController
             ;
 
             // Récupération du manager général des entités
-            $em = $this->getDoctrine()->getManager();
+            $entityManager = $this->getDoctrine()->getManager();
 
             // Persistance de l'article auprès de Doctrine
-            $em->persist($article);
+            $entityManager->persist($article);
 
             // Sauvegarder en bdd
-            $em->flush();
+            $entityManager->flush();
 
             // TODO: ajouter un message flash de succès
             $this->addFlash('success', 'Article publié avec succès !');
@@ -91,7 +91,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/articles/", name="article_list")
+     * @Route("/articles/", name="list")
      */
     public function articleList(Request $request, PaginatorInterface $paginator)
     {
@@ -161,9 +161,9 @@ class ArticleController extends AbstractController
             ;
 
             // Sauvegarde du commentaire en base de données via le manager général des entités
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($newComment);
-            $em->flush();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($newComment);
+            $entityManager->flush();
 
             //Message flash de type "success"
             $this->addFlash('success', 'Votre commentaire a été publié avec succès !');
@@ -187,10 +187,10 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * Page user permettant de modifier une annonce existant via son slug passé dans l'url
+     * Page user permettant de modifier un article existant via son slug passé dans l'url
      *
-     * @Route("/{slug}/modifier/", name="article_edit")
-     * @Security("article.isAuthor(user)")
+     * @Route("/{slug}/modifier/", name="edit")
+     * @Security("is_granted('ROLE_ADMIN')")
      */
     public function articleEdit(Article $article, request $request)
     {
@@ -205,14 +205,14 @@ class ArticleController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
 
             // Sauvegarde des changements faits via le manager général des entités
-            $em = $this->getDoctrine()->getManager();
-            $em->flush();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->flush();
 
             // Message flash de type "success"
             $this->addFlash('success', 'Article modifié avec succès !');
 
             // Redirection vers la page du bien modifié
-            return $this->redirectToRoute('article_view', ['slug' => $article->getSlug()]);
+            return $this->redirectToRoute('article_article', ['slug' => $article->getSlug()]);
 
         }
 
@@ -223,7 +223,66 @@ class ArticleController extends AbstractController
 
     }
 
-   
+    /**
+     * Page admin servant à supprimer un article via son id passé dans l'url
+     *
+     * @Route("/article/suppression/{id}/", name="delete")
+     * @Security("is_granted('ROLE_ADMIN')")
+     */
+    public function articleDelete(Article $article, Request $request){
+
+        // Si le token CSRF passé dans l'url n'est pas le token valide, message d'erreur
+        if(!$this->isCsrfTokenValid('article_delete_'. $article->getId(), $request->query->get('csrf_token'))){
+
+            $this->addFlash('error', 'Token sécurité invalide, veuillez ré-essayer.');
+
+        } else {
+
+            // Suppression de l'article via le manager général des entités
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($article);
+            $entityManager->flush();
+
+            // Message flash de type "success" pour indiquer la réussite de la suppression
+            $this->addFlash('success', 'Article supprimé avec succès !');
+
+        }
+
+        // Redirection de l'utilisateur sur la liste des articles
+        return $this->redirectToRoute('article_list');
+    }
+
+   /**
+     * Page admin servant à supprimer un commentaire via son id passé dans l'url
+     *
+     * @Route("/commentaire/suppression/{id}/", name="comment_delete")
+     * @Security("is_granted('ROLE_ADMIN')")
+     */
+    public function commentDelete(Comment $comment, Request $request){
+
+        // Si le token CSRF passé dans l'url n'est pas le token valide, message d'erreur
+        if(!$this->isCsrfTokenValid('article_comment_delete'. $comment->getId(), $request->query->get('csrf_token'))){
+
+            $this->addFlash('error', 'Token sécurité invalide, veuillez ré-essayer.');
+
+        } else {
+
+            // Suppression du commentaire via le manager général des entités
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($comment);
+            $entityManager->flush();
+
+            // Message flash de type "success" pour indiquer la réussite de la suppression
+            $this->addFlash('success', 'Le commentaire a été supprimé avec succès!');
+
+        }
+
+        // Redirection de l'utilisateur sur la page détaillée de l'article auquel est/était rattaché le commentaire
+        return $this->redirectToRoute('article_article', [
+            'slug' => $comment->getArticle()->getSlug(),
+        ]);
+
+    }
 
 
 }
