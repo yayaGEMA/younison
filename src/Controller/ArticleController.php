@@ -114,6 +114,7 @@ class ArticleController extends AbstractController
             10      // Nombre d'articles par page
         );
 
+        // Permet de récupérer le ORDER BY de la requête
         $getDirection = $request->query->get('direction');
 
         // On envoi les articles récupérés à la vue

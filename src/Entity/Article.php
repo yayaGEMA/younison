@@ -75,7 +75,7 @@ class Article
     private $spotifyUri;
 
     /**
-     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="article")
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="article", fetch="EAGER")
      */
     private $comments;
 

@@ -22,7 +22,7 @@
        
             <a class="card thumbnail">
                 <img class="card-img-top" src="{{ asset('images/articles/' ~ index_articles[0].picture ) }}" alt="...">
-                <a href="{{ path('article_article', { slug: index_articles[0].slug }) }}" alt="">
+                <a href="{{ path('article_article', { slug: index_articles[0].slug }) }}" alt="" class="w-100">
                     <div class="resume card-img-overlay">
                         <h2 class="card-title">{{ index_articles[0].title }}</h2>
                         <p class="card-text">{{index_articles[0].content|striptags|slice(0, 50)}}</p>
@@ -36,7 +36,7 @@
     <section class="row  mt-4  text-center">
         <div class="col-sm-4 offset-sm-2 offset-0"><!--TOP 2-->
             <div class="card-deck">
-                <a href="{{ path('article_article', { slug: index_articles[1].slug }) }}" alt="">
+                <a href="{{ path('article_article', { slug: index_articles[1].slug }) }}" alt="" class="w-100">
                     <div class="card">
                         <div class="item-zoom">
                         <img class="card-img-top" src="{{ asset('images/articles/' ~ index_articles[1].picture ) }}" alt="Card image cap">
@@ -54,7 +54,7 @@
         </div>
         <div class="col-sm-4"><!--TOP 3-->
             <div class="card-deck">
-                <a href="{{ path('article_article', { slug: index_articles[2].slug }) }}" alt="">
+                <a href="{{ path('article_article', { slug: index_articles[2].slug }) }}" alt="" class="w-100">
                     <div class="card ">
                         <div class="item-zoom">
                         <img class="card-img-top" src="{{ asset('images/articles/' ~ index_articles[2].picture ) }}" alt="Card image cap">
@@ -76,7 +76,7 @@
     <section class="row  mt-4 mb-4 text-center">
         <div class="col-sm-4 offset-sm-2 offset-0 col-lg-2 card-style"><!--TOP 4-->
             <div class="card-deck">
-                <a href="{{ path('article_article', { slug: index_articles[3].slug }) }}" alt="">
+                <a href="{{ path('article_article', { slug: index_articles[3].slug }) }}" alt="" class="w-100">
                     <div class="card">
                         <div class="item-zoom">
                         <img class="card-img-top" src="{{ asset('images/articles/' ~ index_articles[3].picture ) }}" alt="Card image cap">
@@ -94,7 +94,7 @@
         </div>
         <div class="col-sm-4 col-lg-2 card-style"><!--TOP 5-->
             <div class="card-deck">
-                <a href="{{ path('article_article', { slug: index_articles[4].slug }) }}" alt="">
+                <a href="{{ path('article_article', { slug: index_articles[4].slug }) }}" alt="" class="w-100">
                     <div class="card">
                         <div class="item-zoom">
                         <img class="card-img-top" src="{{ asset('images/articles/' ~ index_articles[4].picture ) }}" alt="Card image cap">
@@ -112,7 +112,7 @@
         </div>
         <div class="col-sm-4 offset-sm-2 offset-lg-0 col-lg-2 mt-sm-3 mt-lg-0 card-style"><!--TOP 6-->
             <div class="card-deck">
-                <a href="{{ path('article_article', { slug: index_articles[5].slug }) }}" alt="">
+                <a href="{{ path('article_article', { slug: index_articles[5].slug }) }}" alt="" class="w-100">
                     <div class="card">
                         <div class="item-zoom">
                         <img class="card-img-top" src="{{ asset('images/articles/' ~ index_articles[5].picture ) }}" alt="Card image cap">
@@ -130,7 +130,7 @@
         </div>
         <div class="col-sm-4 col-lg-2 mt-sm-3 mt-lg-0 card-style"><!--TOP 7-->
             <div class="card-deck">
-                <a href="{{ path('article_article', { slug: index_articles[6].slug }) }}" alt="">
+                <a href="{{ path('article_article', { slug: index_articles[6].slug }) }}" alt="" class="w-100">
                     <div class="card">
                         <div class="item-zoom">
                         <img class="card-img-top" src="{{ asset('images/articles/' ~ index_articles[6].picture ) }}" alt="Card image cap">

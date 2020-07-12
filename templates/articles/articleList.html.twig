@@ -28,14 +28,7 @@
 						{% if getDirection is same as('asc') or getDirection is same as (null) %}
 							{{ knp_pagination_sortable(pageArticles, 'Nombre de likes (ordre décroissant)', 'a.likes', {}, {'direction': 'desc'}) }}
 						{% else %}
-							{{ knp_pagination_sortable(pageArticles, 'Nombre de likes(ordre croissant)', 'a.likes', {}, {'direction': 'asc'}) }}
-						{% endif %}
-					</div>
-					<div class="dropdown-item">
-						{% if getDirection is same as('asc') or getDirection is same as (null) %}
-							{{ knp_pagination_sortable(pageArticles, 'Nombre de commentaires (ordre décroissant)', 'a.comments', {}, {'direction': 'desc'}) }}
-						{% else %}
-							{{ knp_pagination_sortable(pageArticles, 'Nombre de commentaires(ordre croissant)', 'a.comments', {}, {'direction': 'asc'}) }}
+							{{ knp_pagination_sortable(pageArticles, 'Nombre de likes (ordre croissant)', 'a.likes', {}, {'direction': 'asc'}) }}
 						{% endif %}
 					</div>
 				</div>
