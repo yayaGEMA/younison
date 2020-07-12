@@ -7,6 +7,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use App\Entity\Article;
 use App\Entity\User;
 use App\Entity\Comment;
+use App\Entity\ArticleLike;
 use DateTime;
 use Faker;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -68,7 +69,6 @@ class AppFixtures extends Fixture
                 ->setPublicationDate($faker->dateTimeBetween('-5years', 'now'))
                 ->setAuthor($faker->randomElement($users))
                 ->setPicture($faker->file('public/images', 'public/images/articles', false))
-                ->setLikes($faker->numberBetween($min = 0, $max = 20000))
             ;
 
             // Enregistrement du nouvel user auprès de Doctrine
@@ -100,6 +100,18 @@ class AppFixtures extends Fixture
                 // Persistance du commentaire
                 $manager->persist($newComment);
 
+            }
+
+            // Création entre 0 et 50 likes aléatoires par article
+            for($k = 0; $k < $rand; $k++){
+                $like = new ArticleLike();
+                $like
+                    ->setArticle($newArticle)
+                    ->setUser($faker->randomElement($users))
+                ;
+
+                // Persistance du commentaire
+                $manager->persist($like);
             }
 
         }

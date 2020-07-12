@@ -30,12 +30,12 @@
 							{{ knp_pagination_sortable(pageArticles, 'Date (+ ancien au + récent)', 'a.publicationDate') }}
 						{% endif %}
 					</div>
-					<div class="dropdown-item">
+					{# <div class="dropdown-item">
 						{% if getDirection is same as('asc') or getDirection is same as (null) %}
 							{{ knp_pagination_sortable(pageArticles, 'Nombre de likes (ordre décroissant)', 'a.likes', {}, {'direction': 'desc'}) }}
 						{% else %}
 							{{ knp_pagination_sortable(pageArticles, 'Nombre de likes (ordre croissant)', 'a.likes', {}, {'direction': 'asc'}) }}
-						{% endif %}
+						{% endif %} #}
 					</div>
 				</div>
 			</div>
@@ -49,7 +49,7 @@
 				{% for article in pageArticles %}
 					<a href="{{ path('article_article', {slug: article.slug}) }}" class="w-100">
 						<div class="card">
-							<div class="row no-gutters">
+							<div class="row no-gutters position-relative">
 								<div class="col-md-4 vh-10">
 									<img src="{{ asset('images/articles/' ~ article.picture) }}" alt="..." class="card-img-top">
 								</div>
@@ -59,8 +59,18 @@
 										<p class="card-text">{{ article.content|striptags|slice(0,500) ~ '...' }}</p>
 									</div>
 								</div>
+								<div class="likescounter position-absolute">
+									<a href="{{ path('article_article_like', {id: article.id }) }}" class="btn btn-link js-like">
+										<span class="js-likes">{{ article.likes|length }}</span>
+										{% if app.user and article.isLikedByUser(app.user) %}
+											<i class="fas fa-thumbs-up"></i>
+										{% else %}
+											<i class="far fa-thumbs-up"></i>
+										{% endif %}
+									</a>
+								</div>
 							</div>
-						  </div>
+						</div>
 					</a>
 				{% endfor %}
 
@@ -77,4 +87,9 @@
 
 </main>
 
+{% endblock %}
+
+{% block javascripts %}
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="{{ asset('js/script.js') }}"></script>
 {% endblock %}
