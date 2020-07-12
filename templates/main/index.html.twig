@@ -19,14 +19,17 @@
     <!--Premiere section. Photo a la une TOP 1-->
     <section class="row mt-3" id="news_highlights">
         <div class="col-12 mt-2 col-md-8 offset-md-2 text-center">
-       
             <a class="card thumbnail">
                 <img class="card-img-top" src="{{ asset('images/articles/' ~ index_articles[0].picture ) }}" alt="...">
                 <a href="{{ path('article_article', { slug: index_articles[0].slug }) }}" alt="" class="w-100">
+                    
                     <div class="resume card-img-overlay">
+                        
                         <h2 class="card-title">{{ index_articles[0].title }}</h2>
                         <p class="card-text">{{index_articles[0].content|striptags|slice(0, 50)}}</p>
+                        
                     </div>
+                    
                 </a>
             </div>
         </div>
@@ -42,7 +45,7 @@
                         <img class="card-img-top" src="{{ asset('images/articles/' ~ index_articles[1].picture ) }}" alt="Card image cap">
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">{{ index_articles[1].title }}</h5>
+                            <h3 class="card-title">{{ index_articles[1].title }}</h3>
                             <p class="card-text">{{index_articles[1].content|striptags|slice(0, 50) ~ '...'}}</p>
                         </div>
                         <div class="card-footer">
@@ -60,7 +63,7 @@
                         <img class="card-img-top" src="{{ asset('images/articles/' ~ index_articles[2].picture ) }}" alt="Card image cap">
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">{{ index_articles[2].title }}</h5>
+                            <h3 class="card-title">{{ index_articles[2].title }}</h3>
                             <p class="card-text">{{index_articles[2].content|striptags|slice(0, 50) ~ '...'}}</p>
                         </div>
                         <div class="card-footer">
@@ -82,7 +85,7 @@
                         <img class="card-img-top" src="{{ asset('images/articles/' ~ index_articles[3].picture ) }}" alt="Card image cap">
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">{{ index_articles[3].title|striptags|slice(0,25) ~ '...' }}</h5>
+                            <h3 class="card-title">{{ index_articles[3].title|striptags|slice(0,25) ~ '...' }}</h3>
                             <p class="card-text">{{index_articles[3].content|striptags|slice(0, 50) ~ '...'}}</p>
                         </div>
                         <div class="card-footer">
@@ -100,7 +103,7 @@
                         <img class="card-img-top" src="{{ asset('images/articles/' ~ index_articles[4].picture ) }}" alt="Card image cap">
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">{{ index_articles[4].title|striptags|slice(0,25) ~ '...' }}</h5>
+                            <h3 class="card-title">{{ index_articles[4].title|striptags|slice(0,25) ~ '...' }}</h3>
                             <p class="card-text">{{index_articles[4].content|striptags|slice(0, 50) ~ '...'}}</p>
                         </div>
                         <div class="card-footer">
@@ -118,7 +121,7 @@
                         <img class="card-img-top" src="{{ asset('images/articles/' ~ index_articles[5].picture ) }}" alt="Card image cap">
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">{{ index_articles[5].title|striptags|slice(0,25) ~ '...' }}</h5>
+                            <h3 class="card-title">{{ index_articles[5].title|striptags|slice(0,25) ~ '...' }}</h3>
                             <p class="card-text">{{index_articles[5].content|striptags|slice(0, 50) ~ '...'}}</p>
                         </div>
                         <div class="card-footer">
@@ -136,7 +139,7 @@
                         <img class="card-img-top" src="{{ asset('images/articles/' ~ index_articles[6].picture ) }}" alt="Card image cap">
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">{{ index_articles[6].title|striptags|slice(0,25) ~ '...' }}</h5>
+                            <h3 class="card-title">{{ index_articles[6].title|striptags|slice(0,25) ~ '...' }}</h3>
                             <p class="card-text">{{index_articles[6].content|striptags|slice(0, 50) ~ '...'}}</p>
                         </div>
                         <div class="card-footer">
