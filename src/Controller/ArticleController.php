@@ -261,7 +261,7 @@ class ArticleController extends AbstractController
     public function commentDelete(Comment $comment, Request $request){
 
         // Si le token CSRF passé dans l'url n'est pas le token valide, message d'erreur
-        if(!$this->isCsrfTokenValid('article_comment_delete'. $comment->getId(), $request->query->get('csrf_token'))){
+        if(!$this->isCsrfTokenValid('comment_delete'. $comment->getId(), $request->query->get('csrf_token'))){
 
             $this->addFlash('error', 'Token sécurité invalide, veuillez ré-essayer.');
 

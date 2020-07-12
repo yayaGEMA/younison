@@ -7,6 +7,12 @@
 {% block body %}
 
 <main>
+
+	{# Affichage des messages flashs de type "success" si il y en a #}
+	{% include 'partials/flashes/success.html.twig' %}
+	{# Affichage des messages flashs de type "error" si il y en a #}
+	{% include 'partials/flashes/error.html.twig' %}
+
     <div class="row">
     	<h1 class="col text-center my-5">Tous nos articles</h1>
 	</div>
