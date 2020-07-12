@@ -10,12 +10,44 @@
     <div class="row">
     	<h1 class="col text-center my-5">Tous nos articles</h1>
 	</div>
+
+	{# Gestion de l'affichage par critères #}
+	<div class="row">
+		<div class="input-group col-8 offset-2 col-md-2 offset-md-8 mb-3 d-flex flex-row-reverse">
+			<div class="dropdown">
+				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Trier par</button>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					<div class="dropdown-item">
+						{% if getDirection is same as('asc') %}
+							{{ knp_pagination_sortable(pageArticles, 'Date (+ récent au + ancien)', 'a.publicationDate') }}
+						{% else %}
+							{{ knp_pagination_sortable(pageArticles, 'Date (+ ancien au + récent)', 'a.publicationDate') }}
+						{% endif %}
+					</div>
+					<div class="dropdown-item">
+						{% if getDirection is same as('asc') or getDirection is same as (null) %}
+							{{ knp_pagination_sortable(pageArticles, 'Nombre de likes (ordre décroissant)', 'a.likes', {}, {'direction': 'desc'}) }}
+						{% else %}
+							{{ knp_pagination_sortable(pageArticles, 'Nombre de likes(ordre croissant)', 'a.likes', {}, {'direction': 'asc'}) }}
+						{% endif %}
+					</div>
+					<div class="dropdown-item">
+						{% if getDirection is same as('asc') or getDirection is same as (null) %}
+							{{ knp_pagination_sortable(pageArticles, 'Nombre de commentaires (ordre décroissant)', 'a.comments', {}, {'direction': 'desc'}) }}
+						{% else %}
+							{{ knp_pagination_sortable(pageArticles, 'Nombre de commentaires(ordre croissant)', 'a.comments', {}, {'direction': 'asc'}) }}
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	
 	<div class="row">
 		<div class="col-8 offset-2">
 
 				{# Affichage des articles #}
-				{% for article in articles %}
+				{% for article in pageArticles %}
 					<a href="{{ path('article_article', {slug: article.slug}) }}" class="w-100">
 						<div class="card">
 							<div class="row no-gutters">
@@ -25,7 +57,7 @@
 								<div class="col-md-8">
 									<div class="card-body">
 										<h2 class="card-title">{{ article.title }}</h2>
-										<p class="card-text">{{ article.content|striptags|slice(0,100) ~ '...' }}</p>
+										<p class="card-text">{{ article.content|striptags|slice(0,500) ~ '...' }}</p>
 									</div>
 								</div>
 							</div>
@@ -37,7 +69,7 @@
 			<div class="my-3 text-center">
 				<div class="d-inline-block">
 					{# Affichage du menu permettant de naviguer entre les différentes pages #}
-					{{ knp_pagination_render(articles) }}
+					{{ knp_pagination_render(pageArticles) }}
 				</div>
 			</div>
 	

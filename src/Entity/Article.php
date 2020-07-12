@@ -75,7 +75,7 @@ class Article
     private $spotifyUri;
 
     /**
-     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="articleId")
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="article")
      */
     private $comments;
 
@@ -185,7 +185,7 @@ class Article
     {
         if (!$this->comments->contains($comment)) {
             $this->comments[] = $comment;
-            $comment->setArticleId($this);
+            $comment->setArticle($this);
         }
 
         return $this;
@@ -196,8 +196,8 @@ class Article
         if ($this->comments->contains($comment)) {
             $this->comments->removeElement($comment);
             // set the owning side to null (unless already changed)
-            if ($comment->getArticleId() === $this) {
-                $comment->setArticleId(null);
+            if ($comment->getArticle() === $this) {
+                $comment->setArticle(null);
             }
         }
 
