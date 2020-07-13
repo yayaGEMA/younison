@@ -251,6 +251,17 @@ cursor: pointer;
 	font-size: 2rem;
 }
 
+.list-body{
+	position: absolute;
+}
+
+.list-title{
+	font-size: 1.5rem;
+}
+
+.js-like{
+	text-shadow: 2px 2px 5px whitesmoke, -2px -2px 5px whitesmoke, -2px 2px 5px whitesmoke, 2px -2px 5px whitesmoke;
+}
 
 
 /*effet sur image Bruce*/
@@ -353,17 +364,21 @@ Zoom sur les cards
 }
 
 @media screen and (min-width:768px){
-.card-style .card-body{
-    height:200px;
-  }
+	.card-style .card-body{
+		height:200px;
+	}
+	.list-body{
+		position: static;
+	}
+	
 }
 @media screen and (min-width:990px){
-.card-style .card-body{
-    height:300px;
-  }
+	.card-style .card-body{
+		height:300px;
+	}
 }
 @media screen and (min-width:1120px){
-.card-style .card-body{
-    height:200px;
-  }
+	.card-style .card-body{
+		height:200px;
+	}
 }
