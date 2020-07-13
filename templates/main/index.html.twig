@@ -15,28 +15,28 @@
         </div>
     </div>
 
+    {# Affichage des messages flashs de type "success" si il y en a #}
+	{% include 'partials/flashes/success.html.twig' %}
+	{# Affichage des messages flashs de type "error" si il y en a #}
+	{% include 'partials/flashes/error.html.twig' %}
 
     <!--Premiere section. Photo a la une TOP 1-->
-    <section class="row mt-3" id="news_highlights">
+    <section class="row mt-4" id="news_highlights">
         <div class="col-12 mt-2 col-md-8 offset-md-2 text-center">
-            <a class="card thumbnail">
-                <img class="card-img-top" src="{{ asset('images/articles/' ~ index_articles[0].picture ) }}" alt="...">
+            <div class="card thumbnail d-flex flex-column">
+                <img class="card-img-top-top" src="{{ asset('images/articles/' ~ index_articles[0].picture ) }}" alt="...">
                 <a href="{{ path('article_article', { slug: index_articles[0].slug }) }}" alt="" class="w-100">
-                    
                     <div class="resume card-img-overlay">
-                        
                         <h2 class="card-title">{{ index_articles[0].title }}</h2>
                         <p class="card-text">{{index_articles[0].content|striptags|slice(0, 50)}}</p>
-                        
                     </div>
-                    
                 </a>
             </div>
         </div>
     </section>
 
     <!--Deuxieme section serie de deux articles sur la meme ligne en format small-->
-    <section class="row  mt-4  text-center">
+    <section class="row mt-4 text-center">
         <div class="col-sm-4 offset-sm-2 offset-0"><!--TOP 2-->
             <div class="card-deck">
                 <a href="{{ path('article_article', { slug: index_articles[1].slug }) }}" alt="" class="w-100">
@@ -58,7 +58,7 @@
         <div class="col-sm-4"><!--TOP 3-->
             <div class="card-deck">
                 <a href="{{ path('article_article', { slug: index_articles[2].slug }) }}" alt="" class="w-100">
-                    <div class="card ">
+                    <div class="card">
                         <div class="item-zoom">
                         <img class="card-img-top" src="{{ asset('images/articles/' ~ index_articles[2].picture ) }}" alt="Card image cap">
                         </div>
@@ -76,7 +76,7 @@
     </section>
 
     <!--Troisieme  section Serie de 4 articles en format small sur une meme ligne-->
-    <section class="row  mt-4 mb-4 text-center">
+    <section class="row mt-4 mb-4 text-center">
         <div class="col-sm-4 offset-sm-2 offset-0 col-lg-2 card-style"><!--TOP 4-->
             <div class="card-deck">
                 <a href="{{ path('article_article', { slug: index_articles[3].slug }) }}" alt="" class="w-100">

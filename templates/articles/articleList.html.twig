@@ -30,12 +30,12 @@
 							{{ knp_pagination_sortable(pageArticles, 'Date (+ ancien au + récent)', 'a.publicationDate') }}
 						{% endif %}
 					</div>
-					<div class="dropdown-item">
+					<!-- {# <div class="dropdown-item">
 						{% if getDirection is same as('asc') or getDirection is same as (null) %}
 							{{ knp_pagination_sortable(pageArticles, 'Nombre de likes (ordre décroissant)', 'a.likes', {}, {'direction': 'desc'}) }}
 						{% else %}
 							{{ knp_pagination_sortable(pageArticles, 'Nombre de likes (ordre croissant)', 'a.likes', {}, {'direction': 'asc'}) }}
-						{% endif %}
+						{% endif %} #} -->
 					</div>
 				</div>
 			</div>
@@ -43,25 +43,35 @@
 	</div>
 	
 	<div class="row">
-		<div class="col-8 offset-2">
+		<div class="col-10 offset-1 col-md-8 offset-md-2">
 
 				{# Affichage des articles #}
 				{% for article in pageArticles %}
-					<a href="{{ path('article_article', {slug: article.slug}) }}" class="w-100">
-						<div class="card">
-							<div class="row no-gutters">
-								<div class="col-md-4 vh-10">
+					<div class="card">
+						<div class="row no-gutters">
+							<a href="{{ path('article_article', {slug: article.slug}) }}" class=" d-flex position-relative w-100">
+								<div class="col-12 col-md-4 vh-10 d-md-block px-0">
 									<img src="{{ asset('images/articles/' ~ article.picture) }}" alt="..." class="card-img-top">
 								</div>
-								<div class="col-md-8">
+								<div class="col-12 col-md-8 d-md-block list-body">
 									<div class="card-body">
-										<h2 class="card-title">{{ article.title }}</h2>
-										<p class="card-text">{{ article.content|striptags|slice(0,500) ~ '...' }}</p>
+										<h2 class="card-title list-title">{{ article.title }}</h2>
+										<p class="card-text d-none d-lg-block">{{ article.content|striptags|slice(0,100) ~ '...' }}</p>
 									</div>
 								</div>
+							</a>
+							<div class="likescounter position-absolute">
+								<a href="{{ path('article_article_like', {id: article.id }) }}" class="btn btn-link js-like d-inline">
+									<span class="js-likes">{{ article.likes|length }}</span>
+									{% if app.user and article.isLikedByUser(app.user) %}
+										<i class="fas fa-thumbs-up"></i>
+									{% else %}
+										<i class="far fa-thumbs-up"></i>
+									{% endif %}
+								</a>
 							</div>
-						  </div>
-					</a>
+						</div>
+					</div>
 				{% endfor %}
 
 	
@@ -77,4 +87,9 @@
 
 </main>
 
+{% endblock %}
+
+{% block javascripts %}
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="{{ asset('js/script.js') }}"></script>
 {% endblock %}

@@ -24,12 +24,13 @@
 .bg-grade{
   background: #515561
 }
-h1 a{
+h1{
   color: whitesmoke;
+  font-size: 1.5em;
 }
 h2{
   font-family:  Max, Fairies ,Roboto ,Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font-size: 3.8em;
+  font-size: 2em;
   text-shadow: 1px 1px 2px black, -1px -1px 1em black, -1px -1px 0.2em black;
   color: white;
   transition: 0.3s;
@@ -52,7 +53,7 @@ a:link
 
 .resume>p{
   color: white;
-  font-size: 2em;
+  font-size: 1.5em;
   font-family: Max, Fairies ,Roboto ,Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   text-shadow: 1px 1px 2px black, -1px -1px 1em black, -1px -1px 0.2em black;
   transition: 0.3s;
@@ -65,16 +66,14 @@ p{
   color: black;
 }
 p card-text{
-  font-family: Max,
+  font-family: Max, Fairies ,Roboto ,Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   text-shadow: 0 3px 0 rgba(0,0,0,0.6);
 }
 
 /*hover sur le text et titre de la une*/
 .resume:hover{ 
-  font-size: 1.10em; 
+  font-size: 1.1em; 
 }
-
-
 
 
 
@@ -242,10 +241,28 @@ cursor: pointer;
 .card{
   margin-bottom: 20px;
 }
-.card-horizontal {
-display: flex;
-flex: 1 1 auto;
+
+.likescounter{
+	bottom: 10px;
+	right: 10px;
 }
+
+.fa-thumbs-up{
+	font-size: 2rem;
+}
+
+.list-body{
+	position: absolute;
+}
+
+.list-title{
+	font-size: 1.5rem;
+}
+
+.js-like{
+	text-shadow: 2px 2px 5px whitesmoke, -2px -2px 5px whitesmoke, -2px 2px 5px whitesmoke, 2px -2px 5px whitesmoke;
+}
+
 
 /*effet sur image Bruce*/
 .bruce{
@@ -347,17 +364,21 @@ Zoom sur les cards
 }
 
 @media screen and (min-width:768px){
-.card-style .card-body{
-    height:200px;
-  }
+	.card-style .card-body{
+		height:200px;
+	}
+	.list-body{
+		position: static;
+	}
+	
 }
 @media screen and (min-width:990px){
-.card-style .card-body{
-    height:300px;
-  }
+	.card-style .card-body{
+		height:300px;
+	}
 }
 @media screen and (min-width:1120px){
-.card-style .card-body{
-    height:200px;
-  }
+	.card-style .card-body{
+		height:200px;
+	}
 }

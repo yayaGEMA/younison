@@ -7,6 +7,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
+use App\Repository\ArticleRepository;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Entity\Comment;
@@ -14,9 +16,13 @@ use App\Form\CommentType;
 use App\Form\EditArticleType;
 use App\Form\EditPhotoType;
 use App\Entity\User;
+use App\Entity\ArticleLike;
+use App\Repository\ArticleLikeRepository;
+use App\Entity\Like;
 use \DateTime;
 use Symfony\Component\Form\FormError;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Doctrine\ORM\EntityManagerInterface;
 
 
 /**
@@ -284,5 +290,59 @@ class ArticleController extends AbstractController
 
     }
 
+    /**
+     * Permet de liker ou unliker un article
+     *
+     * @Route("/article/{id}/like", name="article_like")
+     *
+     * @param \App\Entity\Article $article
+     * @param \Doctrine\ORM\EntityManagerInterface $manager
+     * @param \App\repository\ArticleLikeRepository $likeRepo
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function like(Article $article, EntityManagerInterface $manager, ArticleLikeRepository $likeRepo) : Response
+    {
+        // On récupère l'user
+        $user = $this->getUser();
 
+        // S'il n'est pas connecté
+        if(!$user){
+            return $this->json([
+                'code' => 403,
+                'message' => 'Il faut être connecté'
+            ], 403);
+        }
+
+        // Si l'user aime l'article, on le supprime
+        if($article->isLikedByUser($user)){
+            $like = $likeRepo->findOneBy([
+                'article' => $article,
+                'user' => $user
+            ]);
+
+            $manager->remove($like);
+            $manager->flush();
+
+            return $this->json([
+                'code' => 200,
+                'message' => "Like supprimé",
+                'likes' => $likeRepo->count(['article' => $article])
+            ], 200);
+        }
+
+        $like = new ArticleLike();
+        $like
+            ->setArticle($article)
+            ->setUser($user)
+        ;
+
+        $manager->persist($like);
+        $manager->flush();
+
+        return $this->json([
+            'code' => 200,
+            'message' => 'Like ajouté',
+            'likes' => $likeRepo->count(['article' => $article])
+        ], 200);
+    }
 }

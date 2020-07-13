@@ -11,6 +11,11 @@
 {# Contenu de la page #}
 {% block body %}
 
+    {# Affichage des messages flashs de type "success" si il y en a #}
+	{% include 'partials/flashes/success.html.twig' %}
+	{# Affichage des messages flashs de type "error" si il y en a #}
+	{% include 'partials/flashes/error.html.twig' %}
+
     <div class="row">
         <p class="col-12 text-center aricle-list"><a href="{{ path('article_list') }}">Retour liste des articles</a></p>
 
