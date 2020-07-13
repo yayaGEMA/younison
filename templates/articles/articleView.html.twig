@@ -12,7 +12,7 @@
 {% block body %}
 
     <div class="row">
-        <p class="col-12 text-center"><a href="{{ path('article_list') }}">Retour liste des articles</a></p>
+        <p class="col-12 text-center aricle-list"><a href="{{ path('article_list') }}">Retour liste des articles</a></p>
 
         {% if is_granted('ROLE_ADMIN') %}
             <p class="col-12 col-md-2 offset-md-5 text-center alert alert-primary"><a href="{{path('article_edit', {slug: article.slug, csrf_token: csrf_token('article_edit' ~ article.slug) }) }}">Modifier l'article</a></p>
@@ -22,22 +22,25 @@
 
     {# Titre de l'article #}
     <div class="row">
-        <img src="{{ asset('images/articles/' ~ article.picture ) }}" class="articleBanner col-12 col-md-6 offset-md-3 d-flex justify-content-center align-items-center">
-            <h1>{{ article.title }}</h1>
+        <img src="{{ asset('images/articles/' ~ article.picture ) }}" class="articleBanner col-12 col-md-6 offset-md-3 ">    
         </img>
+        <div class="col-12 col-md-6 offset-md-3 text-center mt-3 mb-3">
+            <h2>{{ article.title }}</h2>
+        </div>
     </div>
 
     {# Affichage de l'article #}
     <div class="row">
-        <div class="col-12 col-md-6 offset-md-3 p-3">
-            <div>
-                {# Affichage de la date et du pseudonym #}
-                <footer>Publié le <strong class="text-dark">{{ article.publicationDate|date('d/m/Y à H\\hi') }}</strong> par <strong class="text-dark">{{ article.author.pseudo }}</strong></footer>
-
-                {# Affichage de l'article #}
-                <div class="mb-2">{{ article.content|purify }}</div>
-
+        <div class="col-12 col-md-6 offset-md-3 p-3 card bg-light mb-3">
+            
+            {# Affichage de la date et du pseudonym #}
+            <div class="card-header"> Publié le <strong class="text-dark">{{ article.publicationDate|date('d/m/Y à H\\hi') }}</strong> par <strong class="text-dark">{{ article.author.pseudo }}</strong></div>
+            <div class="card-body">
+            {# Affichage de l'article #}
+                
+                <p class="card-text">{{ article.content|purify }}</p>
             </div>
+            
         </div>
     </div>
     <hr>
