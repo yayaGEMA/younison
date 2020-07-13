@@ -238,7 +238,6 @@ class Article
                 return true;
             }
         }
-        
         return false;
     }
 }

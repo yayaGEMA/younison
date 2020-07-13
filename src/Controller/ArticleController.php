@@ -70,7 +70,6 @@ class ArticleController extends AbstractController
             $article
                 ->setPublicationDate(new DateTime())
                 ->setAuthor($userConnected)
-                ->setLikes(0)
             ;
 
             // Récupération du manager général des entités
@@ -297,7 +296,7 @@ class ArticleController extends AbstractController
      *
      * @param \App\Entity\Article $article
      * @param \Doctrine\ORM\EntityManagerInterface $manager
-     * @param \App\repository\ArticleLikeRepository $likeRepo
+     * @param \App\Repository\ArticleLikeRepository $likeRepo
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function like(Article $article, EntityManagerInterface $manager, ArticleLikeRepository $likeRepo) : Response
@@ -311,38 +310,39 @@ class ArticleController extends AbstractController
                 'code' => 403,
                 'message' => 'Il faut être connecté'
             ], 403);
+        } else {
+
+            // Si l'user aime l'article, on le supprime
+            if($article->isLikedByUser($user)){
+                $like = $likeRepo->findOneBy([
+                    'article' => $article,
+                    'user' => $user
+                ]);
+
+                $manager->remove($like);
+                $manager->flush();
+
+                return $this->json([
+                    'code' => 200,
+                    'message' => "Like supprimé",
+                    'likes' => $likeRepo->count(['article' => $article])
+                ], 200);
+            } else {
+                $like = new ArticleLike();
+                $like
+                    ->setArticle($article)
+                    ->setUser($user)
+                ;
+
+                $manager->persist($like);
+                $manager->flush();
+
+                return $this->json([
+                    'code' => 200,
+                    'message' => 'Like ajouté',
+                    'likes' => $likeRepo->count(['article' => $article])
+                ], 200);
+            }
         }
-
-        // Si l'user aime l'article, on le supprime
-        if($article->isLikedByUser($user)){
-            $like = $likeRepo->findOneBy([
-                'article' => $article,
-                'user' => $user
-            ]);
-
-            $manager->remove($like);
-            $manager->flush();
-
-            return $this->json([
-                'code' => 200,
-                'message' => "Like supprimé",
-                'likes' => $likeRepo->count(['article' => $article])
-            ], 200);
-        }
-
-        $like = new ArticleLike();
-        $like
-            ->setArticle($article)
-            ->setUser($user)
-        ;
-
-        $manager->persist($like);
-        $manager->flush();
-
-        return $this->json([
-            'code' => 200,
-            'message' => 'Like ajouté',
-            'likes' => $likeRepo->count(['article' => $article])
-        ], 200);
     }
 }
