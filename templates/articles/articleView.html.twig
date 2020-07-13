@@ -17,7 +17,7 @@
 	{% include 'partials/flashes/error.html.twig' %}
 
     <div class="row">
-        <p class="col-12 text-center aricle-list"><a href="{{ path('article_list') }}">Retour liste des articles</a></p>
+        <p class="col-12 text-center aricle-list mt-3"><a href="{{ path('article_list') }}">Retour liste des articles</a></p>
 
         {% if is_granted('ROLE_ADMIN') %}
             <p class="col-12 col-md-2 offset-md-5 text-center alert alert-primary"><a href="{{path('article_edit', {slug: article.slug, csrf_token: csrf_token('article_edit' ~ article.slug) }) }}">Modifier l'article</a></p>
@@ -48,7 +48,7 @@
             
         </div>
     </div>
-    <hr>
+    <hr class="style">
     <div class="row d-block">
         {#Partie commentaires#}
         <div class="col-12 col-md-6 offset-md-3 p-3">
