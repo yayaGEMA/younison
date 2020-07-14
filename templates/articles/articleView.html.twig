@@ -16,7 +16,7 @@
 	{# Affichage des messages flashs de type "error" si il y en a #}
 	{% include 'partials/flashes/error.html.twig' %}
 
-    <div class="row">
+    <div class="row article-view">
         <p class="col-12 text-center aricle-list mt-3"><a href="{{ path('article_list') }}">Retour liste des articles</a></p>
 
         {% if is_granted('ROLE_ADMIN') %}
