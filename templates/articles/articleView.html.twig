@@ -72,7 +72,7 @@
                             <div class="col-12 col-sm mt-2 mt-sm-0">
                                 <footer class="blockquote-footer mb-4">Ajouté par <strong class="text-light mr-1">{{ comment.author.pseudo }}</strong>
                                     <br class="d-sm-none">Le <strong class="text-light">{{ comment.publicationDate|date('d/m/Y à H\\hi') }}</strong></footer>
-                                <p>{{ comment.content|nl2br }}</p>
+                                <p class="text-light"> {{ comment.content|nl2br }}</p>
                             </div>
 
                             {# Si le'utilisateur est admin, affichage d'un menu admin avec un bouton de suppression du commentaire #}
