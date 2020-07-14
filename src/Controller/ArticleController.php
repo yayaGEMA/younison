@@ -124,8 +124,6 @@ class ArticleController extends AbstractController
         $getDirection = $request->query->get('direction');
         $getSort = $request->query->get('sort');
 
-        dump($getSort);
-
         // On envoi les articles récupérés à la vue
         return $this->render('articles/articleList.html.twig', [
             'pageArticles' => $pageArticles,

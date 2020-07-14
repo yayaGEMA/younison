@@ -75,17 +75,24 @@ p card-text{
   font-size: 1.1em; 
 }
 
-
-
 /*NAVBAR*/
 .navbar-dark .navbar-nav .nav-link{
   color: snow;
 }
-.navbar-dark .navbar-nav .nav-link:hover{
+.navbar-dark .navbar-nav{
   color: #D8B199;
 }
-.navbar-dark  .nav-right .nav-link:hover{
+.navbar-dark  .nav-right{
   color: rgb(81,85,97);
+}
+
+.dropdown-menu{
+  background-color:rgb(216,177,153);
+  border: none;
+}
+
+#profil-dropdown:hover{
+  color: black !important;
 }
 
 /*Bannière*/
