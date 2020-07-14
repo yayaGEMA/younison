@@ -13,22 +13,23 @@
     {# H1 #}
     <div class="row">
          {# Affichage du formulaire de changement de photo de profil #}
-        <div class="col-10 offset-1 offset-md-4 col-md-1 change-photo-form">
+        <div class="col-10 offset-1 offset-md-4 col-md-4 change-photo-form d-flex justify-content-center align-items-center my-4">
             {% if app.user.profilPic is null %}
                 <img class="img-fluid img-thumbnail profil-pic" src="{{ asset('images/default_profil_pic.jpg')|imagine_filter('profil') }}" alt="default_profil_pic">
             {% else %}
                 <img class="img-fluid img-thumbnail profil-pic" src="{{ asset('images/users/' ~ app.user.profilPic) }}" alt="profil_pic">
             {% endif %}
+            <h1 class="text-center mx-2">Gestion du profil</h1>
+
         </div>
-        <h1 class="col-12 col-md-3 text-center my-5">Gestion du profil</h1>
     </div>
 
-    <div class="row">
+    <div class="row profil-form">
         {{ form(form) }}
     </div>
 
     <div class="row">
-        <div class="col-12 col-md-10 offset-1 d-flex justify-content-center align-items-center mb-4">
+        <div class="col-12 col-md-6 offset-md-3 d-flex justify-content-center align-items-center mb-4">
             {# Infos du compte #}
             <ul class="list-group col-12 col-md-8 p-0">
                 <li class="list-group-item bg-black">Adresse Email : <span class="text-info">{{ app.user.email }}</span></li>

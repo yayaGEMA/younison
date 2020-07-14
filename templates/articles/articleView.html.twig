@@ -66,12 +66,12 @@
                     <div class="card my-3 bg-dark">
                         <div class="card-body row">
 
-                            {#TODO: Image de profil#}
-
                             {# Affichage de la date de publication du commentaire et du pseudo de son auteur #}
                             <div class="col-12 col-sm mt-2 mt-sm-0">
-                                <footer class="blockquote-footer mb-4">Ajouté par <strong class="text-light mr-1">{{ comment.author.pseudo }}</strong>
-                                    <br class="d-sm-none">Le <strong class="text-light">{{ comment.publicationDate|date('d/m/Y à H\\hi') }}</strong></footer>
+                                <footer class="blockquote-footer mb-4">
+                                    <img src="{{ asset('images/users/' ~ comment.author.profilPic ) }}" alt="profil-pic" class="comment-profil-pic"><strong class="text-light mr-1">{{ comment.author.pseudo }}</strong>
+                                    <br class="d-sm-none">Le <strong class="text-light">{{ comment.publicationDate|date('d/m/Y à H\\hi') }}</strong>
+                                </footer>
                                 <p class="text-light">{{ comment.content|nl2br }}</p>
                             </div>
 

@@ -36,7 +36,7 @@ class EditPhotoType extends AbstractType
                 ]
             ])
             ->add('save', SubmitType::class, [
-                'label' => 'Enregistrer',
+                'label' => 'Changer la photo de profil',
                 'attr' => [
                     'class' => 'btn btn-lg btn-primary'
                 ]
@@ -48,7 +48,8 @@ class EditPhotoType extends AbstractType
     {
         $resolver->setDefaults([
             'attr' => [
-                'novalidate' => 'novalidate'
+                'novalidate' => 'novalidate',
+                'class' => 'd-flex flex-column align-items-center'
             ]
         ]);
     }
