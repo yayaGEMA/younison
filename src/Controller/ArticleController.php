@@ -122,11 +122,15 @@ class ArticleController extends AbstractController
 
         // Permet de récupérer le ORDER BY de la requête
         $getDirection = $request->query->get('direction');
+        $getSort = $request->query->get('sort');
+
+        dump($getSort);
 
         // On envoi les articles récupérés à la vue
         return $this->render('articles/articleList.html.twig', [
             'pageArticles' => $pageArticles,
-            'getDirection' => $getDirection
+            'getDirection' => $getDirection,
+            'getSort' => $getSort
         ]);
 
     }
