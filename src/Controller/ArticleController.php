@@ -70,6 +70,7 @@ class ArticleController extends AbstractController
             $article
                 ->setPublicationDate(new DateTime())
                 ->setAuthor($userConnected)
+                ->setLikesCounter(0)
             ;
 
             // Récupération du manager général des entités
@@ -81,7 +82,7 @@ class ArticleController extends AbstractController
             // Sauvegarder en bdd
             $entityManager->flush();
 
-            // TODO: ajouter un message flash de succès
+            // ajouter un message flash de succès
             $this->addFlash('success', 'Article publié avec succès !');
 
             // Redirige sur la page des articles
@@ -111,7 +112,7 @@ class ArticleController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
 
         // Création d'une requête pour récupérer les articles en article
-        $query = $entityManager->createQuery('SELECT a FROM App\Entity\Article a  ORDER BY a.publicationDate DESC');
+        $query = $entityManager->createQuery('SELECT a FROM App\Entity\Article a ORDER BY a.publicationDate DESC');
 
         $pageArticles = $paginator->paginate(
             $query,     // Requête de selection des articles en BDD
@@ -319,13 +320,19 @@ class ArticleController extends AbstractController
                     'user' => $user
                 ]);
 
+                // On décrémente le nombre de likes
+                $likesCounter = $article->getLikesCounter();
+                $article->setLikesCounter(--$likesCounter);
+
+
                 $manager->remove($like);
+                $manager->persist($article);
                 $manager->flush();
 
                 return $this->json([
                     'code' => 200,
                     'message' => "Like supprimé",
-                    'likes' => $likeRepo->count(['article' => $article])
+                    'likes' => $article->getLikesCounter()
                 ], 200);
             } else {
                 $like = new ArticleLike();
@@ -334,13 +341,18 @@ class ArticleController extends AbstractController
                     ->setUser($user)
                 ;
 
+                // On incrémente le nombre de likes
+                $likesCounter = $article->getLikesCounter();
+                $article->setLikesCounter(++$likesCounter);
+
                 $manager->persist($like);
+                $manager->persist($article);
                 $manager->flush();
 
                 return $this->json([
                     'code' => 200,
                     'message' => 'Like ajouté',
-                    'likes' => $likeRepo->count(['article' => $article])
+                    'likes' => $article->getLikesCounter()
                 ], 200);
             }
         }

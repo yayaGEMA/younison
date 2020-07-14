@@ -56,6 +56,9 @@ class AppFixtures extends Fixture
 
         }
 
+        // Création du nombre de likes
+        $numberOfLikes = 0;
+
         // Boucle de 10 itérations
         for($i = 1; $i <= 15; $i++){
 
@@ -69,6 +72,7 @@ class AppFixtures extends Fixture
                 ->setPublicationDate($faker->dateTimeBetween('-5years', 'now'))
                 ->setAuthor($faker->randomElement($users))
                 ->setPicture($faker->file('public/images', 'public/images/articles', false))
+                ->setLikesCounter($numberOfLikes)
             ;
 
             // Enregistrement du nouvel user auprès de Doctrine
@@ -109,6 +113,8 @@ class AppFixtures extends Fixture
                     ->setArticle($newArticle)
                     ->setUser($faker->randomElement($users))
                 ;
+
+                $newArticle->setLikesCounter(++$numberOfLikes);
 
                 // Persistance du commentaire
                 $manager->persist($like);
