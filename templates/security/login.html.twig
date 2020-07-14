@@ -16,14 +16,14 @@
                     <section class="row d-flex justify-content-center ">
                         
                         <div class="border-form">
-                            <form method="post">
+                            <form method="POST" class="d-flex flex-column">
                                 {% if error %}
                                     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                                 {% endif %}
 
                                 {% if app.user %}
                                     <div class="mb-3">
-                                        Vous êtes déjà connecté en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Deconnexion</a>
+                                        Vous êtes déjà connecté en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
                                     </div>
                                 {% endif %}
 
@@ -48,9 +48,7 @@
                                     </div>
                                 #}
 
-                                <button class="btn btn-lg btn-primary" type="submit">
-                                    Sign in
-                                </button>
+                                <button class="btn btn-lg btn-primary" type="submit">Se connecter</button>
                             </form>
                                        </div>
                         </section>

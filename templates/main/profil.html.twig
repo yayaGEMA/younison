@@ -6,9 +6,25 @@
 
 {# Contenu de la page #}
 {% block body %}
+
+    {# Affichage des messages flashs de type "success" si il y en a #}
+    {% include 'partials/flashes/success.html.twig' %}
+
     {# H1 #}
     <div class="row">
-        <h1 class="col-12 text-center my-5">Gestion du profil</h1>
+         {# Affichage du formulaire de changement de photo de profil #}
+        <div class="col-10 offset-1 offset-md-4 col-md-1 change-photo-form">
+            {% if app.user.profilPic is null %}
+                <img class="img-fluid img-thumbnail profil-pic" src="{{ asset('images/default_profil_pic.jpg')|imagine_filter('profil') }}" alt="default_profil_pic">
+            {% else %}
+                <img class="img-fluid img-thumbnail profil-pic" src="{{ asset('images/users/' ~ app.user.profilPic) }}" alt="profil_pic">
+            {% endif %}
+        </div>
+        <h1 class="col-12 col-md-3 text-center my-5">Gestion du profil</h1>
+    </div>
+
+    <div class="row">
+        {{ form(form) }}
     </div>
 
     <div class="row">

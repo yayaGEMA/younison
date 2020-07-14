@@ -57,7 +57,7 @@ class ArticleController extends AbstractController
 
             // Déplacement de la photo dans le dossier que l'on avait paramétré dans le fichier services.yaml, avec le nouveau nom qu'on lui a généré
             $picture->move(
-                $this->getParameter('app.user.photo.directory'),     // Emplacement de sauvegarde du fichier
+                $this->getParameter('app.article.photo.directory'),     // Emplacement de sauvegarde du fichier
                 $newFileName    // Nouveau nom du fichier
             );
 
@@ -122,11 +122,13 @@ class ArticleController extends AbstractController
 
         // Permet de récupérer le ORDER BY de la requête
         $getDirection = $request->query->get('direction');
+        $getSort = $request->query->get('sort');
 
         // On envoi les articles récupérés à la vue
         return $this->render('articles/articleList.html.twig', [
             'pageArticles' => $pageArticles,
-            'getDirection' => $getDirection
+            'getDirection' => $getDirection,
+            'getSort' => $getSort
         ]);
 
     }

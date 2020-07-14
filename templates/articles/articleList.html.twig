@@ -24,14 +24,14 @@
 				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Trier par</button>
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 					<div class="dropdown-item">
-						{% if getDirection is same as('asc') %}
+						{% if getDirection is same as('asc') or getSort is same as('a.likes_counter') %}
 							{{ knp_pagination_sortable(pageArticles, 'Date (+ récent au + ancien)', 'a.publicationDate', {}, {'direction': 'desc'}) }}
 						{% else %}
 							{{ knp_pagination_sortable(pageArticles, 'Date (+ ancien au + récent)', 'a.publicationDate', {}, {'direction': 'asc'}) }}
 						{% endif %}
 					</div>
 					<div class="dropdown-item">
-						{% if getDirection is same as('asc') or getDirection is same as (null) %}
+						{% if getDirection is same as('asc') or getDirection is same as (null) or getSort is same as('a.publicationDate') %}
 							{{ knp_pagination_sortable(pageArticles, 'Les plus likés', 'a.likes_counter', {}, {'direction': 'desc'}) }}
 						{% else %}
 							{{ knp_pagination_sortable(pageArticles, 'Les moins likés', 'a.likes_counter', {}, {'direction': 'asc'}) }}
@@ -91,33 +91,4 @@
 
 {% block javascripts %}
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-	<script src="{{ asset('js/script.js') }}"></script>
-	<script>
-		// Système de likes
-		function onClickBtnLike(event){
-			event.preventDefault();
-			let url = this.href;
-			let spanCount = this.querySelector(".js-likes");
-			let icone = this.querySelector("i");
-
-			axios.get(url).then(function(response){
-				spanCount.textContent = response.data.likes;
-
-				if(icone.classList.contains('fas')){
-					icone.classList.replace('fas', ('far'));
-				} else {
-					icone.classList.replace('far', ('fas'));
-				}
-			}).catch(function(error){
-				if(error.response.status === 403){
-					window.alert("Il faut être connecté pour liker un article !");
-				} else {
-					window.alert("Une erreur s'est produite, veuillez réessayer plus tard.");
-				}
-			});
-		}
-		document.querySelectorAll(".js-like").forEach(function(link){
-			link.addEventListener('click', onClickBtnLike);
-		});
-	</script>
 {% endblock %}
