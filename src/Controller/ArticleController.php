@@ -26,7 +26,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 
 /**
- * @Route("", name="article_")
+ * @Route("/", name="article_")
  */
 class ArticleController extends AbstractController
 {
@@ -141,11 +141,28 @@ class ArticleController extends AbstractController
         // Récupération de l'user actuellement connecté
         $userConnected = $this->getUser();
 
+        // On va découper l'URI Spotify pour l'iframe
+        $uri = $article->getSpotifyUri();
+
+        if (strpos($uri, 'track')) {
+            $uriType = 'track';
+        } else if(strpos($uri, 'artist')) {
+            $uriType = 'artist';
+        } else if(strpos($uri, 'playlist' )) {
+            $uriType = 'playlist';
+        } else if(strpos($uri, 'album' )) {
+            $uriType = 'album';
+        }
+
+        $uriCode = substr($uri, -22);
+
         // Si l'utilisateur n'est pas connecté, appel direct de la vue en lui envoyant l'article à afficher
         // On fait ça pour éviter que le traitement du formulaire en dessous ne soit invoqué par un autre moyen même si le formulaire html est masqué
         if(!$userConnected){
             return $this->render('articles/articleView.html.twig', [
                 'article' => $article,
+                'uriType' => $uriType,
+                'uriCode' => $uriCode
             ]);
         }
 
@@ -182,21 +199,6 @@ class ArticleController extends AbstractController
             $newComment = new Comment();
             $commentForm = $this->createForm(CommentType::class, $newComment);
         }
-
-        // On va découper l'URI Spotify pour l'iframe
-        $uri = $article->getSpotifyUri();
-
-        if (strpos($uri, 'track')) {
-            $uriType = 'track';
-        } else if(strpos($uri, 'artist')) {
-            $uriType = 'artist';
-        } else if(strpos($uri, 'playlist' )) {
-            $uriType = 'playlist';
-        } else if(strpos($uri, 'album' )) {
-            $uriType = 'album';
-        }
-
-        $uriCode = substr($uri, -22);
 
         // Appel de la vue en lui envoyant l'article
         return $this->render('articles/articleView.html.twig', [
