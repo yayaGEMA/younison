@@ -70,10 +70,6 @@ class ArticleController extends AbstractController
             $article
                 ->setPublicationDate(new DateTime())
                 ->setAuthor($userConnected)
-<<<<<<< HEAD
-                ->addLike(0)
-=======
->>>>>>> 869ce3b6c39ba279a3bb7cfc766c4789653687cc
             ;
 
             // Récupération du manager général des entités
