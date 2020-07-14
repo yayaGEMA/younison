@@ -183,12 +183,29 @@ class ArticleController extends AbstractController
             $commentForm = $this->createForm(CommentType::class, $newComment);
         }
 
+        // On va découper l'URI Spotify pour l'iframe
+        $uri = $article->getSpotifyUri();
+
+        if (strpos($uri, 'track')) {
+            $uriType = 'track';
+        } else if(strpos($uri, 'artist')) {
+            $uriType = 'artist';
+        } else if(strpos($uri, 'playlist' )) {
+            $uriType = 'playlist';
+        } else if(strpos($uri, 'album' )) {
+            $uriType = 'album';
+        }
+
+        $uriCode = substr($uri, -22);
+
         // Appel de la vue en lui envoyant l'article
         return $this->render('articles/articleView.html.twig', [
             'article' => $article,
             'comment' => $newComment,
             'user' => $userConnected,
-            'commentForm' => $commentForm->createView()
+            'commentForm' => $commentForm->createView(),
+            'uriType' => $uriType,
+            'uriCode' => $uriCode
         ]);
     }
 
