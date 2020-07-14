@@ -57,7 +57,7 @@ class ArticleController extends AbstractController
 
             // Déplacement de la photo dans le dossier que l'on avait paramétré dans le fichier services.yaml, avec le nouveau nom qu'on lui a généré
             $picture->move(
-                $this->getParameter('app.user.photo.directory'),     // Emplacement de sauvegarde du fichier
+                $this->getParameter('app.article.photo.directory'),     // Emplacement de sauvegarde du fichier
                 $newFileName    // Nouveau nom du fichier
             );
 
