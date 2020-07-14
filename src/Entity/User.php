@@ -66,6 +66,7 @@ class User implements UserInterface
     {
         $this->articles = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->likes = new ArrayCollection();
     }
 
     /**
@@ -78,6 +79,11 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=32)
      */
     private $activationToken;
+
+    /**
+     * @ORM\OneToMany(targetEntity=ArticleLike::class, mappedBy="user")
+     */
+    private $likes;
 
 
     public function getId(): ?int
@@ -286,6 +292,37 @@ class User implements UserInterface
     public function setActivationToken(string $activationToken): self
     {
         $this->activationToken = $activationToken;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ArticleLike[]
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(ArticleLike $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes[] = $like;
+            $like->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(ArticleLike $like): self
+    {
+        if ($this->likes->contains($like)) {
+            $this->likes->removeElement($like);
+            // set the owning side to null (unless already changed)
+            if ($like->getUser() === $this) {
+                $like->setUser(null);
+            }
+        }
 
         return $this;
     }

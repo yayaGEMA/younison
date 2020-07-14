@@ -7,6 +7,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
+use App\Repository\ArticleRepository;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Entity\Comment;
@@ -14,9 +16,13 @@ use App\Form\CommentType;
 use App\Form\ArticleModifyType;
 use App\Form\EditPhotoType;
 use App\Entity\User;
+use App\Entity\ArticleLike;
+use App\Repository\ArticleLikeRepository;
+use App\Entity\Like;
 use \DateTime;
 use Symfony\Component\Form\FormError;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Doctrine\ORM\EntityManagerInterface;
 
 
 /**
@@ -64,7 +70,7 @@ class ArticleController extends AbstractController
             $article
                 ->setPublicationDate(new DateTime())
                 ->setAuthor($userConnected)
-                ->setLikes(0)
+                ->setLikesCounter(0)
             ;
 
             // Récupération du manager général des entités
@@ -76,7 +82,7 @@ class ArticleController extends AbstractController
             // Sauvegarder en bdd
             $entityManager->flush();
 
-            // TODO: ajouter un message flash de succès
+            // ajouter un message flash de succès
             $this->addFlash('success', 'Article publié avec succès !');
 
             // Redirige sur la page des articles
@@ -106,7 +112,7 @@ class ArticleController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
 
         // Création d'une requête pour récupérer les articles en article
-        $query = $entityManager->createQuery('SELECT a FROM App\Entity\Article a  ORDER BY a.publicationDate DESC');
+        $query = $entityManager->createQuery('SELECT a FROM App\Entity\Article a ORDER BY a.publicationDate DESC');
 
         $pageArticles = $paginator->paginate(
             $query,     // Requête de selection des articles en BDD
@@ -284,5 +290,71 @@ class ArticleController extends AbstractController
 
     }
 
+    /**
+     * Permet de liker ou unliker un article
+     *
+     * @Route("/article/{id}/like", name="article_like")
+     *
+     * @param \App\Entity\Article $article
+     * @param \Doctrine\ORM\EntityManagerInterface $manager
+     * @param \App\Repository\ArticleLikeRepository $likeRepo
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function like(Article $article, EntityManagerInterface $manager, ArticleLikeRepository $likeRepo) : Response
+    {
+        // On récupère l'user
+        $user = $this->getUser();
 
+        // S'il n'est pas connecté
+        if(!$user){
+            return $this->json([
+                'code' => 403,
+                'message' => 'Il faut être connecté'
+            ], 403);
+        } else {
+
+            // Si l'user aime l'article, on le supprime
+            if($article->isLikedByUser($user)){
+                $like = $likeRepo->findOneBy([
+                    'article' => $article,
+                    'user' => $user
+                ]);
+
+                // On décrémente le nombre de likes
+                $likesCounter = $article->getLikesCounter();
+                $article->setLikesCounter(--$likesCounter);
+
+
+                $manager->remove($like);
+                $manager->persist($article);
+                $manager->flush();
+
+                return $this->json([
+                    'code' => 200,
+                    'message' => "Like supprimé",
+                    'likes' => $article->getLikesCounter()
+                ], 200);
+            } else {
+                $like = new ArticleLike();
+                $like
+                    ->setArticle($article)
+                    ->setUser($user)
+                ;
+
+                // On incrémente le nombre de likes
+                $likesCounter = $article->getLikesCounter();
+                $article->setLikesCounter(++$likesCounter);
+
+                $manager->persist($like);
+                $manager->persist($article);
+                $manager->flush();
+
+                return $this->json([
+                    'code' => 200,
+                    'message' => 'Like ajouté',
+                    'likes' => $article->getLikesCounter()
+                ], 200);
+            }
+        }
+    }
 }

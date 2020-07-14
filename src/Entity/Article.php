@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use App\Entity\User;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
@@ -65,23 +66,29 @@ class Article
     private $publicationDate;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $likes;
-
-    /**
      * @ORM\Column(type="string", length=400, nullable=true)
      */
     private $spotifyUri;
 
     /**
-     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="article", fetch="EAGER")
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="article")
      */
     private $comments;
+
+    /**
+     * @ORM\OneToMany(targetEntity=ArticleLike::class, mappedBy="article")
+     */
+    private $likes;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $likes_counter;
 
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->likes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -149,18 +156,6 @@ class Article
         return $this;
     }
 
-    public function getLikes(): ?int
-    {
-        return $this->likes;
-    }
-
-    public function setLikes(int $likes): self
-    {
-        $this->likes = $likes;
-
-        return $this;
-    }
-
     public function getSpotifyUri(): ?string
     {
         return $this->spotifyUri;
@@ -200,6 +195,65 @@ class Article
                 $comment->setArticle(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ArticleLike[]
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(ArticleLike $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes[] = $like;
+            $like->setArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(ArticleLike $like): self
+    {
+        if ($this->likes->contains($like)) {
+            $this->likes->removeElement($like);
+            // set the owning side to null (unless already changed)
+            if ($like->getArticle() === $this) {
+                $like->setArticle(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Permet de savoir si cet article est "liké" par un User
+     * 
+     * @param User $user
+     * @return boolean
+     */
+    public function isLikedByUser(User $user) : bool
+    {
+        foreach ($this->likes as $like){
+            if($like->getUser() === $user){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function getLikesCounter(): ?int
+    {
+        return $this->likes_counter;
+    }
+
+    public function setLikesCounter(int $likes_counter): self
+    {
+        $this->likes_counter = $likes_counter;
 
         return $this;
     }

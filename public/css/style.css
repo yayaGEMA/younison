@@ -242,16 +242,51 @@ cursor: pointer;
   margin-bottom: 20px;
 }
 
-.card-horizontal {
-display: flex;
-flex: 1 1 auto;
+.likescounter{
+	bottom: 10px;
+	right: 10px;
 }
+
+.fa-thumbs-up{
+	font-size: 2rem;
+}
+
+.list-body{
+	position: absolute;
+}
+
+.list-title{
+	font-size: 1.5rem;
+}
+
+.js-like{
+	text-shadow: 2px 2px 5px whitesmoke, -2px -2px 5px whitesmoke, -2px 2px 5px whitesmoke, 2px -2px 5px whitesmoke;
+}
+
+/*hr stylisé*/
+hr.style { 
+  height: 30px; 
+  border-style: solid; 
+  border-color: #8c8b8b; 
+  border-width: 1px 0 0 0; 
+  border-radius: 20px; 
+} 
+hr.style:before { 
+  display: block; 
+  content: ""; 
+  height: 30px; 
+  margin-top: -31px; 
+  border-style: solid; 
+  border-color: #8c8b8b; 
+  border-width: 0 0 1px 0; 
+  border-radius: 20px; 
+}
+
 
 /*effet sur image Bruce*/
 .bruce{
   filter: sepia(0.6) contrast(1.20) drop-shadow(0 0 0.75rem rgba(204, 200, 201, 0.849));
   -webkit-filter: sepia(0.6) contrast(1.20) drop-shadow(0 0 0.75rem rgba(204, 200, 201, 0.849));
- 
 }
 
 /*Effet sur le formulaire*/
@@ -320,8 +355,27 @@ Zoom sur les cards
 	-moz-transform: scale(1.1);
 	-webkit-transform: scale(1.1);
   transform: scale(1.1);
-  
 }
+
+/*Liste des articles Menu Paginator*/
+.pagination .page-item .page-link{
+  background-color: black;
+  color: #ffffff;
+}
+
+.pagination .page-item.disabled{
+  cursor: not-allowed;
+}
+
+.pagination .page-item.disabled .page-link, .pagination .page-item.active .page-link{
+  color: #B28474;
+}
+.pagination .page-item a.page-link:hover{
+  background-color: #515561;
+}
+
+
+
 
 /*Media Queries*/
 
@@ -347,17 +401,21 @@ Zoom sur les cards
 }
 
 @media screen and (min-width:768px){
-.card-style .card-body{
-    height:200px;
-  }
+	.card-style .card-body{
+		height:200px;
+	}
+	.list-body{
+		position: static;
+	}
+	
 }
 @media screen and (min-width:990px){
-.card-style .card-body{
-    height:300px;
-  }
+	.card-style .card-body{
+		height:300px;
+	}
 }
 @media screen and (min-width:1120px){
-.card-style .card-body{
-    height:200px;
-  }
+	.card-style .card-body{
+		height:200px;
+	}
 }
