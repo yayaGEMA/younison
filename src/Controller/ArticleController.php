@@ -11,7 +11,7 @@ use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Entity\Comment;
 use App\Form\CommentType;
-use App\Form\EditArticleType;
+use App\Form\ArticleModifyType;
 use App\Form\EditPhotoType;
 use App\Entity\User;
 use \DateTime;
@@ -196,7 +196,7 @@ class ArticleController extends AbstractController
     {
 
         // Création du formulaire de modification (c'est le même que le formulaire permettant de créer un nouveau article, sauf qu'il sera déjà rempli avec les données de "$article")
-        $form = $this->createForm(EditArticleType::class, $article);
+        $form = $this->createForm(ArticleModifyType::class, $article);
 
         // Liaison des données de requête (POST) avec le formulaire
         $form->handleRequest($request);
