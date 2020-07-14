@@ -2,10 +2,16 @@
 
 namespace App\Controller;
 
+use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Article;
+use App\Repository\ArticleRepository;
+use Symfony\Component\Form\FormError;
+
 
 class MainController extends AbstractController
 {
@@ -42,4 +48,5 @@ class MainController extends AbstractController
     {
         return $this->render('main/profil.html.twig');
     }
+
 }
