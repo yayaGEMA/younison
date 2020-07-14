@@ -17,7 +17,7 @@
 	{% include 'partials/flashes/error.html.twig' %}
 
     <div class="row article-view">
-        <p class="col-12 text-center aricle-list mt-3"><a href="{{ path('article_list') }}">Retour liste des articles</a></p>
+        <p class="col-12 text-center article-list mt-3"><a href="{{ path('article_list') }}">Retour liste des articles</a></p>
 
         {% if is_granted('ROLE_ADMIN') %}
             <p class="col-12 col-md-2 offset-md-5 text-center alert alert-primary"><a href="{{path('article_edit', {slug: article.slug, csrf_token: csrf_token('article_edit' ~ article.slug) }) }}">Modifier l'article</a></p>
@@ -37,15 +37,15 @@
     {# Affichage de l'article #}
     <div class="row">
         <div class="col-12 col-md-6 offset-md-3 p-3 card bg-light mb-3">
-            
+
             {# Affichage de la date et du pseudonym #}
             <div class="card-header"> Publié le <strong class="text-dark">{{ article.publicationDate|date('d/m/Y à H\\hi') }}</strong> par <strong class="text-dark">{{ article.author.pseudo }}</strong></div>
             <div class="card-body">
             {# Affichage de l'article #}
-                
+
                 <p class="card-text">{{ article.content|purify }}</p>
             </div>
-            
+
         </div>
     </div>
     <hr class="style">
@@ -102,6 +102,13 @@
                 <p class="text-center text-info mt-4">Vous devez <a href="{{ path('app_login') }}">vous connecter</a> pour laisser un commentaire.</p>
             {% endif %}
         </div>
+    </div>
+
+    <nav class="row navbar navbar-dark navbar-1 dark fixed-bottom bg-sand py-0 d-lg-none">
+        <iframe src="https://open.spotify.com/embed/{{ uriType }}/{{ uriCode }}" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media" class="w-100"></iframe>
+    </nav>
+    <div class="row d-none d-lg-flex">
+        <iframe src="https://open.spotify.com/embed/{{ uriType }}/{{ uriCode }}" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
     </div>
 
 {% endblock %}

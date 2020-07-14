@@ -31,6 +31,19 @@ class AppFixtures extends Fixture
         // On instancie le Faker en langue française
         $faker = Faker\Factory::create('fr_FR');
 
+        // Array avec des URI Spotify
+        $musicArray = [
+            'spotify:track:2EqlS6tkEnglzr7tkKAAYD',
+            'spotify:track:6rlNCgN2JwbTNVQgwLp5Pl',
+            'spotify:playlist:60vmRw72rGx4SFcWcS8VmB',
+            'spotify:track:00oZhqZIQfL9P5CjOP6JsO',
+            'spotify:album:2tVVN2fdC4BzqBMTvpJ7Bp',
+            'spotify:album:3Rz6kF8eGqrDOEteo5YsBj',
+            'spotify:playlist:5RtIoZHMy9nfJ8mCNGceFy',
+            'spotify:playlist:37i9dQZF1DX82CY3GzF2m6',
+            'spotify:playlist:37i9dQZF1DZ06evO4ohLfG'
+        ];
+
 
         // Boucle de 20 itérations
         for($i = 1; $i <= 20; $i++){
@@ -56,6 +69,9 @@ class AppFixtures extends Fixture
 
         }
 
+        // Création du nombre de likes
+        $numberOfLikes = 0;
+
         // Boucle de 10 itérations
         for($i = 1; $i <= 15; $i++){
 
@@ -69,6 +85,8 @@ class AppFixtures extends Fixture
                 ->setPublicationDate($faker->dateTimeBetween('-5years', 'now'))
                 ->setAuthor($faker->randomElement($users))
                 ->setPicture($faker->file('public/images', 'public/images/articles', false))
+                ->setLikesCounter($numberOfLikes)
+                ->setSpotifyUri($faker->randomElement($musicArray))
             ;
 
             // Enregistrement du nouvel user auprès de Doctrine
@@ -109,6 +127,8 @@ class AppFixtures extends Fixture
                     ->setArticle($newArticle)
                     ->setUser($faker->randomElement($users))
                 ;
+
+                $newArticle->setLikesCounter(++$numberOfLikes);
 
                 // Persistance du commentaire
                 $manager->persist($like);

@@ -71,7 +71,7 @@ class Article
     private $spotifyUri;
 
     /**
-     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="article", fetch="EAGER")
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="article")
      */
     private $comments;
 
@@ -79,6 +79,11 @@ class Article
      * @ORM\OneToMany(targetEntity=ArticleLike::class, mappedBy="article")
      */
     private $likes;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $likes_counter;
 
     public function __construct()
     {
@@ -239,5 +244,17 @@ class Article
             }
         }
         return false;
+    }
+
+    public function getLikesCounter(): ?int
+    {
+        return $this->likes_counter;
+    }
+
+    public function setLikesCounter(int $likes_counter): self
+    {
+        $this->likes_counter = $likes_counter;
+
+        return $this;
     }
 }

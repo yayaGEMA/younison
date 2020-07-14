@@ -13,7 +13,7 @@ use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Entity\Comment;
 use App\Form\CommentType;
-use App\Form\EditArticleType;
+use App\Form\ArticleModifyType;
 use App\Form\EditPhotoType;
 use App\Entity\User;
 use App\Entity\ArticleLike;
@@ -70,6 +70,7 @@ class ArticleController extends AbstractController
             $article
                 ->setPublicationDate(new DateTime())
                 ->setAuthor($userConnected)
+                ->setLikesCounter(0)
             ;
 
             // Récupération du manager général des entités
@@ -81,7 +82,7 @@ class ArticleController extends AbstractController
             // Sauvegarder en bdd
             $entityManager->flush();
 
-            // TODO: ajouter un message flash de succès
+            // ajouter un message flash de succès
             $this->addFlash('success', 'Article publié avec succès !');
 
             // Redirige sur la page des articles
@@ -111,7 +112,7 @@ class ArticleController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
 
         // Création d'une requête pour récupérer les articles en article
-        $query = $entityManager->createQuery('SELECT a FROM App\Entity\Article a  ORDER BY a.publicationDate DESC');
+        $query = $entityManager->createQuery('SELECT a FROM App\Entity\Article a ORDER BY a.publicationDate DESC');
 
         $pageArticles = $paginator->paginate(
             $query,     // Requête de selection des articles en BDD
@@ -182,12 +183,29 @@ class ArticleController extends AbstractController
             $commentForm = $this->createForm(CommentType::class, $newComment);
         }
 
+        // On va découper l'URI Spotify pour l'iframe
+        $uri = $article->getSpotifyUri();
+
+        if (strpos($uri, 'track')) {
+            $uriType = 'track';
+        } else if(strpos($uri, 'artist')) {
+            $uriType = 'artist';
+        } else if(strpos($uri, 'playlist' )) {
+            $uriType = 'playlist';
+        } else if(strpos($uri, 'album' )) {
+            $uriType = 'album';
+        }
+
+        $uriCode = substr($uri, -22);
+
         // Appel de la vue en lui envoyant l'article
         return $this->render('articles/articleView.html.twig', [
             'article' => $article,
             'comment' => $newComment,
             'user' => $userConnected,
-            'commentForm' => $commentForm->createView()
+            'commentForm' => $commentForm->createView(),
+            'uriType' => $uriType,
+            'uriCode' => $uriCode
         ]);
     }
 
@@ -201,7 +219,7 @@ class ArticleController extends AbstractController
     {
 
         // Création du formulaire de modification (c'est le même que le formulaire permettant de créer un nouveau article, sauf qu'il sera déjà rempli avec les données de "$article")
-        $form = $this->createForm(EditArticleType::class, $article);
+        $form = $this->createForm(ArticleModifyType::class, $article);
 
         // Liaison des données de requête (POST) avec le formulaire
         $form->handleRequest($request);
@@ -319,13 +337,19 @@ class ArticleController extends AbstractController
                     'user' => $user
                 ]);
 
+                // On décrémente le nombre de likes
+                $likesCounter = $article->getLikesCounter();
+                $article->setLikesCounter(--$likesCounter);
+
+
                 $manager->remove($like);
+                $manager->persist($article);
                 $manager->flush();
 
                 return $this->json([
                     'code' => 200,
                     'message' => "Like supprimé",
-                    'likes' => $likeRepo->count(['article' => $article])
+                    'likes' => $article->getLikesCounter()
                 ], 200);
             } else {
                 $like = new ArticleLike();
@@ -334,13 +358,18 @@ class ArticleController extends AbstractController
                     ->setUser($user)
                 ;
 
+                // On incrémente le nombre de likes
+                $likesCounter = $article->getLikesCounter();
+                $article->setLikesCounter(++$likesCounter);
+
                 $manager->persist($like);
+                $manager->persist($article);
                 $manager->flush();
 
                 return $this->json([
                     'code' => 200,
                     'message' => 'Like ajouté',
-                    'likes' => $likeRepo->count(['article' => $article])
+                    'likes' => $article->getLikesCounter()
                 ], 200);
             }
         }

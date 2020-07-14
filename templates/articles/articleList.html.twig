@@ -25,17 +25,17 @@
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 					<div class="dropdown-item">
 						{% if getDirection is same as('asc') %}
-							{{ knp_pagination_sortable(pageArticles, 'Date (+ récent au + ancien)', 'a.publicationDate') }}
+							{{ knp_pagination_sortable(pageArticles, 'Date (+ récent au + ancien)', 'a.publicationDate', {}, {'direction': 'desc'}) }}
 						{% else %}
-							{{ knp_pagination_sortable(pageArticles, 'Date (+ ancien au + récent)', 'a.publicationDate') }}
+							{{ knp_pagination_sortable(pageArticles, 'Date (+ ancien au + récent)', 'a.publicationDate', {}, {'direction': 'asc'}) }}
 						{% endif %}
 					</div>
-					<!-- {# <div class="dropdown-item">
+					<div class="dropdown-item">
 						{% if getDirection is same as('asc') or getDirection is same as (null) %}
-							{{ knp_pagination_sortable(pageArticles, 'Nombre de likes (ordre décroissant)', 'a.likes', {}, {'direction': 'desc'}) }}
+							{{ knp_pagination_sortable(pageArticles, 'Les plus likés', 'a.likes_counter', {}, {'direction': 'desc'}) }}
 						{% else %}
-							{{ knp_pagination_sortable(pageArticles, 'Nombre de likes (ordre croissant)', 'a.likes', {}, {'direction': 'asc'}) }}
-						{% endif %} #} -->
+							{{ knp_pagination_sortable(pageArticles, 'Les moins likés', 'a.likes_counter', {}, {'direction': 'asc'}) }}
+						{% endif %}
 					</div>
 				</div>
 			</div>
@@ -62,7 +62,7 @@
 							</a>
 							<div class="likescounter position-absolute">
 								<a href="{{ path('article_article_like', {'id': article.id }) }}" class="btn btn-link js-like d-inline">
-									<span class="js-likes">{{ article.likes|length }}</span>
+									<span class="js-likes">{{ article.likesCounter }}</span>
 									{% if app.user and article.isLikedByUser(app.user) %}
 										<i class="fas fa-thumbs-up"></i>
 									{% else %}
@@ -106,7 +106,7 @@
 				if(icone.classList.contains('fas')){
 					icone.classList.replace('fas', ('far'));
 				} else {
-					icone.classList.replace('far', 'fas');
+					icone.classList.replace('far', ('fas'));
 				}
 			}).catch(function(error){
 				if(error.response.status === 403){
