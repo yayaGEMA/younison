@@ -57,16 +57,4 @@
         </div>
     </div>
 
-    {% if is_granted('ROLE_ADMIN') %}
-    <div class="row">
-        <h3 class="col-12 col-md-12 text-center text-light mx-2 mt-4">Vos articles</h3>
-        <div class="col-12 col-md-6 offset-md-3 d-flex justify-content-center align-items-center mb-4">
-            {# Articles publiés par le compte compte #}
-            <ul class="list-group col-12 col-md-8 p-0">
-                <li class="list-group-item bg-black"><span class="text-info">{{ app.user }}</span></li>
-            </ul>
-        </div>
-    </div>
-    {% endif %}
-
 {% endblock %}
