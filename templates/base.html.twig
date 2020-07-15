@@ -43,10 +43,12 @@
                     {% if app.user %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-light d-flex align-items-center justify-content-center p-0" href="#" id="profil-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {# Si l'utilisateur n'a pas de photo de profil, on affiche l'image par défaut #}
                                 {% if app.user.profilPic is null %}
                                     <div class="img-container-navbar d-flex align-items-center justify-content-center">
-                                        <img class="img-fluid img-thumbnail profil-pic mr-2" src="{{ asset('images/users/default_profil_pic.jpg') }}" alt="default_profil_pic">
+                                        <img class="img-fluid img-thumbnail profil-pic mr-2" src="{{ asset('images/profilpicsBank/default_profil_pic.jpg') }}" alt="default_profil_pic">
                                     </div>
+                                {# Sinon on affiche sa photo #}
                                 {% else %}
                                     <div class="img-container-navbar d-flex align-items-center justify-content-center">
                                         <img class="img-fluid img-thumbnail profil-pic mr-2" src="{{ asset('images/users/' ~ app.user.profilPic) }}" alt="profil_pic">
