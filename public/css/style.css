@@ -95,6 +95,15 @@ p card-text{
   color: black !important;
 }
 
+.navbar-pic{
+  max-height: 30px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
 /*Bannière*/
 .banner{
   background-image: url("../images/micro_noir4.jpg");
@@ -522,6 +531,7 @@ Zoom sur les cards
 .profil-pic{
   width: 84px;
   height: 84px;
+  cursor: pointer;
 }
 
 .profil-form{
