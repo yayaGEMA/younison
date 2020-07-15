@@ -138,7 +138,7 @@ class ArticleController extends AbstractController
      *
      * @Route("/article/{slug}/", name="article")
      */
-    public function articleView(Article $article, Request $request){
+    public function articleView(Article $article, Request $request, Comment $comment){
 
         // Récupération de l'user actuellement connecté
         $userConnected = $this->getUser();
@@ -197,7 +197,7 @@ class ArticleController extends AbstractController
             unset($newComment);
             unset($commentForm);
 
-            //création d'un nouveau commentaire vide et de son formulaire lié
+            // création d'un nouveau commentaire vide et de son formulaire lié
             $newComment = new Comment();
             $commentForm = $this->createForm(CommentType::class, $newComment);
         }
@@ -256,17 +256,20 @@ class ArticleController extends AbstractController
      * @Route("/article/suppression/{id}/", name="delete")
      * @Security("is_granted('ROLE_ADMIN')")
      */
-    public function articleDelete(Article $article, Request $request){
+    public function articleDelete(Article $article, Request $request, Comment $comment){
 
         // Si le token CSRF passé dans l'url n'est pas le token valide, message d'erreur
         if(!$this->isCsrfTokenValid('article_delete_'. $article->getId(), $request->query->get('csrf_token'))){
 
-            $this->addFlash('error', 'Token sécurité invalide, veuillez ré-essayer.');
+            $this->addFlash('error', 'Token sécurité invalide, veuillez réessayer.');
 
         } else {
 
-            // Suppression de l'article via le manager général des entités
+            // Suppression des commentaires liés à l'article
             $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($comment);
+
+            // Suppression de l'article via le manager général des entités
             $entityManager->remove($article);
             $entityManager->flush();
 

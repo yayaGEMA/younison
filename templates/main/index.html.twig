@@ -26,9 +26,9 @@
             <div class="card thumbnail d-flex flex-column">
                 <img class="card-img-top-top" src="{{ asset('images/articles/' ~ index_articles[0].picture ) }}" alt="...">
                 <a href="{{ path('article_article', { slug: index_articles[0].slug }) }}" alt="" class="w-100">
-                    <div class="resume card-img-overlay">
-                        <h2 class="card-title">{{ index_articles[0].title }}</h2>
-                        <p class="card-text">{{index_articles[0].content|striptags|slice(0, 50)}}</p>
+                    <div class="resume ovrl card-img-overlay" style="background-color: rgba(0,0,0,0.4);">
+                        <h2 class="ovrl card-title">{{ index_articles[0].title }}</h2>
+                        <p class="ovrl card-text">{{index_articles[0].content|striptags|slice(0, 50)}}</p>
                     </div>
                 </a>
             </div>

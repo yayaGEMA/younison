@@ -56,6 +56,7 @@ class AppFixtures extends Fixture
                 ->setPseudo($faker->userName)
                 ->setEmail($faker->email)
                 ->setPassword( $this->encoder->encodePassword($newUser, 'Alicedu71@') )
+                ->setProfilPic($faker->file('public/images/profilpicsBank', 'public/images/users', false))
                 ->setRegistrationDate($faker->dateTimeBetween('-5years', 'now'))
                 ->setIsActivated($faker->boolean)
                 ->setActivationToken( $faker->md5 )

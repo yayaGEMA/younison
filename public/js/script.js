@@ -32,3 +32,8 @@ function onClickBtnLike(event){
 document.querySelectorAll(".js-like").forEach(function(link){
     link.addEventListener('click', onClickBtnLike);
 });
+
+// Page de profil
+$(".profil-pic").click(function(){
+    $(".profil-form").toggleClass("d-none");
+});

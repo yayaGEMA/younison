@@ -43,7 +43,11 @@
                     {% if app.user %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-light" href="#" id="profil-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-user mr-1"></i>{{ app.user.pseudo }}
+                                {% if app.user.profilPic is null %}
+                                <img class="img-fluid img-thumbnail navbar-pic" src="{{ asset('images/users/default_profil_pic.jpg') }}" alt="default_profil_pic">
+                            {% else %}
+                                <img class="img-fluid img-thumbnail navbar-pic" src="{{ asset('images/users/' ~ app.user.profilPic) }}" alt="navbar_pic">
+                            {% endif %} {{ app.user.pseudo }}
                             </a>
                             <div class="dropdown-menu profil-menu" aria-labelledby="profil-dropdown">
                                 <a href="{{ path('profil') }}" class="dropdown-item"><i class="fas fa-users-cog mr-1"></i> Mon Profil</a>

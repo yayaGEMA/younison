@@ -18,11 +18,11 @@ class CommentType extends AbstractType
         $builder
             // Champ contenu
             ->add('content', TextareaType::class, [
-                'label' => 'Ecrire un Commentaire',
+                'label' => false,
                 'purify_html' => true,
                 'attr' => [
                     'cols' => 30,
-                    'rows' => 10,
+                    'rows' => 10
                 ],
                 'constraints' => [
                     new NotBlank([
