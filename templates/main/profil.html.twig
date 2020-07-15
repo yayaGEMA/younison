@@ -23,19 +23,27 @@
          {# Affichage du formulaire de changement de photo de profil #}
         <div class="col-10 offset-1 offset-md-4 col-md-4 change-photo-form d-flex justify-content-center align-items-center my-4">
             {% if app.user.profilPic is null %}
-                <img class="img-fluid img-thumbnail profil-pic" src="{{ asset('images/users/default_profil_pic.jpg') }}" alt="default_profil_pic">
+                <div class="img-container d-flex justify-content-center align-items-center">
+                    <img class="img-fluid img-thumbnail profil-pic" src="{{ asset('images/profilpicsBank/default_profil_pic.jpg') }}" alt="default_profil_pic">
+                </div>
             {% else %}
-                <img class="img-fluid img-thumbnail profil-pic" src="{{ asset('images/users/' ~ app.user.profilPic) }}" alt="profil_pic">
+                <div class="img-container d-flex justify-content-center align-items-center">
+                    <img class="img-fluid img-thumbnail profil-pic" src="{{ asset('images/users/' ~ app.user.profilPic) }}" alt="profil_pic">
+                </div>
             {% endif %}
-            <h1 class="text-center mx-2">Gestion du profil</h1>
+            <h2 class="text-center mx-2 mb-0">Gestion du profil</h1>
 
         </div>
     </div>
 
-    <div class="row profil-form d-none">
-        {{ form_start(form) }}
-        {{ form(form) }}
-        {{ form_end(form) }}
+    {# Formulaire de changement de photo de profil #}
+    <div class="row profil-form">
+        <div>
+            <input type="submit" class=".custom-file-input btn btn-lg mb-4 change-photo" value="Changer la photo de profil">
+        </div>
+        <div class="form-appear d-none">
+            {{ form(form) }}
+        </div>
     </div>
 
     <div class="row">
@@ -49,16 +57,5 @@
             </ul>
         </div>
     </div>
-
-    {% if is_granted('ROLE_ADMIN') %}
-    <div class="row">
-        <div class="col-12 col-md-6 offset-md-3 d-flex justify-content-center align-items-center mb-4">
-            {# Articles publiés par le compte compte #}
-            <ul class="list-group col-12 col-md-8 p-0">
-                <li class="list-group-item bg-black"><span class="text-info">{{ app.user.email }}</span></li>
-            </ul>
-        </div>
-    </div>
-    {% endif %}
 
 {% endblock %}

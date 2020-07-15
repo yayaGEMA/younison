@@ -77,6 +77,11 @@ a:link
   color: black !important;
 }
 
+/*Modification couleur label nouvelle article et edit article*/
+.label-color{
+  color: whitesmoke;
+}
+
 /*NAVBAR*/
 .navbar-dark{
   color: white;
@@ -95,13 +100,14 @@ a:link
   color: black;
 }
 
-.navbar-pic{
-  max-height: 30px;
-  border-radius: 50%;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
+.img-container-navbar{
+	width: 50px;
+	height: 50px;
+	display: block;
+}
+
+.profil-pic{
+  width: auto;
 }
 
 /*Bannière*/
@@ -518,10 +524,13 @@ Zoom sur les cards
 }
 
 /* Images de profil */
+.img-container{
+  	width: 84px;
+  	height: 84px;
+}
+
 .profil-pic{
-  width: 84px;
-  height: 84px;
-  cursor: pointer;
+    width: auto;
 }
 
 .profil-form{
@@ -534,8 +543,8 @@ Zoom sur les cards
   margin: 0;
 }
 
-.profil-form .required{
-  display: none;
+.custom-file-input{
+  opacity: 1;
 }
 
 /*Media Queries*/
@@ -577,4 +586,10 @@ Zoom sur les cards
 	.card-style .card-body{
 		height:200px;
 	}
+}
+.iframe-spotify{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 320px;
 }

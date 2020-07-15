@@ -9,10 +9,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Article;
+use App\Entity\User;
+use App\Entity\Comment;
 use App\Repository\ArticleRepository;
 use Symfony\Component\Form\FormError;
 use App\Form\EditPhotoType;
-
+use Doctrine\ORM\EntityManagerInterface;
 
 
 class MainController extends AbstractController

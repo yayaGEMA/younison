@@ -331,6 +331,7 @@ class ArticleController extends AbstractController
 
         // S'il n'est pas connecté
         if(!$user){
+            // Tableau JSON avec le code d'erreur et le message
             return $this->json([
                 'code' => 403,
                 'message' => 'Il faut être connecté'
@@ -348,17 +349,22 @@ class ArticleController extends AbstractController
                 $likesCounter = $article->getLikesCounter();
                 $article->setLikesCounter(--$likesCounter);
 
-
+                // On enlève ce like dans la BDD
                 $manager->remove($like);
                 $manager->persist($article);
                 $manager->flush();
 
+                // Tableau JSON avec le code de succès et le message
                 return $this->json([
                     'code' => 200,
                     'message' => "Like supprimé",
                     'likes' => $article->getLikesCounter()
                 ], 200);
+
+            // Sinon, il n'aime pas l'article...
             } else {
+
+                // On spécifie quel user aime, et sur quel article
                 $like = new ArticleLike();
                 $like
                     ->setArticle($article)
@@ -369,10 +375,12 @@ class ArticleController extends AbstractController
                 $likesCounter = $article->getLikesCounter();
                 $article->setLikesCounter(++$likesCounter);
 
+                // On ajoute le like dans la BDD
                 $manager->persist($like);
                 $manager->persist($article);
                 $manager->flush();
 
+                // Tableau JSON avec le code de succès et le message
                 return $this->json([
                     'code' => 200,
                     'message' => 'Like ajouté',

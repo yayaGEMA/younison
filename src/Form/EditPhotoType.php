@@ -36,7 +36,7 @@ class EditPhotoType extends AbstractType
                 ]
             ])
             ->add('save', SubmitType::class, [
-                'label' => 'Changer la photo de profil',
+                'label' => 'Sauvegarder',
                 'attr' => [
                     'class' => 'btn btn-lg btn-primary'
                 ]
