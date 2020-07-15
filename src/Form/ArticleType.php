@@ -107,7 +107,7 @@ class ArticleType extends AbstractType
             ->add('save', SubmitType::class, [
                 'label' => 'Envoyer',
                 'attr' => [
-                    'class' => 'btn btn-outline-primary col-12'
+                    'class' => 'btn btn-primary col-12'
                 ]
             ])
         ;
