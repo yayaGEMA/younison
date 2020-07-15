@@ -15,7 +15,7 @@
          {# Affichage du formulaire de changement de photo de profil #}
         <div class="col-10 offset-1 offset-md-4 col-md-4 change-photo-form d-flex justify-content-center align-items-center my-4">
             {% if app.user.profilPic is null %}
-                <img class="img-fluid img-thumbnail profil-pic" src="{{ asset('images/default_profil_pic.jpg')|imagine_filter('profil') }}" alt="default_profil_pic">
+                <img class="img-fluid img-thumbnail profil-pic" src="{{ asset('images/users/default_profil_pic.jpg') }}" alt="default_profil_pic">
             {% else %}
                 <img class="img-fluid img-thumbnail profil-pic" src="{{ asset('images/users/' ~ app.user.profilPic) }}" alt="profil_pic">
             {% endif %}
