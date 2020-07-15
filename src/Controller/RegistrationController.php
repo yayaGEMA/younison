@@ -57,7 +57,6 @@ class RegistrationController extends AbstractController
                         $form->get('plainPassword')->getData()
                     )
                 )
-
                 // Date actuelle
                 ->setRegistrationDate(new DateTime())
                 // Compte non activé
