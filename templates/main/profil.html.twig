@@ -1,6 +1,14 @@
 {# Utilisation du squelette de page base.html.twig #}
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <style>
+        label{
+            display: none;
+        }
+    </style>
+{% endblock %}
+
 {# Titre de la page #}
 {% block title %}Gestion du profil{% endblock %}
 
@@ -25,7 +33,9 @@
     </div>
 
     <div class="row profil-form d-none">
+        {{ form_start(form) }}
         {{ form(form) }}
+        {{ form_end(form) }}
     </div>
 
     <div class="row">
