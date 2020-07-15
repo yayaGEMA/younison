@@ -15,11 +15,10 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600');
 
 
-
 /*Propriétés général*/
 .bg-sand{
   background: rgb(81,85,97);
-  background: linear-gradient(90deg, rgba(81,85,97,1) 9%, rgba(178,132,116,1) 44%, rgba(216,177,153,1) 84%); 
+  background: linear-gradient(90deg, rgb(81, 85, 97) 9%, rgb(178, 132, 116) 44%, rgb(24, 24, 24) 84%); 
 }
 .bg-grade{
   background: #515561
@@ -39,18 +38,12 @@ h2{
   -ms-transition: 0.3s;
   -o-transition: 0.3s;
 }
-
 h3{
   text-decoration: none;
   font-family: 'Max';
   color: #2e2e31;
 }
-/*Pour enlever le soulignement des cards de bootsrap*/
-a:link 
-{ 
- text-decoration:none; 
-} 
-
+/*text de la Une, avec preparation pour l'effet zoom*/
 .resume>p{
   color: white;
   font-size: 1.5em;
@@ -75,9 +68,18 @@ p card-text{
   font-size: 1.1em; 
 }
 
+/*Pour enlever le soulignement des cards de bootsrap*/
+a:link 
+{ 
+ text-decoration:none; 
+} 
+.text-muted.text-dark{
+  color: black !important;
+}
+
 /*NAVBAR*/
-.navbar-dark .navbar-nav .nav-link{
-  color: snow;
+.navbar-dark{
+  color: white;
 }
 .navbar-dark .navbar-nav{
   color: #D8B199;
@@ -85,14 +87,12 @@ p card-text{
 .navbar-dark  .nav-right{
   color: rgb(81,85,97);
 }
-
 .dropdown-menu{
   background-color:rgb(216,177,153);
   border: none;
 }
-
-#profil-dropdown:hover{
-  color: black !important;
+.navbar-nav .nav-item .black-effect:hover{
+  color: black;
 }
 
 .navbar-pic{
@@ -120,11 +120,9 @@ p card-text{
     transform: translateX(-50%) translateY(-50%) rotate(360deg);
   }
 }
-
 body {
   font-family: helvetica, arial, sans-serif;   
 }
-
 .title {
   color: #fffbf1;
   text-shadow: 0 20px 25px #2e2e31, 0 40px 60px #2e2e31;
@@ -138,7 +136,6 @@ body {
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
 }
-
 .title:before,
 .title:after {
   content: '';
@@ -156,12 +153,10 @@ body {
   -ms-transform: translateX(-50%) translateY(-50%) rotate(0deg);
   -o-transform: translateX(-50%) translateY(-50%) rotate(0deg);
 }
-
 .title:before {
   border-color: #d8b199 #d8b199 rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
   z-index: -1;
 }
-
 .title:after {
   border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #d8b199 #d8b199;
   box-shadow: 25px 25px 25px rgba(46, 46, 49, .8);
@@ -170,10 +165,9 @@ body {
 /*Vignettes de la section Une*/
 .thumbnail{
   -webkit-box-shadow: 0px 0px 15px 2px rgba(255,255,255,1);
--moz-box-shadow: 0px 0px 15px 2px rgba(255,255,255,1);
-box-shadow: 0px 0px 15px 2px rgba(255,255,255,1);
+  -moz-box-shadow: 0px 0px 15px 2px rgba(255,255,255,1);
+  box-shadow: 0px 0px 15px 2px rgba(255,255,255,1);
 }
-
 
 /*Footer et RS*/
 
@@ -195,8 +189,8 @@ cursor: pointer;
  align-items: center;
  width: 150px;
  height: 40px;
- background: rgb(216,177,153);
- background: radial-gradient(circle, rgba(216,177,153,1) 0%, rgba(81,85,97,1) 57%); 
+ background: rgb(56,47,43);
+ background: radial-gradient(circle, rgba(56,47,43,1) 38%, rgba(64,52,48,1) 49%, rgba(24,24,24,1) 61%);   
  border-radius: 20px;
  color: #fff;
  font-size: 15px;
@@ -245,6 +239,7 @@ cursor: pointer;
   
   color: white;
 }
+
 /*Liste des articles*/
 .card-img-top{
   max-height: 100%;
@@ -274,7 +269,19 @@ cursor: pointer;
 	text-shadow: 2px 2px 5px whitesmoke, -2px -2px 5px whitesmoke, -2px 2px 5px whitesmoke, 2px -2px 5px whitesmoke;
 }
 
-/*hr stylisé*/
+/*page article */
+.article-view>p>a{
+  color: white;
+}
+.alert-primary{
+  background-color: black;
+  border-color: white;
+}
+.alert-danger{
+  background-color: #c62828;
+  border-color: #fb8c00
+}
+/*hr stylisé qui sépare l'article des commentaires crée en deux temps et superposé l'un sur l'autre avec la fonction after et before*/
 hr.style { 
   height: 30px; 
   border-style: solid; 
@@ -293,7 +300,6 @@ hr.style:before {
   border-radius: 20px; 
 }
 
-
 /*effet sur image Bruce*/
 .bruce{
   filter: sepia(0.6) contrast(1.20) drop-shadow(0 0 0.75rem rgba(204, 200, 201, 0.849));
@@ -303,17 +309,17 @@ hr.style:before {
 /*Effet sur le formulaire*/
 .border-form{
   border-radius: 30px 30px 30px 30px;
--moz-border-radius: 30px 30px 30px 30px;
--webkit-border-radius: 30px 30px 30px 30px;
-border: 5px solid #FFFFE2;
-padding: 5%;
-color: #FFFFE2;
--webkit-box-shadow: 0px 0px 21px -3px rgba(209,209,209,1);
--moz-box-shadow: 0px 0px 21px -3px rgba(209,209,209,1);
-box-shadow: 0px 0px 21px -3px rgba(209,209,209,1);
-background: rgb(39,39,43);
-background: rgb(73,73,77);
-background: linear-gradient(34deg, rgba(73,73,77,1) 3%, rgba(39,39,43,1) 41%, rgba(54,54,69,1) 47%, rgba(39,39,43,1) 51%);  
+  -moz-border-radius: 30px 30px 30px 30px;
+  -webkit-border-radius: 30px 30px 30px 30px;
+  border: 5px solid #FFFFE2;
+  padding: 5%;
+  color: #FFFFE2;
+  -webkit-box-shadow: 0px 0px 21px -3px rgba(209,209,209,1);
+  -moz-box-shadow: 0px 0px 21px -3px rgba(209,209,209,1);
+  box-shadow: 0px 0px 21px -3px rgba(209,209,209,1);
+  background: rgb(39,39,43);
+  background: rgb(73,73,77);
+  background: linear-gradient(34deg, rgba(73,73,77,1) 3%, rgba(39,39,43,1) 41%, rgba(54,54,69,1) 47%, rgba(39,39,43,1) 51%);  
 }
 #registration_form_save{
   color: #FFFFE2;
@@ -390,7 +396,6 @@ Zoom sur les cards
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 }
-
 .item-zoom img {
 	vertical-align: top;
 	max-width: 100%;
@@ -399,13 +404,11 @@ Zoom sur les cards
   transition: all 0.3s;
   overflow: hidden;
 }
-
 .item-zoom:hover img {
 	-moz-transform: scale(1.1);
 	-webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
-
 /*Effets de detachement et de relief sur les cards*/
 .card-deck:before{
     content: " ";
@@ -429,7 +432,6 @@ Zoom sur les cards
     transform: rotate(-3deg);
     z-index: -1;
 }
-
 .card-deck:after{
     content: " ";
     position: absolute;
@@ -476,7 +478,6 @@ Zoom sur les cards
     transform: rotate(-8deg);
     z-index: -1;
 }
-
 .card-deck-small:after{
   content: " ";
   position: absolute;
@@ -501,31 +502,20 @@ Zoom sur les cards
   z-index: -1;
 }
 
-
-
-
-
-
-
 /*Liste des articles Menu Paginator*/
 .pagination .page-item .page-link{
   background-color: black;
   color: #ffffff;
 }
-
 .pagination .page-item.disabled{
   cursor: not-allowed;
 }
-
 .pagination .page-item.disabled .page-link, .pagination .page-item.active .page-link{
   color: #B28474;
 }
 .pagination .page-item a.page-link:hover{
   background-color: #515561;
 }
-
-
-
 
 /* Images de profil */
 .profil-pic{
@@ -555,7 +545,6 @@ Zoom sur les cards
     display: none;
     }
   } 
-
 @media screen and (min-width: 575px){
   /*Taille des photos dans les cards pour avoir une taille commune quelle que soit la dimension d'origine*/
   .card-img-top {
@@ -570,7 +559,6 @@ Zoom sur les cards
   object-fit: cover;
   }
 }
-
 @media screen and (min-width:768px){
 	.card-style .card-body{
 		height:200px;
