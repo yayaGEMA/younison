@@ -34,6 +34,7 @@ document.querySelectorAll(".js-like").forEach(function(link){
 });
 
 // Page de profil
-$(".profil-pic").click(function(){
-    $(".profil-form").toggleClass("d-none");
+$(".change-photo").click(function(event){
+    $(this).css('display', 'none');
+    $('.form-appear').removeClass('d-none');
 });
