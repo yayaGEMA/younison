@@ -578,3 +578,9 @@ Zoom sur les cards
 		height:200px;
 	}
 }
+.iframe-spotify{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 320px;
+}
