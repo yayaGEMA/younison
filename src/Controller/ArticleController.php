@@ -138,7 +138,7 @@ class ArticleController extends AbstractController
      *
      * @Route("/article/{slug}/", name="article")
      */
-    public function articleView(Article $article, Request $request, Comment $comment){
+    public function articleView(Article $article, Request $request){
 
         // Récupération de l'user actuellement connecté
         $userConnected = $this->getUser();
