@@ -49,7 +49,7 @@ class ArticleType extends AbstractType
             
             // Champ contenu
             ->add('content', CKEditorType::class, [
-                'label' => 'Description (soyez le plus exhaustif possible)',
+                'label' => 'Contenu de l\'article',
                 'purify_html' => true,
                 'constraints' => [
                     new NotBlank([
@@ -66,7 +66,7 @@ class ArticleType extends AbstractType
 
             // Champ photo
             ->add('picture', FileType::class, [
-                'label' => 'Sélectionnez une nouvelle photo',
+                'label' => 'Sélectionnez une photo',
                 'attr' => [
                     'accept' => 'image/jpeg, image/png'
                 ],
@@ -107,7 +107,7 @@ class ArticleType extends AbstractType
             ->add('save', SubmitType::class, [
                 'label' => 'Envoyer',
                 'attr' => [
-                    'class' => 'btn btn-primary col-12'
+                    'class' => 'btn btn-lg btn-primary col-12'
                 ]
             ])
         ;

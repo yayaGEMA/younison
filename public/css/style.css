@@ -348,6 +348,11 @@ hr.style:before {
   content: 'Parcourir';
 }
 
+#article_picture{
+  opacity: 0;
+}
+
+
 /*bouton envoyer commentaires*/
 #comment_save{
   color: #FFFFE2;
@@ -545,6 +550,7 @@ Zoom sur les cards
 
 .custom-file-input{
   opacity: 1;
+  color: white;
 }
 
 /*Media Queries*/
