@@ -83,15 +83,16 @@ a:link
 }
 
 /*NAVBAR*/
-.navbar-dark{
-  color: white;
+/*couleur des liens à droite  de la nav :*/
+.navbar-dark .nav-right .nav-link{
+color: white;
 }
-.navbar-dark .navbar-nav{
-  color: #D8B199;
+
+/*couleur des liens à gauche de la nav :*/
+.navbar-dark .nav-left .nav-link{
+color: white;
 }
-.navbar-dark  .nav-right{
-  color: rgb(81,85,97);
-}
+
 .dropdown-menu{
   background-color:rgb(216,177,153);
   border: none;
@@ -99,6 +100,7 @@ a:link
 .navbar-nav .nav-item .black-effect:hover{
   color: black;
 }
+
 
 .img-container-navbar{
 	width: 50px;
@@ -110,6 +112,17 @@ a:link
   width: auto;
 }
 
+.sortable{
+  color: black;
+}
+
+/*Menu hamburger*/
+.navbar-dark .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgb(255, 255, 255)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+.navbar-dark .navbar-toggler{
+  border-color: rgb(216,177,153);
+}
 /*Bannière*/
 .banner{
   background-image: url("../images/micro_noir4.jpg");
@@ -127,7 +140,7 @@ a:link
   }
 }
 body {
-  font-family: helvetica, arial, sans-serif;   
+  font-family: helvetica, arial, sans-serif;
 }
 .title {
   color: #fffbf1;
