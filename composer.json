@@ -6,7 +6,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "antishov/doctrine-extensions-bundle": "^1.4",
-        "easycorp/easyadmin-bundle": "^3.1",
+        "easycorp/easyadmin-bundle": "2.*",
         "exercise/htmlpurifier-bundle": "^3.0",
         "friendsofsymfony/ckeditor-bundle": "^2.2",
         "fzaninotto/faker": "^1.9",

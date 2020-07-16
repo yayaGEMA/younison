@@ -59,6 +59,10 @@
                             <div class="dropdown-menu profil-menu" aria-labelledby="profil-dropdown">
                                 <a href="{{ path('profil') }}" class="dropdown-item"><i class="fas fa-users-cog mr-1"></i> Mon Profil</a>
                                 <a href="{{ path('app_logout') }}" class="dropdown-item"><i class="fas fa-sign-out-alt mr-1"></i>Déconnexion</a>
+                                {# Bouton vers l'administration si l'utilisateur possède le rôle admin #}
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <a class="text-danger dropdown-item" href="{{ path('easyadmin') }}"><i class="fas fa-tools mr-1"></i>Administration</a>
+                                {% endif %}
                             </div>
                         </li>
                      {# Boutons si l'utilisateur n'est pas connecté #}
