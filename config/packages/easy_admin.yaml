@@ -26,7 +26,6 @@ easy_admin:
                     - {property: 'id', label: 'ID'}
                     - {property: 'email', type: 'email', label: 'Adresse Email'}
                     - {property: 'pseudo', label: 'Pseudonyme'}
-                    - {property: 'is_activated', label: 'Statut du compte'}
                     - {property: 'registrationDate', label: 'Date d''inscription'}
                     - {property: 'profil_pic',  type: 'image', base_path: 'images/users/', label: 'Photo'}
                     - {property: 'password', type: 'password', label: 'Mot de passe'}
