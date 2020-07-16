@@ -70,7 +70,12 @@
                             {# Affichage de la date de publication du commentaire et du pseudo de son auteur #}
                             <div class="col-12 col-sm mt-2 mt-sm-0">
                                 <footer class="blockquote-footer mb-4">
-                                    <img src="{{ asset('images/users/' ~ comment.author.profilPic ) }}" alt="profil-pic" class="comment-profil-pic"><strong class="text-light mr-1">{{ comment.author.pseudo }}</strong>
+                                    {% if comment.author.profilPic is null %}
+                                        <img class="img-fluid img-thumbnail profil-pic mr-2" src="{{ asset('images/profilpicsBank/default_profil_pic.jpg') }}" alt="default_profil_pic">
+                                    {% else %}
+                                        <img src="{{ asset('images/users/' ~ comment.author.profilPic ) }}" alt="profil-pic" class="comment-profil-pic">
+                                    {% endif %}
+                                        <strong class="text-light mr-1">{{ comment.author.pseudo }}</strong>
                                     <br class="d-sm-none">Le <strong class="text-light">{{ comment.publicationDate|date('d/m/Y à H\\hi') }}</strong>
                                 </footer>
                                 <p class="text-light">{{ comment.content|nl2br }}</p>
