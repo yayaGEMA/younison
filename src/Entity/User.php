@@ -28,7 +28,7 @@ class User implements UserInterface
     private $pseudo;
 
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\Column(type="string", length=320, unique=true)
      */
     private $email;
 
@@ -46,11 +46,6 @@ class User implements UserInterface
      * @ORM\Column(type="datetime")
      */
     private $registrationDate;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $isActivated;
 
     /**
      * @ORM\OneToMany(targetEntity=Article::class, mappedBy="author")
@@ -74,11 +69,6 @@ class User implements UserInterface
      * @ORM\Column(type="string")
      */
     private $password;
-
-    /**
-     * @ORM\Column(type="string", length=32)
-     */
-    private $activationToken;
 
     /**
      * @ORM\OneToMany(targetEntity=ArticleLike::class, mappedBy="user")
@@ -200,18 +190,6 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getIsActivated(): ?bool
-    {
-        return $this->isActivated;
-    }
-
-    public function setIsActivated(bool $isActivated): self
-    {
-        $this->isActivated = $isActivated;
-
-        return $this;
-    }
-
     /**
      * @return Collection|Article[]
      */
@@ -282,18 +260,6 @@ class User implements UserInterface
         // Le return doit renvoyer quelque chose permettant d'identifier facilement l'élément en question
         // Ici ça retournera une phrase type "25 - bob@exemple.com"
         return $this->id . ' - ' . $this->email;
-    }
-
-    public function getActivationToken(): ?string
-    {
-        return $this->activationToken;
-    }
-
-    public function setActivationToken(string $activationToken): self
-    {
-        $this->activationToken = $activationToken;
-
-        return $this;
     }
 
     /**

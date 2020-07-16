@@ -66,7 +66,7 @@ class Article
     private $publicationDate;
 
     /**
-     * @ORM\Column(type="string", length=400, nullable=true)
+     * @ORM\Column(type="string", length=40, nullable=true)
      */
     private $spotifyUri;
 

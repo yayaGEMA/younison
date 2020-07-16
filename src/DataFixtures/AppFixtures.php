@@ -58,8 +58,6 @@ class AppFixtures extends Fixture
                 ->setPassword( $this->encoder->encodePassword($newUser, 'Alicedu71@') )
                 ->setProfilPic($faker->file('public/images/profilpicsBank', 'public/images/users', false))
                 ->setRegistrationDate($faker->dateTimeBetween('-5years', 'now'))
-                ->setIsActivated($faker->boolean)
-                ->setActivationToken( $faker->md5 )
             ;
 
             // Enregistrement du nouvel user auprès de Doctrine
