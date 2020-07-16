@@ -63,14 +63,9 @@
 								</div>
 							</a>
 							<!--Compteur de like-->
-							<div class="likescounter position-absolute">
-								<a href="{{ path('article_article_like', {'id': article.id }) }}" class="btn btn-link js-like d-inline">
-									<span class="js-likes">{{ article.likesCounter }}</span>
-									{% if app.user and article.isLikedByUser(app.user) %}
-										<i class="fas fa-thumbs-up"></i>
-									{% else %}
-										<i class="far fa-thumbs-up"></i>
-									{% endif %}
+							<div class="likescounter position-absolute js-like">
+								<a href="{{ path('article_article_like', {'id': article.id }) }}" class="btn js-like d-inline">
+									<span class="js-likes text-decoration-none">{{ article.likesCounter }} likes</span>
 								</a>
 							</div>
 						</div>
@@ -89,9 +84,4 @@
 
 </main>
 
-{% endblock %}
-
-{# Bundle compteur de like #}
-{% block javascripts %}
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 {% endblock %}
