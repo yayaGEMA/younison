@@ -34,13 +34,7 @@ class MainController extends AbstractController
             'index_articles' => $indexArticles
         ]);
     }
-    /**
-     * @Route("/admin", name="admin")
-     */
-    public function admin()
-    {
-        return $this->render('main/admin/');
-    }
+    
 
     /**
      * Page de profil

@@ -82,7 +82,7 @@ class RegistrationFormType extends AbstractType
             ->add('save', SubmitType::class, [
                 'label' => 'Créer mon compte',
                 'attr' => [
-                    'class' => 'btn btn-outline-primary col-12'
+                    'class' => 'btn btn-outline-dark col-12'
                 ]
             ])
         ;

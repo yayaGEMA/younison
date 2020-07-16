@@ -25,16 +25,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent15">
                 <!-- Links -->
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link black-effect" href="{{ path('main') }}">Accueil <span class="sr-only">(current)</span></a>
+                    <li class="nav-item nav-left active">
+                        <a class="nav-link  black-effect" href="{{ path('main') }}">Accueil <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link black-effect" href="{{ path('article_list') }}">Articles</a>
+                    <li class="nav-item nav-left">
+                        <a class="nav-link  black-effect" href="{{ path('article_list') }}">Articles</a>
                     </li>
                     {# Bouton vers la création d'une nouvelle publication si l'utilisateur possède le rôle admin #}
                     {% if is_granted('ROLE_ADMIN') %}
-                    <li class="nav-item">
-                        <a class="nav-link black-effect" href="{{ path('article_new_article') }}">Publier</a>
+                    <li class="nav-item nav-left">
+                        <a class="nav-link  black-effect" href="{{ path('article_new_article') }}">Publier</a>
                     </li>
                     {% endif %}
                 </ul>
@@ -59,6 +59,10 @@
                             <div class="dropdown-menu profil-menu" aria-labelledby="profil-dropdown">
                                 <a href="{{ path('profil') }}" class="dropdown-item"><i class="fas fa-users-cog mr-1"></i> Mon Profil</a>
                                 <a href="{{ path('app_logout') }}" class="dropdown-item"><i class="fas fa-sign-out-alt mr-1"></i>Déconnexion</a>
+                                {# Bouton vers l'administration si l'utilisateur possède le rôle admin #}
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <a class="text-danger dropdown-item" href="{{ path('easyadmin') }}"><i class="fas fa-tools mr-1"></i>Administration</a>
+                                {% endif %}
                             </div>
                         </li>
                      {# Boutons si l'utilisateur n'est pas connecté #}
