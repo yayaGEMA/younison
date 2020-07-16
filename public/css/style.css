@@ -140,7 +140,7 @@ color: white;
   }
 }
 body {
-  font-family: helvetica, arial, sans-serif;   
+  font-family: helvetica, arial, sans-serif;
 }
 .title {
   color: #fffbf1;
@@ -301,13 +301,13 @@ cursor: pointer;
   background-color: #c62828;
   border-color: #fb8c00
 }
-.likescounter .btn-link{
-  color: red;
+
+.img-container-comment{
+	width: 30px;
+	height: 30px;
+	display: block;
 }
 
-.likescounter .btn-link:hover{
-  color: yellow;
-}
 /*hr stylisé qui sépare l'article des commentaires crée en deux temps et superposé l'un sur l'autre avec la fonction after et before*/
 hr.style { 
   height: 30px; 
