@@ -59,10 +59,6 @@ class RegistrationController extends AbstractController
                 )
                 // Date actuelle
                 ->setRegistrationDate(new DateTime())
-                // Compte non activé
-                ->setIsActivated(false)
-                // md5 aléatoire comme token d'activation
-                ->setActivationToken( md5( random_bytes(100) ) )
             ;
 
                 $entityManager = $this->getDoctrine()->getManager();
@@ -86,27 +82,5 @@ class RegistrationController extends AbstractController
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
-    }
-
-    /**
-     * @Route("/verification/email", name="app_verify_email")
-     */
-    public function verifyUserEmail(Request $request): Response
-    {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-
-        // validate email confirmation link, sets User::isVerified=true and persists
-        try {
-            $this->emailVerifier->handleEmailConfirmation($request, $this->getUser());
-        } catch (VerifyEmailExceptionInterface $exception) {
-            $this->addFlash('verify_email_error', $exception->getReason());
-
-            return $this->redirectToRoute('app_register');
-        }
-
-        // @TODO Change the redirect on success and handle or remove the flash message in your templates
-        $this->addFlash('success', 'Your email address has been verified.');
-
-        return $this->redirectToRoute('app_register');
     }
 }
