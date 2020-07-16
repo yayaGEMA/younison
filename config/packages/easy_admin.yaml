@@ -1,6 +1,90 @@
 easy_admin:
-   entities:
-       # List the entity class name you want to manage
-       - App\Entity\Article
-       - App\Entity\Comment
-       - App\Entity\User
+    formats:
+        date:     'd/m/Y'
+        time:     'H:i:s'
+        datetime: 'd/m/Y H:i:s'
+    site_name: 'Administration Générale'
+    design:
+        form_theme:
+            - "@EasyAdmin/form/bootstrap_4.html.twig"
+            - "@FOSCKEditor/Form/ckeditor_widget.html.twig"
+        brand_color: 'black'
+        menu:
+            - { label: 'Revenir au site', route: 'main', icon: 'link'}
+            - User
+            - Article
+            - Comment
+    entities:
+        User:
+            class: App\Entity\User
+            controller: App\Controller\AdminController
+            label: 'Utilisateurs'
+            list:
+                title: 'Liste des utilisateurs'
+                sort: ['id', 'ASC']
+                fields:
+                    - {property: 'id', label: 'ID'}
+                    - {property: 'email', type: 'email', label: 'Adresse Email'}
+                    - {property: 'pseudo', label: 'Pseudonyme'}
+                    - {property: 'is_activated', label: 'Statut du compte'}
+                    - {property: 'registrationDate', label: 'Date d''inscription'}
+                    - {property: 'profil_pic',  type: 'image', base_path: 'images/users/', label: 'Photo'}
+                    - {property: 'password', type: 'password', label: 'Mot de passe'}
+            edit:
+                title: 'Modifier un utilisateur'
+                fields:
+                    - {property: 'email', type: 'email', label: 'Adresse Email'}
+                    - {property: 'pseudo', label: 'Pseudonyme'}
+                    - {property: 'password', type: 'password', label: 'Mot de passe'}
+            new:
+                title: 'Créer un nouveau compte'
+                fields:
+                    - {property: 'email', type: 'email', label: 'Adresse Email'}
+                    - {property: 'password', type: 'password', label: 'Mot de passe'}
+                    - {property: 'pseudo', label: 'Pseudonyme'}
+        Article:
+            class: App\Entity\Article
+            label: 'Publications'
+            list:
+                title: 'Liste des publications'
+                sort: ['publicationDate', 'DESC']
+                fields:
+                    - {property: 'id', label: 'ID'}
+                    - {property: 'title', label: 'Titre'}
+                    - {property: 'publicationDate', label: 'Date de publication'}
+                    - {property: 'author', label: 'Auteur'}
+                    - {property: 'comments', label: 'Commentaires'}
+            edit:
+                title: 'Modifier une publication'
+                fields:
+                    - {property: 'title', label: 'Titre'}
+                    - {property: 'content', type: 'fos_ckeditor', label: 'Contenu'}
+            new:
+                title: 'Créer une nouvelle publication'
+                fields:
+                    - {property: 'title', label: 'Titre'}
+                    - {property: 'content', type: 'fos_ckeditor', label: 'Contenu'}
+                    - {property: 'author', label: 'Auteur'}
+
+
+        Comment:
+            class: App\Entity\Comment
+            label: 'Commentaires'
+            list:
+                title: 'Liste des commentaires'
+                sort: ['publicationDate', 'DESC']
+                fields:
+                    - {property: 'id', label: 'ID'}
+                    - {property: 'publicationDate', label: 'Date de publication'}
+                    - {property: 'author', label: 'Auteur'}
+                    - {property: 'article', label: 'Article'}
+            edit:
+                title: 'Modifier un commentaire'
+                fields:
+                    - {property: 'content', label: 'Contenu'}
+            new:
+                title: 'Créer un nouveau commentaire'
+                fields:
+                    - {property: 'article', label: 'Article'}
+                    - {property: 'author', label: 'Auteur'}
+                    - {property: 'content', label: 'Contenu'}
