@@ -42,7 +42,7 @@
                     {# Boutons si l'utilisateur est connecté #}
                     {% if app.user %}
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-light d-flex align-items-center justify-content-center p-0" href="#" id="profil-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle text-light d-flex align-items-center p-0" href="#" id="profil-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {# Si l'utilisateur n'a pas de photo de profil, on affiche l'image par défaut #}
                                 {% if app.user.profilPic is null %}
                                     <div class="img-container-navbar d-flex align-items-center justify-content-center">

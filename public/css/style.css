@@ -83,6 +83,20 @@ a:link
 }
 
 /*NAVBAR*/
+/* Réglages du dépassement du dropdown */
+.dropdown-menu{
+	background-color:rgb(216,177,153);
+	border: none;
+	left: auto;
+	right: 1px !important;
+	width: max-content;
+}
+
+  .dropdown-item{
+	  display: block;
+	  max-width: 100%;
+  }
+
 /*couleur des liens à droite  de la nav :*/
 .navbar-dark .nav-right .nav-link{
 color: white;
@@ -93,10 +107,6 @@ color: white;
 color: white;
 }
 
-.dropdown-menu{
-  background-color:rgb(216,177,153);
-  border: none;
-}
 .navbar-nav .nav-item .black-effect:hover{
   color: black;
 }
@@ -114,6 +124,7 @@ color: white;
 
 .sortable{
   color: black;
+  display: block;
 }
 
 /*Menu hamburger*/
