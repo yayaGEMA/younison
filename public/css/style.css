@@ -288,6 +288,13 @@ cursor: pointer;
   background-color: #c62828;
   border-color: #fb8c00
 }
+
+.img-container-comment{
+	width: 30px;
+	height: 30px;
+	display: block;
+}
+
 /*hr stylisé qui sépare l'article des commentaires crée en deux temps et superposé l'un sur l'autre avec la fonction after et before*/
 hr.style { 
   height: 30px; 

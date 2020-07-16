@@ -86,13 +86,17 @@
 
                             {# Affichage de la date de publication du commentaire et du pseudo de son auteur #}
                             <div class="col-12 col-sm mt-2 mt-sm-0">
-                                <footer class="blockquote-footer mb-4">
+                                <footer class="blockquote-footer mb-4 d-flex align-items-center">
                                     {% if comment.author.profilPic is null %}
-                                        <img class="img-fluid img-thumbnail profil-pic mr-2" src="{{ asset('images/profilpicsBank/default_profil_pic.jpg') }}" alt="default_profil_pic">
+                                        <div class="img-container-comment d-flex align-items-center justify-content-center">
+                                            <img class="img-fluid img-thumbnail profil-pic mr-2" src="{{ asset('images/profilpicsBank/default_profil_pic.jpg') }}" alt="default_profil_pic">
+                                        </div>
                                     {% else %}
-                                        <img src="{{ asset('images/users/' ~ comment.author.profilPic ) }}" alt="profil-pic" class="comment-profil-pic">
+                                        <div class="img-container-comment d-flex align-items-center justify-content-center">
+                                            <img src="{{ asset('images/users/' ~ comment.author.profilPic ) }}" alt="profil-pic" class="profil-pic">
+                                        </div>
                                     {% endif %}
-                                        <strong class="text-light mr-1">{{ comment.author.pseudo }}</strong>
+                                        <strong class="text-light mr-1 ml-2">{{ comment.author.pseudo }}</strong>
                                     <br class="d-sm-none">Le <strong class="text-light">{{ comment.publicationDate|date('d/m/Y à H\\hi') }}</strong>
                                 </footer>
                                 <p class="text-light">{{ comment.content|nl2br }}</p>
