@@ -256,7 +256,8 @@ cursor: pointer;
 
 .likescounter{
 	bottom: 10px;
-	right: 10px;
+  right: 10px;
+  background-color: rgba(250, 250, 250, 0.8);
 }
 
 .fa-thumbs-up{
@@ -368,8 +369,10 @@ hr.style:before {
   border-color: #fb8c00
 }
 
+/* affichage des photo de profil des user */
 .comment-profil-pic{
   border-radius: 50%;
+  max-width: 60px;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
@@ -378,13 +381,11 @@ hr.style:before {
   margin-right: 10px;
 }
 
-
-
-  /*Taille des photos dans les cards pour avoir une taille commune quelle que soit la dimension d'origine*/
-  .card-img-top {
-    width: 100%;
-    height: 55vw;
-    object-fit: cover;
+/*Taille des photos dans les cards pour avoir une taille commune quelle que soit la dimension d'origine*/
+.card-img-top {
+  width: 100%;
+  height: 55vw;
+  object-fit: cover;
 }
 /*Taille de la photo en une du site*/
 .card-img-top-top{
@@ -415,74 +416,76 @@ Zoom sur les cards
 	-webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
+
 /*Effets de detachement et de relief sur les cards*/
 .card-deck:before{
-    content: " ";
-    position: absolute;
-    width: 85%;
-    height: 50px;
-    left: 6%;
-    bottom: 28px;
-    background: #000;
-    -moz-box-shadow: 0 25px 15px rgb(0,0,0);
-    -webkit-box-shadow: 0 25px 15px rgb(0,0,0);
-    -o-box-shadow: 0 25px 15px rgb(0,0,0);
-    -ms-box-shadow: 0 25px 15px rgb(0,0,0);
-    -khtml-box-shadow: 0 15px 15px rgb(0,0,0);
-    box-shadow: 0 25px 15px rgb(0,0,0);
-    -moz-transform: rotate(-3deg);
-    -webkit-transform: rotate(-3deg);
-    -o-transform: rotate(-3deg);
-    -ms-transform: rotate(-3deg);
-    -khtml-transform: rotate(-5deg);
-    transform: rotate(-3deg);
-    z-index: -1;
+  content: " ";
+  position: absolute;
+  width: 85%;
+  height: 50px;
+  left: 6%;
+  bottom: 28px;
+  background: #000;
+  -moz-box-shadow: 0 25px 15px rgb(0,0,0);
+  -webkit-box-shadow: 0 25px 15px rgb(0,0,0);
+  -o-box-shadow: 0 25px 15px rgb(0,0,0);
+  -ms-box-shadow: 0 25px 15px rgb(0,0,0);
+  -khtml-box-shadow: 0 15px 15px rgb(0,0,0);
+  box-shadow: 0 25px 15px rgb(0,0,0);
+  -moz-transform: rotate(-3deg);
+  -webkit-transform: rotate(-3deg);
+  -o-transform: rotate(-3deg);
+  -ms-transform: rotate(-3deg);
+  -khtml-transform: rotate(-5deg);
+  transform: rotate(-3deg);
+  z-index: -1;
 }
 .card-deck:after{
-    content: " ";
-    position: absolute;
-    bottom: 0;
-    width: 85%;
-    height: 50px;
-    left: 6%;
-    bottom: 28px;
-    background: #000;
-    -moz-box-shadow: 0 25px 15px rgb(0,0,0);
-    -webkit-box-shadow: 0 25px 15px rgb(0,0,0);
-    -o-box-shadow: 0 25px 15px rgb(0,0,0);
-    -ms-box-shadow: 0 25px 15px rgb(0,0,0);
-    -khtml-box-shadow: 0 15px 15px rgb(0,0,0);
-    box-shadow: 0 25px 15px rgb(0,0,0);
-    -moz-transform: rotate(3deg);
-    -webkit-transform: rotate(3deg);
-    -o-transform: rotate(3deg);
-    -ms-transform: rotate(3deg);
-    -khtml-transform: rotate(5deg);
-    transform: rotate(3deg);
-    z-index: -1;
+  content: " ";
+  position: absolute;
+  bottom: 0;
+  width: 85%;
+  height: 50px;
+  left: 6%;
+  bottom: 28px;
+  background: #000;
+  -moz-box-shadow: 0 25px 15px rgb(0,0,0);
+  -webkit-box-shadow: 0 25px 15px rgb(0,0,0);
+  -o-box-shadow: 0 25px 15px rgb(0,0,0);
+  -ms-box-shadow: 0 25px 15px rgb(0,0,0);
+  -khtml-box-shadow: 0 15px 15px rgb(0,0,0);
+  box-shadow: 0 25px 15px rgb(0,0,0);
+  -moz-transform: rotate(3deg);
+  -webkit-transform: rotate(3deg);
+  -o-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+  -khtml-transform: rotate(5deg);
+  transform: rotate(3deg);
+  z-index: -1;
 }
+
 /*meme effet adapté aux petites cards*/
 .card-deck-small:before{
-    content: " ";
-    position: absolute;
-    width: 83%;
-    height: 50px;
-    left: 17px;
-    bottom: 25px;
-    background: #000;
-    -moz-box-shadow: 0 25px 15px rgb(0,0,0);
-    -webkit-box-shadow: 0 25px 15px rgb(0,0,0);
-    -o-box-shadow: 0 25px 15px rgb(0,0,0);
-    -ms-box-shadow: 0 25px 15px rgb(0,0,0);
-    -khtml-box-shadow: 0 15px 15px rgb(0,0,0);
-    box-shadow: 0 25px 15px rgb(0,0,0);
-    -moz-transform: rotate(-8deg);
-    -webkit-transform: rotate(-8deg);
-    -o-transform: rotate(-8deg);
-    -ms-transform: rotate(-8deg);
-    -khtml-transform: rotate(-5deg);
-    transform: rotate(-8deg);
-    z-index: -1;
+  content: " ";
+  position: absolute;
+  width: 83%;
+  height: 50px;
+  left: 17px;
+  bottom: 25px;
+  background: #000;
+  -moz-box-shadow: 0 25px 15px rgb(0,0,0);
+  -webkit-box-shadow: 0 25px 15px rgb(0,0,0);
+  -o-box-shadow: 0 25px 15px rgb(0,0,0);
+  -ms-box-shadow: 0 25px 15px rgb(0,0,0);
+  -khtml-box-shadow: 0 15px 15px rgb(0,0,0);
+  box-shadow: 0 25px 15px rgb(0,0,0);
+  -moz-transform: rotate(-8deg);
+  -webkit-transform: rotate(-8deg);
+  -o-transform: rotate(-8deg);
+  -ms-transform: rotate(-8deg);
+  -khtml-transform: rotate(-5deg);
+  transform: rotate(-8deg);
+  z-index: -1;
 }
 .card-deck-small:after{
   content: " ";
@@ -528,21 +531,17 @@ Zoom sur les cards
   	width: 84px;
   	height: 84px;
 }
-
 .profil-pic{
     width: auto;
 }
-
 .profil-form{
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
 #edit_photo_save{
   margin: 0;
 }
-
 .custom-file-input{
   opacity: 1;
 }
@@ -587,6 +586,8 @@ Zoom sur les cards
 		height:200px;
 	}
 }
+
+/* Placement de l'iframe spotify */
 .iframe-spotify{
   position: fixed;
   bottom: 0;

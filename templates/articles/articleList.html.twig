@@ -24,6 +24,7 @@
 				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Trier par</button>
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 					<div class="dropdown-item">
+						<!--Classé les articles par date-->
 						{% if getDirection is same as('asc') or getSort is same as('a.likes_counter') %}
 							{{ knp_pagination_sortable(pageArticles, 'Date (+ récent au + ancien)', 'a.publicationDate', {}, {'direction': 'desc'}) }}
 						{% else %}
@@ -31,6 +32,7 @@
 						{% endif %}
 					</div>
 					<div class="dropdown-item">
+						<!--Classé les articles par nombre de like-->
 						{% if getDirection is same as('asc') or getDirection is same as (null) or getSort is same as('a.publicationDate') %}
 							{{ knp_pagination_sortable(pageArticles, 'Les plus likés', 'a.likes_counter', {}, {'direction': 'desc'}) }}
 						{% else %}
@@ -60,6 +62,7 @@
 									</div>
 								</div>
 							</a>
+							<!--Compteur de like-->
 							<div class="likescounter position-absolute">
 								<a href="{{ path('article_article_like', {'id': article.id }) }}" class="btn btn-link js-like d-inline">
 									<span class="js-likes">{{ article.likesCounter }}</span>
@@ -89,6 +92,7 @@
 
 {% endblock %}
 
+{# Bundle compteur de like #}
 {% block javascripts %}
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 {% endblock %}
