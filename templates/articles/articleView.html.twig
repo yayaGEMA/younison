@@ -19,6 +19,7 @@
     <div class="row article-view">
         <p class="col-12 text-center article-list mt-3"><a href="{{ path('article_list') }}">Retour liste des articles</a></p>
 
+        <!--Bouton pour modif ou supprimer l'article-->
         {% if is_granted('ROLE_ADMIN') %}
             <p class="col-12 col-md-2 offset-md-5 text-center alert alert-primary"><a href="{{path('article_edit', {slug: article.slug, csrf_token: csrf_token('article_edit' ~ article.slug) }) }}">Modifier l'article</a></p>
             <p class="col-12 col-md-2 offset-md-5 text-center alert alert-danger"><a href="{{path('article_delete', {id: article.id, csrf_token: csrf_token('article_delete_' ~ article.id )}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet article ?')">Supprimer l'article</a></p>
@@ -69,7 +70,12 @@
                             {# Affichage de la date de publication du commentaire et du pseudo de son auteur #}
                             <div class="col-12 col-sm mt-2 mt-sm-0">
                                 <footer class="blockquote-footer mb-4">
-                                    <img src="{{ asset('images/users/' ~ comment.author.profilPic ) }}" alt="profil-pic" class="comment-profil-pic"><strong class="text-light mr-1">{{ comment.author.pseudo }}</strong>
+                                    {% if comment.author.profilPic is null %}
+                                        <img class="img-fluid img-thumbnail profil-pic mr-2" src="{{ asset('images/profilpicsBank/default_profil_pic.jpg') }}" alt="default_profil_pic">
+                                    {% else %}
+                                        <img src="{{ asset('images/users/' ~ comment.author.profilPic ) }}" alt="profil-pic" class="comment-profil-pic">
+                                    {% endif %}
+                                        <strong class="text-light mr-1">{{ comment.author.pseudo }}</strong>
                                     <br class="d-sm-none">Le <strong class="text-light">{{ comment.publicationDate|date('d/m/Y à H\\hi') }}</strong>
                                 </footer>
                                 <p class="text-light">{{ comment.content|nl2br }}</p>
@@ -104,9 +110,11 @@
         </div>
     </div>
 
+    <!--Iframe spotify version mobile-->
     <nav class="row navbar navbar-dark navbar-1 dark fixed-bottom bg-sand py-0 d-lg-none">
         <iframe src="https://open.spotify.com/embed/{{ uriType }}/{{ uriCode }}" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media" class="w-100"></iframe>
     </nav>
+    <!--Iframe spotify version pc-->
     <div class="iframe-spotify row d-none d-lg-flex">
         <iframe src="https://open.spotify.com/embed/{{ uriType }}/{{ uriCode }}" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
     </div>
